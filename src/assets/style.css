@@ -19,21 +19,40 @@ body {
   height: 100%;
   line-height: 1.5;
   margin: 0;
-  padding: 2rem;
+  padding: 0 2rem;
 }
 
-.container {
-  max-width: 580px;
-  margin: 0 auto;
-  background-color: var(--indigo50);
-  padding: var(--space-xxxlarge);
-  border-radius: var(--border-radius-xlarge);
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75em;
+  padding: 0 0 1em 0;
 }
 
-img {
-  max-width: 100%;
+.colors .color {
+  width: 3em;
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+  outline-offset: 2px;
+  transition: all 0.5ms;
 }
 
-.button {
-  text-decoration: none;
+.colors .color.active {
+  outline: 2px solid var(--blue700);
+}
+
+form .form-group {
+  margin-bottom: 4px;
+}
+
+form .button {
+  --space-small: 4px;
+  width: 100%;
+  margin: 8px 0;
+}
+
+form .button-select {
+  display: inline;
 }
