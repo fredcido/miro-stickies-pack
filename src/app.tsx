@@ -4,6 +4,14 @@ import { StickyNoteColor } from "@mirohq/websdk-types";
 import classnames from "classnames";
 
 import {
+  SlButton,
+  SlButtonGroup,
+  SlDropdown,
+  SlMenu,
+  SlMenuItem,
+} from "@shoelace-style/shoelace/dist/react";
+
+import {
   defaultConfig,
   saveConfig,
   getConfig,
@@ -12,8 +20,29 @@ import {
 } from "./pack";
 import type { PackConfig } from "./pack";
 
+const saveModes = {
+  save: {
+    label: "Save",
+    variant: "primary",
+  },
+  create: {
+    label: "Create pack",
+    variant: "neutral",
+  },
+  saveAndCreate: {
+    label: "Save & Create pack",
+    variant: "warning",
+  },
+} as const;
+
 const App: React.FC = () => {
   const [config, setConfig] = React.useState<PackConfig>(defaultConfig);
+  const [formState, setFormState] = React.useState<"idle" | "saving">("idle");
+  const [saveMode, setSaveMode] = React.useState<
+    typeof saveModes[keyof typeof saveModes]
+  >(saveModes.saveAndCreate);
+
+  const isSaving = React.useMemo(() => formState === "saving", [formState]);
 
   React.useEffect(() => {
     const fetchSavedConfig = async () => {
@@ -94,16 +123,30 @@ const App: React.FC = () => {
     (ev: React.FormEvent<HTMLFormElement>) => {
       ev.preventDefault();
 
+      setFormState("saving");
       const save = async () => {
-        await saveConfig(config);
-        await createPack({ config });
+        switch (saveMode.label) {
+          case saveModes.create.label:
+            await createPack({ config });
+            break;
+          case saveModes.save.label:
+            await saveConfig(config);
+            break;
+          default:
+            await saveConfig(config);
+            await createPack({ config });
+        }
+
+        if (saveMode.label !== saveModes.create.label) {
+          await miro.board.notifications.showInfo("Settings saved");
+        }
       };
 
-      save();
+      save().finally(() => setFormState("idle"));
 
       return false;
     },
-    [config]
+    [config, saveMode]
   );
 
   return (
@@ -161,7 +204,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="stickyOffset">Sticky offset</label>
+        <label htmlFor="stickyOffset">Stickies offset</label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -177,7 +220,7 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="stickyGap">Sticky gap</label>
+        <label htmlFor="stickyGap">Stickies gap</label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -285,9 +328,30 @@ const App: React.FC = () => {
       </label>
 
       <div className="toolbar">
-        <button className="button button-primary button-small" type="submit">
-          Save & Create pack
-        </button>
+        <SlButtonGroup style={{ width: "100%" }}>
+          <SlButton
+            style={{ width: "100%" }}
+            variant={saveMode.variant}
+            type="submit"
+            loading={isSaving}
+          >
+            {saveMode.label}
+          </SlButton>
+          <SlDropdown placement="bottom-end">
+            <SlButton
+              slot="trigger"
+              variant={saveMode.variant}
+              caret
+            ></SlButton>
+            <SlMenu>
+              {Object.entries(saveModes).map(([key, mode]) => (
+                <SlMenuItem key={key} onClick={() => setSaveMode(mode)}>
+                  {mode.label}
+                </SlMenuItem>
+              ))}
+            </SlMenu>
+          </SlDropdown>
+        </SlButtonGroup>
 
         <button
           className="button button-secondary button-small"
