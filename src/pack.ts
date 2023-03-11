@@ -138,8 +138,6 @@ function buildContent(opts: CreatePackOpts, values: ContentOps): string {
       content = "";
   }
 
-  console.log({ values, config, content });
-
   return content;
 }
 

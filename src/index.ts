@@ -8,6 +8,10 @@ async function init() {
     createPack({ referenceItem, config });
   });
 
+  miro.board.ui.on("custom:open-settings", async () => {
+    await miro.board.ui.openPanel({ url: "app.html" });
+  });
+
   let openingPanel: ReturnType<typeof setTimeout> | undefined;
   miro.board.ui.on("icon:click", async () => {
     if (openingPanel) {
