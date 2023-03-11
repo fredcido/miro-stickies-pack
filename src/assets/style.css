@@ -19,32 +19,49 @@ body {
   height: 100%;
   line-height: 1.5;
   margin: 0;
-  padding: 0 2rem;
+}
+
+#root {
+  max-height: 100vh;
+  overflow: auto;
+  padding: 0 2rem 2rem;
+}
+
+.info {
+  padding: .5em 0;
+  display: block;
+  font-size: 0.8em;
 }
 
 .colors {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75em;
+  gap: 0.8em;
   padding: 0 0 1em 0;
 }
 
 .colors .color {
-  width: 3em;
+  flex: 0 0 26px;
   aspect-ratio: 1;
   border: none;
   border-radius: 100%;
   cursor: pointer;
   outline-offset: 2px;
-  transition: all 0.5ms;
+  transition: outline-offset 1s;
+  box-shadow: 3px 3px 3px var(--indigo400);
 }
 
 .colors .color.active {
+  box-shadow: none;
   outline: 2px solid var(--blue700);
 }
 
+.colors .color:is(:focus, :hover) {
+  outline: 2px solid var(--red700)
+}
+
 form .form-group {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 form .button {
@@ -55,4 +72,18 @@ form .button {
 
 form .button-select {
   display: inline;
+}
+
+form .color-label {
+  display: flex;
+  gap: 0.75em;
+  align-items: center;
+}
+
+form .color-label label {
+  margin-bottom: 6px;
+}
+
+form .color-label label.toggle {
+  display: flex;
 }

@@ -2,9 +2,10 @@ import type { StickyNote, CustomEvent } from "@mirohq/websdk-types";
 import { getReferenceItem, createPack, getConfig } from "./pack";
 
 async function init() {
-  miro.board.ui.on("custom:stickies-pack", ({ items }: CustomEvent) => {
+  miro.board.ui.on("custom:create-pack", async ({ items }: CustomEvent) => {
     const referenceItem = getReferenceItem(items) as StickyNote;
-    createPack({ referenceItem });
+    const config = await getConfig();
+    createPack({ referenceItem, config });
   });
 
   let openingPanel: ReturnType<typeof setTimeout> | undefined;
