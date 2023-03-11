@@ -3,7 +3,13 @@ import { createRoot } from "react-dom/client";
 import { StickyNoteColor } from "@mirohq/websdk-types";
 import classnames from "classnames";
 
-import { defaultConfig, saveConfig, getConfig, createPack } from "./pack";
+import {
+  defaultConfig,
+  saveConfig,
+  getConfig,
+  createPack,
+  ContentStrategy,
+} from "./pack";
 import type { PackConfig } from "./pack";
 
 const App: React.FC = () => {
@@ -21,7 +27,7 @@ const App: React.FC = () => {
   }, []);
 
   const set = React.useCallback(
-    <K extends keyof PackConfig>(key: K, value: PackConfig[K]) => {
+    <K extends keyof PackConfig, V extends PackConfig[K]>(key: K, value: V) => {
       setConfig((data) => ({
         ...data,
         [key]: value,
@@ -32,10 +38,20 @@ const App: React.FC = () => {
 
   const handleChange = React.useCallback(
     <K extends keyof PackConfig>(key: K) =>
-      (ev: React.FormEvent<HTMLInputElement>) => {
-        const { value } = ev.currentTarget;
+      (
+        ev: React.FormEvent<
+          HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+        >
+      ) => {
+        const { currentTarget: element } = ev;
+        const { value } = element;
+        let parsedValue: number | string = value;
+        if (element.type === "number") {
+          parsedValue = +value;
+        }
+
         // @ts-expect-error
-        set(key, +value);
+        set(key, parsedValue);
       },
     [set]
   );
@@ -43,18 +59,15 @@ const App: React.FC = () => {
   const handleColor = React.useCallback(
     (color: StickyNoteColor) => {
       const { colors } = config;
-      if (colors.includes(color)) {
-        const newColors = colors.filter((c) => c !== color);
-        setConfig((config) => ({
-          ...config,
-          colors: newColors,
-        }));
-      } else {
-        setConfig((config) => ({
-          ...config,
-          colors: [...config.colors, color],
-        }));
-      }
+
+      const newColors = colors.includes(color)
+        ? colors.filter((c) => c !== color)
+        : [...config.colors, color];
+
+      setConfig((config) => ({
+        ...config,
+        colors: newColors,
+      }));
     },
     [setConfig, config]
   );
@@ -66,6 +79,16 @@ const App: React.FC = () => {
     };
     reset();
   }, [setConfig]);
+
+  const handleSelectColors = React.useCallback(
+    (flag: boolean) => {
+      setConfig((config) => ({
+        ...config,
+        colors: flag ? defaultConfig.colors : [],
+      }));
+    },
+    [setConfig]
+  );
 
   const handleFormSubmit = React.useCallback(
     (ev: React.FormEvent<HTMLFormElement>) => {
@@ -85,12 +108,18 @@ const App: React.FC = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
+      <em className="info">
+        You can <strong>double-click</strong> on the app icon to create your
+        pack based on the saved config.
+      </em>
       <div className="form-group">
         <label htmlFor="packs">Packs</label>
         <div className="input-group">
           <input
             className="input input-small"
             type="number"
+            min="1"
+            max="30"
             placeholder="e.g. 5"
             name="packs"
             value={config.packs}
@@ -105,10 +134,28 @@ const App: React.FC = () => {
           <input
             className="input input-small"
             type="number"
+            min="1"
+            max="30"
             placeholder="e.g. 5"
             name="stickies"
             value={config.stickies}
             onChange={handleChange("stickies")}
+          />
+        </div>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="columns">Columns</label>
+        <div className="input-group">
+          <input
+            className="input input-small"
+            type="number"
+            min="1"
+            max="30"
+            placeholder="e.g. 5"
+            name="columns"
+            value={config.columns}
+            onChange={handleChange("columns")}
           />
         </div>
       </div>
@@ -119,6 +166,8 @@ const App: React.FC = () => {
           <input
             className="input input-small"
             type="number"
+            min="1"
+            max="30"
             placeholder="e.g. 5"
             name="stickyOffset"
             value={config.stickyOffset}
@@ -133,6 +182,8 @@ const App: React.FC = () => {
           <input
             className="input input-small"
             type="number"
+            min="1"
+            max="30"
             placeholder="e.g. 5"
             name="stickyGap"
             value={config.stickyGap}
@@ -140,8 +191,65 @@ const App: React.FC = () => {
           />
         </div>
       </div>
+
       <div className="form-group">
-        <label htmlFor="stickyGap">Colors</label>
+        <label htmlFor="shape">Shape</label>
+        <select
+          className="select select-small"
+          value={config.shape}
+          id="shape"
+          onChange={handleChange("shape")}
+        >
+          <option value="square">Square</option>
+          <option value="rectangle">Rectangle</option>
+        </select>
+      </div>
+
+      <div className="form-group">
+        <label htmlFor="content">Content</label>
+        <select
+          className="select select-small"
+          value={config.contentStrategy}
+          id="content"
+          onChange={handleChange("contentStrategy")}
+        >
+          {Object.values(ContentStrategy).map((value) => (
+            <option value={value} key={value}>
+              {value}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {config.contentStrategy === ContentStrategy.CUSTOM && (
+        <div className="form-group">
+          <label htmlFor="contentTemplate">Template</label>
+          <div className="input-group">
+            <textarea
+              className="textarea textarea-small"
+              placeholder={defaultConfig.contentTemplate}
+              name="contentTemplate"
+              value={config.contentTemplate}
+              rows={3}
+              onChange={handleChange("contentTemplate")}
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="form-group">
+        <div className="color-label">
+          <label htmlFor="stickyGap">Colors</label>
+          <label className="toggle" title="Select/Unselect colors">
+            <input
+              type="checkbox"
+              checked={Boolean(config.colors.length)}
+              onChange={(ev) => handleSelectColors(ev.target.checked)}
+            />
+            <span></span>
+          </label>
+        </div>
+
         <div className="colors">
           {defaultConfig.colors.map((color) => (
             <button
@@ -176,16 +284,19 @@ const App: React.FC = () => {
         <span>Zoom to pack</span>
       </label>
 
-      <button className="button button-primary" type="submit">
-        Create
-      </button>
-      <button
-        className="button button-secondary"
-        type="reset"
-        onClick={handleReset}
-      >
-        Reset default values
-      </button>
+      <div className="toolbar">
+        <button className="button button-primary button-small" type="submit">
+          Save & Create pack
+        </button>
+
+        <button
+          className="button button-secondary button-small"
+          type="reset"
+          onClick={handleReset}
+        >
+          Reset default values
+        </button>
+      </div>
     </form>
   );
 };

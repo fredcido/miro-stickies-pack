@@ -1,5 +1,18 @@
-import type { StickyNote, Item, Rect } from "@mirohq/websdk-types";
+import type {
+  StickyNote,
+  Item,
+  Rect,
+  StickyNoteShape,
+} from "@mirohq/websdk-types";
 import { StickyNoteColor } from "@mirohq/websdk-types";
+
+export enum ContentStrategy {
+  EMPTY = "Empty",
+  PACK_INDEX = "Pack index",
+  STICKY_INDEX = "Sticky index",
+  OVERALL_INDEX = "Overall index",
+  CUSTOM = "Custom",
+}
 
 export type PackConfig = {
   columns: number;
@@ -10,6 +23,9 @@ export type PackConfig = {
   zoomTo: boolean;
   selectItems: boolean;
   colors: StickyNoteColor[];
+  shape: StickyNoteShape;
+  contentStrategy: ContentStrategy;
+  contentTemplate: string;
 };
 
 export const defaultConfig: PackConfig = {
@@ -21,11 +37,21 @@ export const defaultConfig: PackConfig = {
   zoomTo: true,
   selectItems: true,
   colors: Object.values(StickyNoteColor),
+  shape: "square",
+  contentStrategy: ContentStrategy.EMPTY,
+  contentTemplate:
+    "Overall: #{overallIndex}, Pack: #{packIndex}, Sticky: #{stickyIndex}",
 } as const;
 
 type CreatePackOpts = {
   config?: typeof defaultConfig;
   referenceItem?: StickyNote;
+};
+
+type ContentOps = {
+  packIndex: number;
+  stickyIndex: number;
+  overallIndex: number;
 };
 
 function filterSupportedItems(items: Item[]): Rect[] {
@@ -71,11 +97,7 @@ export async function getDefaultValues() {
   const referenceItem = getReferenceItem(items);
 
   if (referenceItem) {
-    return {
-      ...referenceItem,
-      // @ts-expect-error
-      shape: referenceItem.shape || "square",
-    };
+    return referenceItem;
   }
 
   const viewport = await miro.board.viewport.get();
@@ -85,10 +107,40 @@ export async function getDefaultValues() {
     height: 200,
     x: viewport.x + viewport.width / 2,
     y: viewport.y + viewport.height / 2,
-    shape: "square",
   } as const;
 
   return values;
+}
+
+function buildContent(opts: CreatePackOpts, values: ContentOps): string {
+  const { config = defaultConfig } = opts;
+  const { contentTemplate, contentStrategy } = config;
+
+  let content = "";
+  switch (contentStrategy) {
+    case ContentStrategy.PACK_INDEX:
+      content = `${values.packIndex}`;
+      break;
+    case ContentStrategy.STICKY_INDEX:
+      content = `${values.stickyIndex}`;
+      break;
+    case ContentStrategy.OVERALL_INDEX:
+      content = `${values.overallIndex}`;
+      break;
+    case ContentStrategy.CUSTOM:
+      content = contentTemplate;
+      Object.entries(values).forEach(([key, value]) => {
+        const identifier = `#{${key}}`;
+        content = content.replaceAll(identifier, String(value));
+      });
+      break;
+    default:
+      content = "";
+  }
+
+  console.log({ values, config, content });
+
+  return content;
 }
 
 export async function createPack(opts: CreatePackOpts = {}) {
@@ -103,25 +155,38 @@ export async function createPack(opts: CreatePackOpts = {}) {
   let packXPosition = startPosition + marginLeft;
 
   const waitFor: Promise<StickyNote>[] = [];
-  for (let packPos = 0; packPos < config.packs; packPos++) {
+  for (let packIndex = 0; packIndex < config.packs; packIndex++) {
     packXPosition =
-      startPosition + marginLeft * Math.floor(packPos % config.columns);
+      startPosition + marginLeft * Math.floor(packIndex % config.columns);
 
-    if (packPos > 0 && packPos % config.columns === 0) {
+    if (packIndex > 0 && packIndex % config.columns === 0) {
       packYPosition = packYPosition + (reference.height + gap);
     }
 
-    for (let stickyPos = 0; stickyPos < config.stickies; stickyPos++) {
-      const x = packXPosition + config.stickyOffset * stickyPos;
-      const y = packYPosition + stickyPos * config.stickyOffset;
+    for (let stickyIndex = 0; stickyIndex < config.stickies; stickyIndex++) {
+      const x = packXPosition + config.stickyOffset * stickyIndex;
+      const y = packYPosition + stickyIndex * config.stickyOffset;
 
       const sticky = miro.board.createStickyNote({
         x,
         y,
         width: reference.width,
-        shape: reference.shape,
+        content: buildContent(
+          { config },
+          {
+            packIndex: packIndex + 1,
+            stickyIndex: stickyIndex + 1,
+            overallIndex: (packIndex + 1) * (stickyIndex + 1),
+          }
+        ),
+        shape: Object.hasOwn(reference, "shape")
+          ? // @ts-expect-error
+            reference.shape
+          : config.shape,
         style: {
-          fillColor: config.colors.at(packPos),
+          fillColor: config.colors.length
+            ? config.colors[packIndex % config.colors.length]
+            : StickyNoteColor.LightYellow,
         },
       });
 
