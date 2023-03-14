@@ -28,9 +28,16 @@ form {
 }
 
 .info {
-  padding: .5em 0;
-  display: block;
+  padding: 0 0 1em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.info p {
   font-size: 0.8em;
+  margin: 0;
+  font-style: italic;
 }
 
 .colors {
@@ -38,7 +45,7 @@ form {
   justify-content: space-evenly;
   flex-wrap: wrap;
   gap: 0.8em;
-  padding: 0 0 1em 0;
+  padding: 0.75em 0;
 }
 
 .colors .color {
@@ -63,6 +70,18 @@ form {
 
 form .form-group {
   margin-bottom: 8px;
+}
+
+form .form-group > label {
+  display: inline-flex;
+  gap: 0.5em;
+  align-items: center;
+}
+
+form .form-group > label .icon {
+  --icon-size: 1em;
+  background-size: contain;
+  cursor: help;
 }
 
 form .button {
@@ -97,4 +116,14 @@ form .toolbar {
   display: flex;
   flex-direction: column;
   gap: .5em;
+}
+
+form .toolbar .contact {
+  display: flex;
+  gap: 0.5em;
+  justify-content: flex-end;
+}
+
+form .toolbar .contact .icon {
+  cursor: pointer;
 }

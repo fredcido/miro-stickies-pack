@@ -151,12 +151,30 @@ const App: React.FC = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <em className="info">
-        You can <strong>double-click</strong> on the app icon to create your
-        pack based on the saved config.
-      </em>
+      <div className="info">
+        <p>
+          Stickies packs are sets of{" "}
+          <a target="_blank" href="https://miro.com/online-sticky-notes/">
+            digital sticky notes
+          </a>{" "}
+          you can add to your Miro board. They are useful for keeping meetings
+          and workshops on task. Using the Stickies Packs App, users can
+          customise and quickly duplicate pre-labeled sticky packs into any
+          board.
+        </p>
+        <p>
+          You can also <strong>double-click</strong> on the app icon to create
+          your pack based on the saved settings.
+        </p>
+      </div>
       <div className="form-group">
-        <label htmlFor="packs">Packs</label>
+        <label htmlFor="packs">
+          Packs
+          <span
+            title="How many packs do you want to create?"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -172,7 +190,13 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="stickies">Stickies</label>
+        <label htmlFor="stickies">
+          Stickies
+          <span
+            title="How many stickies do you want to create?"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -188,7 +212,13 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="columns">Columns</label>
+        <label htmlFor="columns">
+          Columns
+          <span
+            title="In how many columns do you want to distribute your packs?"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -204,7 +234,13 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="stickyOffset">Stickies offset</label>
+        <label htmlFor="stickyOffset">
+          Stickies offset
+          <span
+            title="What's the offset distance in between each sticky note on each pack?"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -220,7 +256,13 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="stickyGap">Stickies gap</label>
+        <label htmlFor="stickyGap">
+          Stickies gap
+          <span
+            title="What's the offset distance in between each pack?"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <div className="input-group">
           <input
             className="input input-small"
@@ -236,7 +278,13 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="shape">Shape</label>
+        <label htmlFor="shape">
+          Shape
+          <span
+            title="What's the shape of your sticky notes?"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <select
           className="select select-small"
           value={config.shape}
@@ -249,7 +297,13 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="content">Content</label>
+        <label htmlFor="content">
+          Content
+          <span
+            title="Define the content for your sticky notes"
+            className="icon icon-help-question"
+          ></span>
+        </label>
         <select
           className="select select-small"
           value={config.contentStrategy}
@@ -266,7 +320,13 @@ const App: React.FC = () => {
 
       {config.contentStrategy === ContentStrategy.CUSTOM && (
         <div className="form-group">
-          <label htmlFor="contentTemplate">Template</label>
+          <label htmlFor="contentTemplate">
+            Template
+            <span
+              title="Create your custom templates using the variables as in the example"
+              className="icon icon-help-question"
+            ></span>
+          </label>
           <div className="input-group">
             <textarea
               className="textarea textarea-small"
@@ -304,7 +364,9 @@ const App: React.FC = () => {
               className={classnames("color", {
                 active: config.colors.includes(color),
               })}
-            ></button>
+            >
+              {config.colors.includes(color) && "✓"}
+            </button>
           ))}
         </div>
       </div>
@@ -360,6 +422,23 @@ const App: React.FC = () => {
         >
           Reset default values
         </button>
+
+        <div className="contact">
+          <a
+            href="https://github.com/fredcido/miro-stickies-pack/issues"
+            target="_blank"
+            title="Submit your feedback, questions or report an issue"
+          >
+            <span className="m2 icon icon-help-question"></span>
+          </a>
+          <a
+            href="mailto:platform-frameworks@miro.com"
+            target="_blank"
+            title="Direct contact to provide feedback"
+          >
+            <span className="m2 icon icon-comment-feedback"></span>
+          </a>
+        </div>
       </div>
     </form>
   );
