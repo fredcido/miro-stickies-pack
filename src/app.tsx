@@ -187,7 +187,7 @@ const App: React.FC = () => {
 
       <div className="form-group">
         <label htmlFor="stickies">
-          Stickies
+          Stickies per pack
           <span
             title="How many stickies do you want to create?"
             className="icon icon-help-question"
@@ -386,9 +386,6 @@ const App: React.FC = () => {
       </label>
 
       <div className="toolbar">
-        <button className="button button-primary" type="button">
-          Create packs
-        </button>
         <SlButtonGroup style={{ width: "100%" }}>
           <SlButton
             style={{ width: "100%" }}
