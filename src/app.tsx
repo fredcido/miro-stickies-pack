@@ -156,6 +156,7 @@ const App: React.FC = () => {
         </label>
         <div className="input-group">
           <input
+            autoFocus
             className="input input-small"
             type="number"
             min="1"
@@ -255,6 +256,7 @@ const App: React.FC = () => {
             </label>
             <div className="input-group">
               <input
+                autoFocus
                 className="input input-small"
                 type="number"
                 min="1"

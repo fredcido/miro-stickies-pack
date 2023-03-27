@@ -138,22 +138,6 @@ form details[open] {
   --border-bottom-radius: 0;
 }
 
-summary {
-  display: block;
-}
-
-form details summary::after {
-  margin-left: 1ch;
-  display: inline-block;
-  transition: 0.2s;
-  content: '\203A'; /* chevron */
-  font-size: 1em;
-}
-
-
-form details[open] summary::after {
-  transform: rotate(90deg);
-}
 
 form details summary {
   cursor: pointer;
