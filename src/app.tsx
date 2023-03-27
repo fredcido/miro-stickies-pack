@@ -4,14 +4,6 @@ import { StickyNoteColor } from "@mirohq/websdk-types";
 import classnames from "classnames";
 
 import {
-  SlButton,
-  SlButtonGroup,
-  SlDropdown,
-  SlMenu,
-  SlMenuItem,
-} from "@shoelace-style/shoelace/dist/react";
-
-import {
   defaultConfig,
   saveConfig,
   getConfig,
@@ -20,27 +12,27 @@ import {
 } from "./pack";
 import type { PackConfig } from "./pack";
 
-const saveModes = {
-  save: {
-    label: "Save",
-    variant: "primary",
-  },
-  create: {
-    label: "Create pack",
-    variant: "neutral",
-  },
-  saveAndCreate: {
-    label: "Save & Create pack",
-    variant: "warning",
-  },
+const colorMapping = {
+  [StickyNoteColor.Gray.toString()]: "rgb(245, 246, 248)",
+  [StickyNoteColor.LightYellow]: "rgb(255, 249, 177)",
+  [StickyNoteColor.Yellow]: "rgb(245, 209, 40)",
+  [StickyNoteColor.Orange]: "rgb(255, 157, 72)",
+  [StickyNoteColor.LightGreen]: "rgb(213, 246, 146)",
+  [StickyNoteColor.Green]: "rgb(201, 223, 86)",
+  [StickyNoteColor.DarkGreen]: "rgb(147, 210, 117)",
+  [StickyNoteColor.Cyan]: "rgb(103, 198, 192)",
+  [StickyNoteColor.LightPink]: "rgb(255, 206, 224)",
+  [StickyNoteColor.Pink]: "rgb(234, 148, 187)",
+  [StickyNoteColor.Violet]: "rgb(198, 162, 210)",
+  [StickyNoteColor.Red]: "rgb(240, 147, 157)",
+  [StickyNoteColor.Blue]: "rgb(108, 216, 250)",
+  [StickyNoteColor.DarkBlue]: "rgb(158, 169, 255)",
+  [StickyNoteColor.Black]: "rgb(0, 0, 0)",
 } as const;
 
 const App: React.FC = () => {
   const [config, setConfig] = React.useState<PackConfig>(defaultConfig);
   const [formState, setFormState] = React.useState<"idle" | "saving">("idle");
-  const [saveMode, setSaveMode] = React.useState<
-    typeof saveModes[keyof typeof saveModes]
-  >(saveModes.saveAndCreate);
 
   const isSaving = React.useMemo(() => formState === "saving", [formState]);
 
@@ -125,28 +117,19 @@ const App: React.FC = () => {
 
       setFormState("saving");
       const save = async () => {
-        switch (saveMode.label) {
-          case saveModes.create.label:
-            await createPack({ config });
-            break;
-          case saveModes.save.label:
-            await saveConfig(config);
-            break;
-          default:
-            await saveConfig(config);
-            await createPack({ config });
-        }
+        await saveConfig(config);
+        await createPack({ config });
 
-        if (saveMode.label !== saveModes.create.label) {
-          await miro.board.notifications.showInfo("Settings saved");
-        }
+        await miro.board.notifications.showInfo(
+          "Stickies packs settings saved"
+        );
       };
 
       save().finally(() => setFormState("idle"));
 
       return false;
     },
-    [config, saveMode]
+    [config]
   );
 
   return (
@@ -208,72 +191,6 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="columns">
-          Columns
-          <span
-            title="In how many columns do you want to distribute your packs?"
-            className="icon icon-help-question"
-          ></span>
-        </label>
-        <div className="input-group">
-          <input
-            className="input input-small"
-            type="number"
-            min="1"
-            max="30"
-            placeholder="e.g. 5"
-            name="columns"
-            value={config.columns}
-            onChange={handleChange("columns")}
-          />
-        </div>
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="stickyOffset">
-          Stickies offset
-          <span
-            title="What's the offset distance in between each sticky note on each pack?"
-            className="icon icon-help-question"
-          ></span>
-        </label>
-        <div className="input-group">
-          <input
-            className="input input-small"
-            type="number"
-            min="1"
-            max="30"
-            placeholder="e.g. 5"
-            name="stickyOffset"
-            value={config.stickyOffset}
-            onChange={handleChange("stickyOffset")}
-          />
-        </div>
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="stickyGap">
-          Stickies gap
-          <span
-            title="What's the offset distance in between each pack?"
-            className="icon icon-help-question"
-          ></span>
-        </label>
-        <div className="input-group">
-          <input
-            className="input input-small"
-            type="number"
-            min="1"
-            max="30"
-            placeholder="e.g. 5"
-            name="stickyGap"
-            value={config.stickyGap}
-            onChange={handleChange("stickyGap")}
-          />
-        </div>
-      </div>
-
-      <div className="form-group">
         <label htmlFor="shape">
           Shape
           <span
@@ -293,59 +210,15 @@ const App: React.FC = () => {
       </div>
 
       <div className="form-group">
-        <label htmlFor="content">
-          Content
-          <span
-            title="Define the content for your sticky notes"
-            className="icon icon-help-question"
-          ></span>
-        </label>
-        <select
-          className="select select-small"
-          value={config.contentStrategy}
-          id="content"
-          onChange={handleChange("contentStrategy")}
-        >
-          {Object.values(ContentStrategy).map((value) => (
-            <option value={value} key={value}>
-              {value}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {config.contentStrategy === ContentStrategy.CUSTOM && (
-        <div className="form-group">
-          <label htmlFor="contentTemplate">
-            Template
-            <span
-              title="Create your custom templates using the variables as in the example"
-              className="icon icon-help-question"
-            ></span>
-          </label>
-          <div className="input-group">
-            <textarea
-              className="textarea textarea-small"
-              placeholder={defaultConfig.contentTemplate}
-              name="contentTemplate"
-              value={config.contentTemplate}
-              rows={3}
-              onChange={handleChange("contentTemplate")}
-            />
-          </div>
-        </div>
-      )}
-
-      <div className="form-group">
         <div className="color-label">
           <label htmlFor="stickyGap">Colors</label>
-          <label className="toggle" title="Select/Unselect colors">
+          <label className="toggle">
             <input
               type="checkbox"
-              checked={Boolean(config.colors.length)}
+              defaultChecked
               onChange={(ev) => handleSelectColors(ev.target.checked)}
             />
-            <span></span>
+            <span>Toggle colors</span>
           </label>
         </div>
 
@@ -355,61 +228,163 @@ const App: React.FC = () => {
               title={color}
               key={color}
               type="button"
-              style={{ backgroundColor: color.replace("_", "") }}
+              style={{
+                backgroundColor: colorMapping[color]
+                  ? colorMapping[color]
+                  : color.replace("_", ""),
+              }}
               onClick={() => handleColor(color)}
               className={classnames("color", {
                 active: config.colors.includes(color),
               })}
-            >
-              {config.colors.includes(color) && "✓"}
-            </button>
+            ></button>
           ))}
         </div>
       </div>
 
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={config.selectItems}
-          onChange={(ev) => set("selectItems", ev.target.checked)}
-        />
-        <span>Select items</span>
-      </label>
+      <details>
+        <summary>Advanced options</summary>
+        <section>
+          <div className="form-group">
+            <label htmlFor="columns">
+              Columns
+              <span
+                title="In how many columns do you want to distribute your packs?"
+                className="icon icon-help-question"
+              ></span>
+            </label>
+            <div className="input-group">
+              <input
+                className="input input-small"
+                type="number"
+                min="1"
+                max="30"
+                placeholder="e.g. 5"
+                name="columns"
+                value={config.columns}
+                onChange={handleChange("columns")}
+              />
+            </div>
+          </div>
 
-      <label className="checkbox">
-        <input
-          type="checkbox"
-          checked={config.zoomTo}
-          onChange={(ev) => set("zoomTo", ev.target.checked)}
-        />
-        <span>Zoom to pack</span>
-      </label>
+          <div className="form-group">
+            <label htmlFor="stickyOffset">
+              Stickies offset
+              <span
+                title="What's the offset distance in between each sticky note on each pack?"
+                className="icon icon-help-question"
+              ></span>
+            </label>
+            <div className="input-group">
+              <input
+                className="input input-small"
+                type="number"
+                min="1"
+                max="30"
+                placeholder="e.g. 5"
+                name="stickyOffset"
+                value={config.stickyOffset}
+                onChange={handleChange("stickyOffset")}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="stickyGap">
+              Stickies gap
+              <span
+                title="What's the offset distance in between each pack?"
+                className="icon icon-help-question"
+              ></span>
+            </label>
+            <div className="input-group">
+              <input
+                className="input input-small"
+                type="number"
+                min="1"
+                max="30"
+                placeholder="e.g. 5"
+                name="stickyGap"
+                value={config.stickyGap}
+                onChange={handleChange("stickyGap")}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="content">
+              Content
+              <span
+                title="Define the content for your sticky notes"
+                className="icon icon-help-question"
+              ></span>
+            </label>
+            <select
+              className="select select-small"
+              value={config.contentStrategy}
+              id="content"
+              onChange={handleChange("contentStrategy")}
+            >
+              {Object.values(ContentStrategy).map((value) => (
+                <option value={value} key={value}>
+                  {value}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {config.contentStrategy === ContentStrategy.CUSTOM && (
+            <div className="form-group">
+              <label htmlFor="contentTemplate">
+                Template
+                <span
+                  title="Create your custom templates using the variables as in the example"
+                  className="icon icon-help-question"
+                ></span>
+              </label>
+              <div className="input-group">
+                <textarea
+                  className="textarea textarea-small"
+                  placeholder={defaultConfig.contentTemplate}
+                  name="contentTemplate"
+                  value={config.contentTemplate}
+                  rows={3}
+                  onChange={handleChange("contentTemplate")}
+                />
+              </div>
+            </div>
+          )}
+
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              checked={config.selectItems}
+              onChange={(ev) => set("selectItems", ev.target.checked)}
+            />
+            <span>Select items on create</span>
+          </label>
+
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              checked={config.zoomTo}
+              onChange={(ev) => set("zoomTo", ev.target.checked)}
+            />
+            <span>Zoom to pack</span>
+          </label>
+        </section>
+      </details>
 
       <div className="toolbar">
-        <SlButtonGroup style={{ width: "100%" }}>
-          <SlButton
-            style={{ width: "100%" }}
-            variant={saveMode.variant}
-            type="submit"
-            loading={isSaving}
-          >
-            {saveMode.label}
-          </SlButton>
-          <SlDropdown placement="bottom-end">
-            <SlButton
-              slot="trigger"
-              variant={saveMode.variant}
-              caret
-            ></SlButton>
-            <SlMenu>
-              {Object.entries(saveModes).map(([key, mode]) => (
-                <SlMenuItem key={key} onClick={() => setSaveMode(mode)}>
-                  {mode.label}
-                </SlMenuItem>
-              ))}
-            </SlMenu>
-          </SlDropdown>
-        </SlButtonGroup>
+        <button
+          disabled={isSaving}
+          className={classnames("button button-primary button-small", {
+            "button-loading": isSaving,
+          })}
+          type="submit"
+        >
+          Save & Create
+        </button>
 
         <button
           className="button button-secondary button-small"

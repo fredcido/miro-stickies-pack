@@ -44,19 +44,19 @@ form {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  gap: 0.8em;
-  padding: 0.75em 0;
+  gap: 0.6em;
+  padding: 0.75em 0.2em;
 }
 
 .colors .color {
-  flex: 0 0 26px;
-  aspect-ratio: 1;
-  border: none;
-  border-radius: 100%;
+  flex: 0 0 22%;
+  font-size: 1.2em;
+  aspect-ratio: 2/1;
+  border: 1px solid var(--indigo400);
+  border-radius: 5px ;
   cursor: pointer;
   outline-offset: 2px;
   transition: outline-offset 1s;
-  box-shadow: 3px 3px 3px var(--indigo400);
 }
 
 .colors .color.active {
@@ -98,6 +98,7 @@ form .color-label {
   display: flex;
   gap: 0.75em;
   align-items: center;
+  justify-content: space-between;
 }
 
 form .color-label label {
@@ -126,4 +127,45 @@ form .toolbar .contact {
 
 form .toolbar .contact .icon {
   cursor: pointer;
+}
+
+form details {
+  --border-top-radius: 5px;
+  --border-bottom-radius: 5px;
+}
+
+form details[open] {
+  --border-bottom-radius: 0;
+}
+
+summary {
+  display: block;
+}
+
+form details summary::after {
+  margin-left: 1ch;
+  display: inline-block;
+  transition: 0.2s;
+  content: '\203A'; /* chevron */
+  font-size: 1em;
+}
+
+
+form details[open] summary::after {
+  transform: rotate(90deg);
+}
+
+form details summary {
+  cursor: pointer;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 0.8em;
+  background-color: var(--indigo50);
+  padding: 0.5em;
+  border-radius: var(--border-top-radius) var(--border-top-radius) var(--border-bottom-radius) var(--border-bottom-radius);
+}
+
+form details > section {
+  border: 2px solid var(--indigo50);
+  padding: 0.5em;
 }
