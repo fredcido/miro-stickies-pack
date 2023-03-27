@@ -162,10 +162,6 @@ const App: React.FC = () => {
           customise and quickly duplicate pre-labeled sticky packs into any
           board.
         </p>
-        <p>
-          You can also <strong>double-click</strong> on the app icon to create
-          your pack based on the saved settings.
-        </p>
       </div>
       <div className="form-group">
         <label htmlFor="packs">
@@ -191,7 +187,7 @@ const App: React.FC = () => {
 
       <div className="form-group">
         <label htmlFor="stickies">
-          Stickies
+          Stickies per pack
           <span
             title="How many stickies do you want to create?"
             className="icon icon-help-question"
