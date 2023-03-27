@@ -141,9 +141,6 @@ form details[open] {
 
 form details summary {
   cursor: pointer;
-  font-weight: bold;
-  font-style: italic;
-  font-size: 0.8em;
   background-color: var(--indigo50);
   padding: 0.5em;
   border-radius: var(--border-top-radius) var(--border-top-radius) var(--border-bottom-radius) var(--border-bottom-radius);
