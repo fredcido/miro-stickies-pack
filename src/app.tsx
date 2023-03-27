@@ -162,10 +162,6 @@ const App: React.FC = () => {
           customise and quickly duplicate pre-labeled sticky packs into any
           board.
         </p>
-        <p>
-          You can also <strong>double-click</strong> on the app icon to create
-          your pack based on the saved settings.
-        </p>
       </div>
       <div className="form-group">
         <label htmlFor="packs">
@@ -390,6 +386,9 @@ const App: React.FC = () => {
       </label>
 
       <div className="toolbar">
+        <button className="button button-primary" type="button">
+          Create packs
+        </button>
         <SlButtonGroup style={{ width: "100%" }}>
           <SlButton
             style={{ width: "100%" }}
