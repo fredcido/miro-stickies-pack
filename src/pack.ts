@@ -26,6 +26,7 @@ export type PackConfig = {
   shape: StickyNoteShape;
   contentStrategy: ContentStrategy;
   contentTemplate: string;
+  debug: boolean;
 };
 
 export const defaultConfig: PackConfig = {
@@ -41,6 +42,7 @@ export const defaultConfig: PackConfig = {
   contentStrategy: ContentStrategy.EMPTY,
   contentTemplate:
     "Overall: #{overallIndex}, Pack: #{packIndex}, Sticky: #{stickyIndex}",
+  debug: false,
 } as const;
 
 type CreatePackOpts = {
@@ -64,12 +66,19 @@ function filterSupportedItems(items: Item[]): Rect[] {
   ) as Rect[];
 }
 
+function log(debug: boolean, ...args: any): void {
+  if (debug) {
+    console.log("[STICKIES_PACK]", args);
+  }
+}
+
 export async function saveConfig(config: PackConfig) {
   await miro.board.setAppData("config", config);
 }
 
 export async function getConfig() {
   const { config } = await miro.board.getAppData();
+  log(true, { config });
   if (config) {
     return config as PackConfig;
   }
@@ -145,12 +154,22 @@ export async function createPack(opts: CreatePackOpts = {}) {
   const { config = defaultConfig, referenceItem } = opts;
   const reference = referenceItem ?? (await getDefaultValues());
 
+  log(config.debug, { config });
+
   const startPosition = config.stickyGap + reference.x + reference.width;
   const gap = config.stickyGap + config.stickies * config.stickyOffset;
 
   const marginLeft = reference.width + gap;
   let packYPosition = reference.y;
   let packXPosition = startPosition + marginLeft;
+
+  log(config.debug, "INIT", {
+    startPosition,
+    gap,
+    marginLeft,
+    packYPosition,
+    packXPosition,
+  });
 
   const waitFor: Promise<StickyNote>[] = [];
   for (let packIndex = 0; packIndex < config.packs; packIndex++) {
@@ -161,30 +180,48 @@ export async function createPack(opts: CreatePackOpts = {}) {
       packYPosition = packYPosition + (reference.height + gap);
     }
 
+    log(config.debug, "PACK", { packYPosition, packXPosition, packIndex });
+
     for (let stickyIndex = 0; stickyIndex < config.stickies; stickyIndex++) {
       const x = packXPosition + config.stickyOffset * stickyIndex;
       const y = packYPosition + stickyIndex * config.stickyOffset;
+
+      const fillColor = config.colors.length
+        ? config.colors[packIndex % config.colors.length]
+        : StickyNoteColor.LightYellow;
+
+      const shape = Object.hasOwn(reference, "shape")
+        ? // @ts-expect-error
+          reference.shape
+        : config.shape;
+
+      const content = buildContent(
+        { config },
+        {
+          packIndex: packIndex + 1,
+          stickyIndex: stickyIndex + 1,
+          overallIndex: (packIndex + 1) * (stickyIndex + 1),
+        }
+      );
+
+      log(config.debug, "STICK", {
+        x,
+        y,
+        packIndex,
+        stickyIndex,
+        fillColor,
+        shape,
+        content,
+      });
 
       const sticky = miro.board.createStickyNote({
         x,
         y,
         width: reference.width,
-        content: buildContent(
-          { config },
-          {
-            packIndex: packIndex + 1,
-            stickyIndex: stickyIndex + 1,
-            overallIndex: (packIndex + 1) * (stickyIndex + 1),
-          }
-        ),
-        shape: Object.hasOwn(reference, "shape")
-          ? // @ts-expect-error
-            reference.shape
-          : config.shape,
+        content,
+        shape,
         style: {
-          fillColor: config.colors.length
-            ? config.colors[packIndex % config.colors.length]
-            : StickyNoteColor.LightYellow,
+          fillColor,
         },
       });
 

@@ -374,6 +374,15 @@ const App: React.FC = () => {
             />
             <span>Zoom to pack</span>
           </label>
+
+          <label className="checkbox">
+            <input
+              type="checkbox"
+              checked={config.debug}
+              onChange={(ev) => set("debug", ev.target.checked)}
+            />
+            <span>Enable debug</span>
+          </label>
         </section>
       </details>
 
