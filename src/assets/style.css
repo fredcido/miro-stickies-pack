@@ -21,55 +21,24 @@ body {
   margin: 0;
 }
 
+.tabs-container {
+  padding: 1em .5em;
+  min-height: 40em;
+}
+
 form { 
   max-height: 95vh;
     overflow: auto;
     padding: 0 1em;
 }
 
-.info {
-  padding: 0 0 1em 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-}
-
-.info p {
-  font-size: 0.8em;
-  margin: 0;
-  font-style: italic;
-}
-
-.colors {
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 0.6em;
-  padding: 0.75em 0.2em;
-}
-
-.colors .color {
-  flex: 0 0 22%;
-  font-size: 1.2em;
-  aspect-ratio: 2/1;
-  border: 1px solid var(--indigo400);
-  border-radius: 5px ;
-  cursor: pointer;
-  outline-offset: 2px;
-  transition: outline-offset 1s;
-}
-
-.colors .color.active {
-  box-shadow: none;
-  outline: 2px solid var(--blue700);
-}
-
-.colors .color:is(:focus, :hover) {
-  outline: 2px solid var(--red700)
-}
-
 form .form-group {
-  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+form .form-group.form-row {
+  flex-direction: column;
 }
 
 form .form-group > label {
@@ -84,29 +53,16 @@ form .form-group > label .icon {
   cursor: help;
 }
 
+form .select {
+  width: auto;
+  min-width: 5em;
+  padding-right: 2em;
+}
+
 form .button {
   --space-small: 4px;
   width: 100%;
   margin: 8px 0;
-}
-
-form .button-select {
-  display: inline;
-}
-
-form .color-label {
-  display: flex;
-  gap: 0.75em;
-  align-items: center;
-  justify-content: space-between;
-}
-
-form .color-label label {
-  margin-bottom: 6px;
-}
-
-form .color-label label.toggle {
-  display: flex;
 }
 
 form .toolbar {
@@ -116,37 +72,11 @@ form .toolbar {
   padding: 0.5em 0;
   display: flex;
   flex-direction: column;
-  gap: .5em;
-}
-
-form .toolbar .contact {
-  display: flex;
-  gap: 0.5em;
-  justify-content: flex-end;
-}
-
-form .toolbar .contact .icon {
-  cursor: pointer;
-}
-
-form details {
-  --border-top-radius: 5px;
-  --border-bottom-radius: 5px;
-}
-
-form details[open] {
-  --border-bottom-radius: 0;
+  gap: 1em;
 }
 
 
-form details summary {
-  cursor: pointer;
-  background-color: var(--indigo50);
-  padding: 0.5em;
-  border-radius: var(--border-top-radius) var(--border-top-radius) var(--border-bottom-radius) var(--border-bottom-radius);
-}
-
-form details > section {
-  border: 2px solid var(--indigo50);
-  padding: 0.5em;
+.tooltip-content {
+  max-width: 20em;
+  display: block;
 }

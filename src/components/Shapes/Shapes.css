@@ -1,0 +1,6 @@
+.shapes .tab-text {
+    padding: .5em 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+}

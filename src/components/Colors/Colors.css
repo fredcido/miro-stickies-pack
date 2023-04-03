@@ -1,0 +1,44 @@
+.colors {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 1em;
+    padding: 0.75em 0.2em;
+}
+
+.colors .color {
+    flex: 0 0 2em;
+    font-size: 1.2em;
+    aspect-ratio: 1;
+    border: 1px solid var(--indigo400);
+    border-radius: 5px ;
+    cursor: pointer;
+    outline-offset: 2px;
+    transition: outline-offset 1s;
+    border-radius: 100%;
+}
+
+.colors .color:is(:focus, :hover)  {
+    box-shadow: none;
+    outline: 2px solid var(--blue500);
+}
+
+.colors .color:is(.active)  {
+    box-shadow: none;
+    outline: 2px solid var(--blue700);
+}
+
+.color-label {
+    display: flex;
+    gap: 0.75em;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.color-label label {
+    margin-bottom: 6px;
+}
+
+.color-label label.toggle {
+    display: flex;
+}
