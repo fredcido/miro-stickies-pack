@@ -13,7 +13,6 @@ export function Contact({}: ContactProps) {
           <a
             href="https://github.com/fredcido/miro-stickies-pack/issues"
             target="_blank"
-            title="Submit your feedback, questions or report an issue"
           >
             <span className="m2 icon icon-help-question"></span>
             Learn more
