@@ -1,0 +1,17 @@
+.contact {
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-between;
+}
+
+.contact a {
+    display: inline-flex;
+    text-decoration: none;
+    justify-content: space-between;
+    color: currentColor;
+    gap: 0.5em;
+}
+
+.contact .icon {
+    cursor: pointer;
+}

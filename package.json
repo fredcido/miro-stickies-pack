@@ -8,7 +8,9 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@shoelace-style/shoelace": "^2.3.0",
+    "@mirohq/design-system-icons": "^0.10.1",
+    "@mirohq/design-system-tooltip": "^3.2.1",
+    "@stitches/react": "^1.2.8",
     "classnames": "^2.3.2",
     "mirotone": "4",
     "react": "^18.2.0",
