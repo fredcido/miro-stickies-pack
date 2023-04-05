@@ -150,6 +150,16 @@ function buildContent(opts: CreatePackOpts, values: ContentOps): string {
   return content;
 }
 
+function proportionalOffset(config: PackConfig, reference: Rect): number {
+  const offset = (config.stickyOffset * reference.width) / 300;
+  log(config.debug, "proportionalOffset", {
+    offset,
+    width: reference.width,
+    defaultOffset: config.stickyOffset,
+  });
+  return offset;
+}
+
 export async function createPack(opts: CreatePackOpts = {}) {
   const { config = defaultConfig, referenceItem } = opts;
   const reference = referenceItem ?? (await getDefaultValues());
@@ -157,7 +167,8 @@ export async function createPack(opts: CreatePackOpts = {}) {
   log(config.debug, { config });
 
   const startPosition = config.stickyGap + reference.x + reference.width;
-  const gap = config.stickyGap + config.stickies * config.stickyOffset;
+  const gap =
+    config.stickyGap + config.stickies * proportionalOffset(config, reference);
 
   const marginLeft = reference.width + gap;
   let packYPosition = reference.y;
@@ -183,8 +194,10 @@ export async function createPack(opts: CreatePackOpts = {}) {
     log(config.debug, "PACK", { packYPosition, packXPosition, packIndex });
 
     for (let stickyIndex = 0; stickyIndex < config.stickies; stickyIndex++) {
-      const x = packXPosition + config.stickyOffset * stickyIndex;
-      const y = packYPosition + stickyIndex * config.stickyOffset;
+      const x =
+        packXPosition + proportionalOffset(config, reference) * stickyIndex;
+      const y =
+        packYPosition + proportionalOffset(config, reference) * stickyIndex;
 
       const fillColor = config.colors.length
         ? config.colors[packIndex % config.colors.length]
