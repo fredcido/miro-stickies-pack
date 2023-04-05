@@ -42,7 +42,7 @@ export const defaultConfig: PackConfig = {
   contentStrategy: ContentStrategy.EMPTY,
   contentTemplate:
     "Overall: #{overallIndex}, Pack: #{packIndex}, Sticky: #{stickyIndex}",
-  debug: false,
+  debug: true,
 } as const;
 
 type CreatePackOpts = {
