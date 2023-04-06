@@ -162,7 +162,7 @@ const App: React.FC = () => {
               </label>
               <div className="input-group">
                 <SelectNumbers
-                  max={6}
+                  max={20}
                   value={config.packs}
                   onChange={(packs) => set("packs", packs)}
                 />
