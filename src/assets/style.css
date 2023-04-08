@@ -47,7 +47,8 @@ form .form-group > label {
   align-items: center;
 }
 
-form .form-group > label .icon {
+.row .icon,
+label .icon {
   --icon-size: 1em;
   background-size: contain;
   cursor: help;
@@ -79,4 +80,15 @@ form .toolbar {
 .tooltip-content {
   max-width: 20em;
   display: block;
+}
+
+.row {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  margin-bottom: var(--space-small);
+}
+
+.row .checkbox {
+  margin-bottom: 0;
 }

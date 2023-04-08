@@ -5,6 +5,7 @@ import type {
   StickyNoteShape,
 } from "@mirohq/websdk-types";
 import { StickyNoteColor } from "@mirohq/websdk-types";
+import { track, Event } from "./analytics";
 
 export enum ContentStrategy {
   EMPTY = "Empty",
@@ -42,12 +43,13 @@ export const defaultConfig: PackConfig = {
   contentStrategy: ContentStrategy.EMPTY,
   contentTemplate:
     "Overall: #{overallIndex}, Pack: #{packIndex}, Sticky: #{stickyIndex}",
-  debug: true,
+  debug: false,
 } as const;
 
 type CreatePackOpts = {
   config?: typeof defaultConfig;
   referenceItem?: StickyNote;
+  source: "custom_action" | "panel";
 };
 
 type ContentOps = {
@@ -160,9 +162,11 @@ function proportionalOffset(config: PackConfig, reference: Rect): number {
   return offset;
 }
 
-export async function createPack(opts: CreatePackOpts = {}) {
-  const { config = defaultConfig, referenceItem } = opts;
+export async function createPack(opts: CreatePackOpts = { source: "panel" }) {
+  const { config = defaultConfig, referenceItem, source } = opts;
   const reference = referenceItem ?? (await getDefaultValues());
+
+  track(Event.PACKS_CREATED, { config, source });
 
   log(config.debug, { config });
 

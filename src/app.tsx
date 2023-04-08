@@ -7,6 +7,13 @@ import { Tooltip } from "@mirohq/design-system-tooltip";
 import { Colors } from "./components/Colors";
 import { Shapes } from "./components/Shapes";
 import { Contact } from "./components/Contact";
+import {
+  track,
+  Event,
+  isTracking,
+  enableTracking,
+  disbleTracking,
+} from "./analytics";
 
 import {
   defaultConfig,
@@ -20,10 +27,33 @@ import SelectNumbers from "./components/SelectNumbers/SelectNumbers";
 
 const App: React.FC = () => {
   const [config, setConfig] = React.useState<PackConfig>(defaultConfig);
+  const [isTrackingAnalytics, setLocalTrack] = React.useState<boolean>(
+    isTracking()
+  );
   const [formState, setFormState] = React.useState<"idle" | "saving">("idle");
   const [tab, setTab] = React.useState<"style" | "layout" | "actions">("style");
 
   const isSaving = React.useMemo(() => formState === "saving", [formState]);
+
+  const setTrackingAnalytics = React.useCallback(
+    (flag: boolean) => {
+      setLocalTrack(flag);
+      if (flag) {
+        enableTracking();
+      } else {
+        disbleTracking();
+      }
+    },
+    [setLocalTrack]
+  );
+
+  const changeTab = React.useCallback(
+    (newTab: typeof tab) => {
+      track(Event.TAB_CHANGED, { from: tab, to: newTab });
+      setTab(newTab);
+    },
+    [tab, setTab]
+  );
 
   React.useEffect(() => {
     const fetchSavedConfig = async () => {
@@ -38,10 +68,14 @@ const App: React.FC = () => {
 
   const set = React.useCallback(
     <K extends keyof PackConfig, V extends PackConfig[K]>(key: K, value: V) => {
-      setConfig((data) => ({
-        ...data,
-        [key]: value,
-      }));
+      setConfig((data) => {
+        track(Event.PROPERTY_CHANGED, {
+          property: key,
+          value,
+          oldValue: data[key],
+        });
+        return { ...data, [key]: value };
+      });
     },
     []
   );
@@ -84,9 +118,11 @@ const App: React.FC = () => {
 
   const handleToggleColors = React.useCallback(
     (flag: boolean) => {
+      const colors = flag ? defaultConfig.colors : [];
+      track(Event.PROPERTY_CHANGED, { propery: "colors", value: colors });
       setConfig((config) => ({
         ...config,
-        colors: flag ? defaultConfig.colors : [],
+        colors: colors,
       }));
     },
     [setConfig]
@@ -99,7 +135,9 @@ const App: React.FC = () => {
       setFormState("saving");
       const save = async () => {
         await saveConfig(config);
-        await createPack({ config });
+        await createPack({ config, source: "panel" });
+
+        track(Event.SETTING_SAVED, { config });
       };
 
       save().finally(() => setFormState("idle"));
@@ -115,7 +153,7 @@ const App: React.FC = () => {
         <div className="tabs-header-list">
           <div
             tabIndex={0}
-            onClick={() => setTab("style")}
+            onClick={() => changeTab("style")}
             className={classnames("tab", {
               ["tab-active"]: tab === "style",
             })}
@@ -124,7 +162,7 @@ const App: React.FC = () => {
           </div>
           <div
             tabIndex={0}
-            onClick={() => setTab("layout")}
+            onClick={() => changeTab("layout")}
             className={classnames("tab", {
               ["tab-active"]: tab === "layout",
             })}
@@ -133,7 +171,7 @@ const App: React.FC = () => {
           </div>
           <div
             tabIndex={0}
-            onClick={() => setTab("actions")}
+            onClick={() => changeTab("actions")}
             className={classnames("tab", {
               ["tab-active"]: tab === "actions",
             })}
@@ -339,6 +377,35 @@ const App: React.FC = () => {
 
         {tab === "actions" && (
           <article>
+            <div className="row">
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={isTrackingAnalytics}
+                  onChange={(ev) => setTrackingAnalytics(ev.target.checked)}
+                />
+                <span>Track anonymized analytics (no PII)</span>
+              </label>
+              <Tooltip>
+                <Tooltip.Trigger asChild>
+                  <span className="icon icon-help-question"></span>
+                </Tooltip.Trigger>
+                <Tooltip.Content>
+                  <span className="tooltip-content">
+                    Track anonymized analytics metrics to understand user usage
+                    and improve the app UX.{" "}
+                    <a
+                      href="https://mixpanel.com/legal/mixpanel-gdpr/"
+                      target="_blank"
+                    >
+                      More info
+                    </a>
+                    .
+                  </span>
+                </Tooltip.Content>
+              </Tooltip>
+            </div>
+
             <label className="checkbox">
               <input
                 type="checkbox"
@@ -385,6 +452,8 @@ const App: React.FC = () => {
     </form>
   );
 };
+
+track(Event.PAGE_LOAD, { page: "app" });
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
