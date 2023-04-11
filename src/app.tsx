@@ -119,7 +119,7 @@ const App: React.FC = () => {
   const handleToggleColors = React.useCallback(
     (flag: boolean) => {
       const colors = flag ? defaultConfig.colors : [];
-      track(Event.PROPERTY_CHANGED, { propery: "colors", value: colors });
+      track(Event.PROPERTY_CHANGED, { property: "colors", value: colors });
       setConfig((config) => ({
         ...config,
         colors: colors,
