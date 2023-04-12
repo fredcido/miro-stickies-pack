@@ -104,6 +104,10 @@ const App: React.FC = () => {
     (color: StickyNoteColor) => {
       const { colors } = config;
 
+      if (colors.includes(color) && colors.length === 1) {
+        return;
+      }
+
       const newColors = colors.includes(color)
         ? colors.filter((c) => c !== color)
         : [...config.colors, color];
