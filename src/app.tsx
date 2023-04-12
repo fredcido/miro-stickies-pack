@@ -151,292 +151,297 @@ const App: React.FC = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <div className="tabs">
-        <div className="tabs-header-list">
-          <div
-            tabIndex={0}
-            onClick={() => changeTab("style")}
-            className={classnames("tab", {
-              ["tab-active"]: tab === "style",
-            })}
-          >
-            <div className="tab-text">Style</div>
-          </div>
-          <div
-            tabIndex={0}
-            onClick={() => changeTab("layout")}
-            className={classnames("tab", {
-              ["tab-active"]: tab === "layout",
-            })}
-          >
-            <div className="tab-text">Layout</div>
-          </div>
-          <div
-            tabIndex={0}
-            onClick={() => changeTab("actions")}
-            className={classnames("tab", {
-              ["tab-active"]: tab === "actions",
-            })}
-          >
-            <div className="tab-text">Actions</div>
+      <div className="container">
+        <div className="tabs">
+          <div className="tabs-header-list">
+            <div
+              tabIndex={0}
+              onClick={() => changeTab("style")}
+              className={classnames("tab", {
+                ["tab-active"]: tab === "style",
+              })}
+            >
+              <div className="tab-text">Style</div>
+            </div>
+            <div
+              tabIndex={0}
+              onClick={() => changeTab("layout")}
+              className={classnames("tab", {
+                ["tab-active"]: tab === "layout",
+              })}
+            >
+              <div className="tab-text">Layout</div>
+            </div>
+            <div
+              tabIndex={0}
+              onClick={() => changeTab("actions")}
+              className={classnames("tab", {
+                ["tab-active"]: tab === "actions",
+              })}
+            >
+              <div className="tab-text">Actions</div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <section className="tabs-container">
-        {tab === "style" && (
-          <article>
-            <div className="form-group">
-              <label htmlFor="packs">
-                Packs
-                <Tooltip>
-                  <Tooltip.Trigger asChild>
-                    <span className="icon icon-help-question"></span>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content>
-                    <span className="tooltip-content">
-                      How many packs do you want to create?
-                    </span>
-                  </Tooltip.Content>
-                </Tooltip>
-              </label>
-              <div className="input-group">
-                <SelectNumbers
-                  max={20}
-                  value={config.packs}
-                  onChange={(packs) => set("packs", packs)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="stickies">
-                Stickies per pack
-                <Tooltip>
-                  <Tooltip.Trigger asChild>
-                    <span className="icon icon-help-question"></span>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content>
-                    <span className="tooltip-content">
-                      How many stickies do you want to create?
-                    </span>
-                  </Tooltip.Content>
-                </Tooltip>
-              </label>
-              <div className="input-group">
-                <SelectNumbers
-                  max={30}
-                  value={config.stickies}
-                  onChange={(stickies) => set("stickies", stickies)}
-                />
-              </div>
-            </div>
-
-            <Shapes
-              shape={config.shape}
-              onChange={(shape) => set("shape", shape)}
-            />
-
-            <Colors
-              onSelect={handleColor}
-              onToggleAll={handleToggleColors}
-              colors={defaultConfig.colors}
-              selectedColors={config.colors}
-            />
-          </article>
-        )}
-
-        {tab === "layout" && (
-          <article>
-            <div className="form-group">
-              <label htmlFor="columns">
-                Columns
-                <Tooltip>
-                  <Tooltip.Trigger asChild>
-                    <span className="icon icon-help-question"></span>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content>
-                    <span className="tooltip-content">
-                      In how many columns do you want to distribute your packs?
-                    </span>
-                  </Tooltip.Content>
-                </Tooltip>
-              </label>
-              <div className="input-group">
-                <SelectNumbers
-                  max={30}
-                  value={config.columns}
-                  onChange={(columns) => set("columns", columns)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="stickyOffset">
-                Stickies offset
-                <Tooltip>
-                  <Tooltip.Trigger asChild>
-                    <span className="icon icon-help-question"></span>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content>
-                    <span className="tooltip-content">
-                      What's the offset distance in between each sticky note on
-                      each pack?
-                    </span>
-                  </Tooltip.Content>
-                </Tooltip>
-              </label>
-              <div className="input-group">
-                <SelectNumbers
-                  max={30}
-                  value={config.stickyOffset}
-                  onChange={(stickyOffset) => set("stickyOffset", stickyOffset)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="stickyGap">
-                Stickies gap
-                <Tooltip>
-                  <Tooltip.Trigger asChild>
-                    <span className="icon icon-help-question"></span>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content>
-                    <span className="tooltip-content">
-                      What's the offset distance in between each pack?
-                    </span>
-                  </Tooltip.Content>
-                </Tooltip>
-              </label>
-              <div className="input-group">
-                <SelectNumbers
-                  max={30}
-                  value={config.stickyGap}
-                  onChange={(stickyGap) => set("stickyGap", stickyGap)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label htmlFor="content">
-                Content
-                <Tooltip>
-                  <Tooltip.Trigger asChild>
-                    <span className="icon icon-help-question"></span>
-                  </Tooltip.Trigger>
-                  <Tooltip.Content>
-                    <span className="tooltip-content">
-                      Define the content for your sticky notes
-                    </span>
-                  </Tooltip.Content>
-                </Tooltip>
-              </label>
-              <select
-                className="select select-small"
-                value={config.contentStrategy}
-                id="content"
-                onChange={handleChange("contentStrategy")}
-              >
-                {Object.values(ContentStrategy).map((value) => (
-                  <option value={value} key={value}>
-                    {value}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            {config.contentStrategy === ContentStrategy.CUSTOM && (
-              <div className="form-group form-row">
-                <label htmlFor="contentTemplate">
-                  Template
+        <section className="tabs-container">
+          {tab === "style" && (
+            <article>
+              <div className="form-group">
+                <label htmlFor="packs">
+                  Packs
                   <Tooltip>
                     <Tooltip.Trigger asChild>
                       <span className="icon icon-help-question"></span>
                     </Tooltip.Trigger>
                     <Tooltip.Content>
                       <span className="tooltip-content">
-                        Create your custom templates using the variables as in
-                        the example
+                        How many packs do you want to create?
                       </span>
                     </Tooltip.Content>
                   </Tooltip>
                 </label>
                 <div className="input-group">
-                  <textarea
-                    className="textarea textarea-small"
-                    placeholder={defaultConfig.contentTemplate}
-                    name="contentTemplate"
-                    value={config.contentTemplate}
-                    rows={3}
-                    onChange={handleChange("contentTemplate")}
+                  <SelectNumbers
+                    max={20}
+                    value={config.packs}
+                    onChange={(packs) => set("packs", packs)}
                   />
                 </div>
               </div>
-            )}
-          </article>
-        )}
 
-        {tab === "actions" && (
-          <article>
-            <div className="row">
+              <div className="form-group">
+                <label htmlFor="stickies">
+                  Stickies per pack
+                  <Tooltip>
+                    <Tooltip.Trigger asChild>
+                      <span className="icon icon-help-question"></span>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content>
+                      <span className="tooltip-content">
+                        How many stickies do you want to create?
+                      </span>
+                    </Tooltip.Content>
+                  </Tooltip>
+                </label>
+                <div className="input-group">
+                  <SelectNumbers
+                    max={30}
+                    value={config.stickies}
+                    onChange={(stickies) => set("stickies", stickies)}
+                  />
+                </div>
+              </div>
+
+              <Shapes
+                shape={config.shape}
+                onChange={(shape) => set("shape", shape)}
+              />
+
+              <Colors
+                onSelect={handleColor}
+                onToggleAll={handleToggleColors}
+                colors={defaultConfig.colors}
+                selectedColors={config.colors}
+              />
+            </article>
+          )}
+
+          {tab === "layout" && (
+            <article>
+              <div className="form-group">
+                <label htmlFor="columns">
+                  Columns
+                  <Tooltip>
+                    <Tooltip.Trigger asChild>
+                      <span className="icon icon-help-question"></span>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content>
+                      <span className="tooltip-content">
+                        In how many columns do you want to distribute your
+                        packs?
+                      </span>
+                    </Tooltip.Content>
+                  </Tooltip>
+                </label>
+                <div className="input-group">
+                  <SelectNumbers
+                    max={30}
+                    value={config.columns}
+                    onChange={(columns) => set("columns", columns)}
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="stickyOffset">
+                  Stickies offset
+                  <Tooltip>
+                    <Tooltip.Trigger asChild>
+                      <span className="icon icon-help-question"></span>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content>
+                      <span className="tooltip-content">
+                        What's the offset distance in between each sticky note
+                        on each pack?
+                      </span>
+                    </Tooltip.Content>
+                  </Tooltip>
+                </label>
+                <div className="input-group">
+                  <SelectNumbers
+                    max={30}
+                    value={config.stickyOffset}
+                    onChange={(stickyOffset) =>
+                      set("stickyOffset", stickyOffset)
+                    }
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="stickyGap">
+                  Stickies gap
+                  <Tooltip>
+                    <Tooltip.Trigger asChild>
+                      <span className="icon icon-help-question"></span>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content>
+                      <span className="tooltip-content">
+                        What's the offset distance in between each pack?
+                      </span>
+                    </Tooltip.Content>
+                  </Tooltip>
+                </label>
+                <div className="input-group">
+                  <SelectNumbers
+                    max={30}
+                    value={config.stickyGap}
+                    onChange={(stickyGap) => set("stickyGap", stickyGap)}
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="content">
+                  Content
+                  <Tooltip>
+                    <Tooltip.Trigger asChild>
+                      <span className="icon icon-help-question"></span>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content>
+                      <span className="tooltip-content">
+                        Define the content for your sticky notes
+                      </span>
+                    </Tooltip.Content>
+                  </Tooltip>
+                </label>
+                <select
+                  className="select select-small"
+                  value={config.contentStrategy}
+                  id="content"
+                  onChange={handleChange("contentStrategy")}
+                >
+                  {Object.values(ContentStrategy).map((value) => (
+                    <option value={value} key={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {config.contentStrategy === ContentStrategy.CUSTOM && (
+                <div className="form-group form-row">
+                  <label htmlFor="contentTemplate">
+                    Template
+                    <Tooltip>
+                      <Tooltip.Trigger asChild>
+                        <span className="icon icon-help-question"></span>
+                      </Tooltip.Trigger>
+                      <Tooltip.Content>
+                        <span className="tooltip-content">
+                          Create your custom templates using the variables as in
+                          the example
+                        </span>
+                      </Tooltip.Content>
+                    </Tooltip>
+                  </label>
+                  <div className="input-group">
+                    <textarea
+                      className="textarea textarea-small"
+                      placeholder={defaultConfig.contentTemplate}
+                      name="contentTemplate"
+                      value={config.contentTemplate}
+                      rows={3}
+                      onChange={handleChange("contentTemplate")}
+                    />
+                  </div>
+                </div>
+              )}
+            </article>
+          )}
+
+          {tab === "actions" && (
+            <article>
+              <div className="row">
+                <label className="checkbox">
+                  <input
+                    type="checkbox"
+                    checked={isTrackingAnalytics}
+                    onChange={(ev) => setTrackingAnalytics(ev.target.checked)}
+                  />
+                  <span>Track anonymized analytics (no PII)</span>
+                </label>
+                <Tooltip>
+                  <Tooltip.Trigger asChild>
+                    <span className="icon icon-help-question"></span>
+                  </Tooltip.Trigger>
+                  <Tooltip.Content>
+                    <span className="tooltip-content">
+                      Track anonymized analytics metrics to understand user
+                      usage and improve the app UX.{" "}
+                      <a
+                        href="https://mixpanel.com/legal/mixpanel-gdpr/"
+                        target="_blank"
+                      >
+                        More info
+                      </a>
+                      .
+                    </span>
+                  </Tooltip.Content>
+                </Tooltip>
+              </div>
+
               <label className="checkbox">
                 <input
                   type="checkbox"
-                  checked={isTrackingAnalytics}
-                  onChange={(ev) => setTrackingAnalytics(ev.target.checked)}
+                  checked={config.selectItems}
+                  onChange={(ev) => set("selectItems", ev.target.checked)}
                 />
-                <span>Track anonymized analytics (no PII)</span>
+                <span>Select items after creation</span>
               </label>
-              <Tooltip>
-                <Tooltip.Trigger asChild>
-                  <span className="icon icon-help-question"></span>
-                </Tooltip.Trigger>
-                <Tooltip.Content>
-                  <span className="tooltip-content">
-                    Track anonymized analytics metrics to understand user usage
-                    and improve the app UX.{" "}
-                    <a
-                      href="https://mixpanel.com/legal/mixpanel-gdpr/"
-                      target="_blank"
-                    >
-                      More info
-                    </a>
-                    .
-                  </span>
-                </Tooltip.Content>
-              </Tooltip>
-            </div>
 
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                checked={config.selectItems}
-                onChange={(ev) => set("selectItems", ev.target.checked)}
-              />
-              <span>Select items after creation</span>
-            </label>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={config.zoomTo}
+                  onChange={(ev) => set("zoomTo", ev.target.checked)}
+                />
+                <span>Zoom to pack</span>
+              </label>
 
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                checked={config.zoomTo}
-                onChange={(ev) => set("zoomTo", ev.target.checked)}
-              />
-              <span>Zoom to pack</span>
-            </label>
-
-            <label className="checkbox">
-              <input
-                type="checkbox"
-                checked={config.debug}
-                onChange={(ev) => set("debug", ev.target.checked)}
-              />
-              <span>Enable debug</span>
-            </label>
-          </article>
-        )}
-      </section>
+              <label className="checkbox">
+                <input
+                  type="checkbox"
+                  checked={config.debug}
+                  onChange={(ev) => set("debug", ev.target.checked)}
+                />
+                <span>Enable debug</span>
+              </label>
+            </article>
+          )}
+        </section>
+      </div>
 
       <footer className="toolbar">
         <button
