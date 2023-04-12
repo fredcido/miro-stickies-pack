@@ -118,7 +118,9 @@ const App: React.FC = () => {
 
   const handleToggleColors = React.useCallback(
     (flag: boolean) => {
-      const colors = flag ? defaultConfig.colors : [];
+      const colors = flag
+        ? defaultConfig.colors
+        : [StickyNoteColor.LightYellow];
       track(Event.PROPERTY_CHANGED, { property: "colors", value: colors });
       setConfig((config) => ({
         ...config,
@@ -436,7 +438,7 @@ const App: React.FC = () => {
         )}
       </section>
 
-      <div className="toolbar">
+      <footer className="toolbar">
         <button
           disabled={isSaving}
           className={classnames("button button-primary", {
@@ -444,11 +446,11 @@ const App: React.FC = () => {
           })}
           type="submit"
         >
-          Save & create
+          Save & Create
         </button>
 
         <Contact />
-      </div>
+      </footer>
     </form>
   );
 };

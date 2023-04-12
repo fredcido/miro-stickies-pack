@@ -27,7 +27,7 @@ export function Contact({}: ContactProps) {
       </Tooltip>
 
       <a
-        href="mailto:platform-frameworks@miro.com"
+        href="https://forms.gle/MBLznkCctCvpgbCn9"
         target="_blank"
         title="Direct contact to provide feedback"
       >
