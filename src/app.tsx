@@ -104,6 +104,10 @@ const App: React.FC = () => {
     (color: StickyNoteColor) => {
       const { colors } = config;
 
+      if (colors.includes(color) && colors.length === 1) {
+        return;
+      }
+
       const newColors = colors.includes(color)
         ? colors.filter((c) => c !== color)
         : [...config.colors, color];
@@ -118,7 +122,9 @@ const App: React.FC = () => {
 
   const handleToggleColors = React.useCallback(
     (flag: boolean) => {
-      const colors = flag ? defaultConfig.colors : [];
+      const colors = flag
+        ? defaultConfig.colors
+        : [StickyNoteColor.LightYellow];
       track(Event.PROPERTY_CHANGED, { property: "colors", value: colors });
       setConfig((config) => ({
         ...config,
@@ -256,7 +262,8 @@ const App: React.FC = () => {
                     </Tooltip.Trigger>
                     <Tooltip.Content>
                       <span className="tooltip-content">
-                        In how many columns do you want to distribute your packs?
+                        In how many columns do you want to distribute your
+                        packs?
                       </span>
                     </Tooltip.Content>
                   </Tooltip>
@@ -279,8 +286,8 @@ const App: React.FC = () => {
                     </Tooltip.Trigger>
                     <Tooltip.Content>
                       <span className="tooltip-content">
-                        What's the offset distance in between each sticky note on
-                        each pack?
+                        What's the offset distance in between each sticky note
+                        on each pack?
                       </span>
                     </Tooltip.Content>
                   </Tooltip>
@@ -289,7 +296,9 @@ const App: React.FC = () => {
                   <SelectNumbers
                     max={30}
                     value={config.stickyOffset}
-                    onChange={(stickyOffset) => set("stickyOffset", stickyOffset)}
+                    onChange={(stickyOffset) =>
+                      set("stickyOffset", stickyOffset)
+                    }
                   />
                 </div>
               </div>
@@ -393,8 +402,8 @@ const App: React.FC = () => {
                   </Tooltip.Trigger>
                   <Tooltip.Content>
                     <span className="tooltip-content">
-                      Track anonymized analytics metrics to understand user usage
-                      and improve the app UX.{" "}
+                      Track anonymized analytics metrics to understand user
+                      usage and improve the app UX.{" "}
                       <a
                         href="https://mixpanel.com/legal/mixpanel-gdpr/"
                         target="_blank"
@@ -437,8 +446,8 @@ const App: React.FC = () => {
           )}
         </section>
       </div>
-      
-      <div className="toolbar">
+
+      <footer className="toolbar">
         <button
           disabled={isSaving}
           className={classnames("button button-primary", {
@@ -446,11 +455,11 @@ const App: React.FC = () => {
           })}
           type="submit"
         >
-          Save & create
+          Save & Create
         </button>
 
         <Contact />
-      </div>
+      </footer>
     </form>
   );
 };

@@ -35,18 +35,28 @@ export function Colors({
   colors,
   selectedColors = [],
 }: ColorProps) {
+  const areAllSelected = React.useMemo(
+    () => colors.length === selectedColors.length,
+    [colors.length, selectedColors.length]
+  );
+
+  const handleToggle = () => {
+    const newToggle = !areAllSelected;
+    onToggleAll(newToggle);
+  };
+
   return (
     <div>
       <div className="color-label">
         <label htmlFor="stickyGap">Colors</label>
-        <label className="toggle">
-          <input
-            type="checkbox"
-            defaultChecked
-            onChange={(ev) => onToggleAll(ev.target.checked)}
-          />
-          <span>Use all colors</span>
-        </label>
+
+        <a
+          className="link link-primary"
+          onClick={handleToggle}
+          href="javascript:;"
+        >
+          {areAllSelected ? "Reset" : "Select all"}
+        </a>
       </div>
 
       <div className="colors">
