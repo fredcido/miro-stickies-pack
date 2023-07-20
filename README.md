@@ -42,7 +42,7 @@
 
 ### About the app
 
-This sample app provides you with boilerplate setup and configuration that you can further customize to build your own app.
+[Stickies packs](https://miro.com/marketplace/stickies-packs/) app can be installed in your Miro board.
 
 <!-- describe shortly the purpose of the sample app -->
 
