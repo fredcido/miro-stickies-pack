@@ -84,6 +84,8 @@ export async function getConfig() {
   if (config) {
     return config as PackConfig;
   }
+
+  return defaultConfig;
 }
 
 export function getReferenceItem(items: Item[]) {
@@ -213,7 +215,7 @@ export async function createPack(opts: CreatePackOpts = { source: "panel" }) {
         : config.shape;
 
       const content = buildContent(
-        { config },
+        { config, source },
         {
           packIndex: packIndex + 1,
           stickyIndex: stickyIndex + 1,
