@@ -2,7 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { StickyNoteColor } from "@mirohq/websdk-types";
 import classnames from "classnames";
-import { Tooltip } from "@mirohq/design-system-tooltip";
+import { Tooltip } from "@mirohq/design-system";
 
 import { Colors } from "./components/Colors";
 import { Shapes } from "./components/Shapes";
@@ -21,6 +21,7 @@ import {
   getConfig,
   createPack,
   ContentStrategy,
+  TagStrategy,
 } from "./pack";
 import type { PackConfig } from "./pack";
 import SelectNumbers from "./components/SelectNumbers/SelectNumbers";
@@ -382,6 +383,34 @@ const App: React.FC = () => {
                   </div>
                 </div>
               )}
+
+              <div className="form-group">
+                <label htmlFor="tag">
+                  Tag
+                  <Tooltip>
+                    <Tooltip.Trigger asChild>
+                      <span className="icon icon-help-question"></span>
+                    </Tooltip.Trigger>
+                    <Tooltip.Content>
+                      <span className="tooltip-content">
+                        Define the tag for your sticky notes
+                      </span>
+                    </Tooltip.Content>
+                  </Tooltip>
+                </label>
+                <select
+                  className="select select-small"
+                  value={config.tagStrategy}
+                  id="tag"
+                  onChange={handleChange("tagStrategy")}
+                >
+                  {Object.values(TagStrategy).map((value) => (
+                    <option value={value} key={value}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </article>
           )}
 

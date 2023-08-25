@@ -3,6 +3,8 @@ import type {
   Item,
   Rect,
   StickyNoteShape,
+  OnlineUserInfo,
+  Tag,
 } from "@mirohq/websdk-types";
 import { StickyNoteColor } from "@mirohq/websdk-types";
 import { track, Event } from "./analytics";
@@ -12,7 +14,15 @@ export enum ContentStrategy {
   PACK_INDEX = "Pack index",
   STICKY_INDEX = "Sticky index",
   OVERALL_INDEX = "Overall index",
+  ONLINE_USERS_PER_PACK = "Online users per pack",
+  ONLINE_USERS_PER_ITEM = "Online users per item",
   CUSTOM = "Custom",
+}
+
+export enum TagStrategy {
+  EMPTY = "Empty",
+  ONLINE_USERS_PER_PACK = "Online users per pack",
+  ONLINE_USERS_PER_ITEM = "Online users per item",
 }
 
 export type PackConfig = {
@@ -26,6 +36,7 @@ export type PackConfig = {
   colors: StickyNoteColor[];
   shape: StickyNoteShape;
   contentStrategy: ContentStrategy;
+  tagStrategy: TagStrategy;
   contentTemplate: string;
   debug: boolean;
 };
@@ -41,6 +52,7 @@ export const defaultConfig: PackConfig = {
   colors: Object.values(StickyNoteColor),
   shape: "square",
   contentStrategy: ContentStrategy.EMPTY,
+  tagStrategy: TagStrategy.EMPTY,
   contentTemplate:
     "Overall: #{overallIndex}, Pack: #{packIndex}, Sticky: #{stickyIndex}",
   debug: false,
@@ -56,6 +68,7 @@ type ContentOps = {
   packIndex: number;
   stickyIndex: number;
   overallIndex: number;
+  onlineUsers: OnlineUserInfo[];
 };
 
 function filterSupportedItems(items: Item[]): Rect[] {
@@ -125,9 +138,92 @@ export async function getDefaultValues() {
   return values;
 }
 
-function buildContent(opts: CreatePackOpts, values: ContentOps): string {
+async function getOrCreateTag(user: OnlineUserInfo) {
+  const tags = (await miro.board.get({
+    type: "tag",
+  })) as Tag[];
+
+  let tag = tags.find(
+    (tag) => tag.title.toLocaleLowerCase() === user.name.toLocaleLowerCase()
+  );
+
+  console.log("Existing", { tags, user, tag });
+
+  if (!tag) {
+    tag = await miro.board.createTag({
+      title: user.name,
+    });
+
+    console.log("Created", { tag });
+  }
+
+  return tag;
+}
+
+function getCurrentUser(
+  onlineUsers: OnlineUserInfo[],
+  index: number
+): OnlineUserInfo | undefined {
+  let userIndex = index - 1;
+  if (userIndex >= onlineUsers.length) {
+    userIndex = userIndex % onlineUsers.length;
+  }
+
+  const user = onlineUsers.at(userIndex);
+
+  console.log({ userIndex, user, index, onlineUsers });
+
+  return user;
+}
+
+async function buildTags(
+  opts: CreatePackOpts,
+  values: ContentOps
+): Promise<Tag[]> {
+  const { config = defaultConfig } = opts;
+  const { tagStrategy } = config;
+
+  log(config.debug, "buildTags", {
+    tagStrategy,
+  });
+
+  let tags: Tag[] = [];
+  switch (tagStrategy) {
+    case TagStrategy.ONLINE_USERS_PER_PACK: {
+      const { packIndex, onlineUsers } = values;
+      const user = getCurrentUser(onlineUsers, packIndex);
+
+      if (user) {
+        const tag = await getOrCreateTag(user);
+        tags = [tag];
+      }
+      break;
+    }
+    case TagStrategy.ONLINE_USERS_PER_ITEM: {
+      const { stickyIndex, onlineUsers } = values;
+      const user = getCurrentUser(onlineUsers, stickyIndex);
+
+      if (user) {
+        const tag = await getOrCreateTag(user);
+        tags = [tag];
+      }
+      break;
+    }
+  }
+
+  return tags;
+}
+
+async function buildContent(
+  opts: CreatePackOpts,
+  values: ContentOps
+): Promise<string> {
   const { config = defaultConfig } = opts;
   const { contentTemplate, contentStrategy } = config;
+
+  log(config.debug, "buildContent", {
+    contentStrategy,
+  });
 
   let content = "";
   switch (contentStrategy) {
@@ -140,6 +236,20 @@ function buildContent(opts: CreatePackOpts, values: ContentOps): string {
     case ContentStrategy.OVERALL_INDEX:
       content = `${values.overallIndex}`;
       break;
+    case ContentStrategy.ONLINE_USERS_PER_PACK: {
+      const { packIndex, onlineUsers } = values;
+      const user = getCurrentUser(onlineUsers, packIndex);
+      content = user?.name ?? "";
+
+      break;
+    }
+    case ContentStrategy.ONLINE_USERS_PER_ITEM: {
+      const { stickyIndex, onlineUsers } = values;
+      const user = getCurrentUser(onlineUsers, stickyIndex);
+      content = user?.name ?? "";
+
+      break;
+    }
     case ContentStrategy.CUSTOM:
       content = contentTemplate;
       Object.entries(values).forEach(([key, value]) => {
@@ -167,6 +277,8 @@ function proportionalOffset(config: PackConfig, reference: Rect): number {
 export async function createPack(opts: CreatePackOpts = { source: "panel" }) {
   const { config = defaultConfig, referenceItem, source } = opts;
   const reference = referenceItem ?? (await getDefaultValues());
+
+  const onlineUsers = await miro.board.getOnlineUsers();
 
   track(Event.PACKS_CREATED, { config, source });
 
@@ -214,14 +326,20 @@ export async function createPack(opts: CreatePackOpts = { source: "panel" }) {
           reference.shape
         : config.shape;
 
-      const content = buildContent(
-        { config, source },
-        {
-          packIndex: packIndex + 1,
-          stickyIndex: stickyIndex + 1,
-          overallIndex: (packIndex + 1) * (stickyIndex + 1),
-        }
-      );
+      const configOpts = {
+        config,
+        source,
+      };
+
+      const generateOpts = {
+        packIndex: packIndex + 1,
+        stickyIndex: stickyIndex + 1,
+        overallIndex: (packIndex + 1) * (stickyIndex + 1),
+        onlineUsers,
+      };
+
+      const content = await buildContent(configOpts, generateOpts);
+      const tags = await buildTags(configOpts, generateOpts);
 
       log(config.debug, "STICK", {
         x,
@@ -242,6 +360,7 @@ export async function createPack(opts: CreatePackOpts = { source: "panel" }) {
         style: {
           fillColor,
         },
+        tagIds: tags.map((t) => t.id),
       });
 
       waitFor.push(sticky);

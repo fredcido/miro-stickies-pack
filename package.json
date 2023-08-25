@@ -9,8 +9,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@mirohq/design-system-icons": "^0.10.1",
-    "@mirohq/design-system-tooltip": "^3.2.1",
+    "@mirohq/design-system": "^0.15.11",
     "@stitches/react": "^1.2.8",
     "classnames": "^2.3.2",
     "mirotone": "4",
@@ -21,7 +20,7 @@
   },
   "devDependencies": {
     "@golevelup/ts-jest": "^0.4.0",
-    "@mirohq/websdk-types": "latest",
+    "@mirohq/websdk-types": "^2.9.3",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^14.0.0",
     "@total-typescript/ts-reset": "^0.4.2",
