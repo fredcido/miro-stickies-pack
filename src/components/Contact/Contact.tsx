@@ -11,13 +11,16 @@ import "./Contact.css";
 
 type ContactProps = {};
 
+const shareText =
+  "Check%20out%20this%20amazing%20Miro%20app%20I%27ve%20been%20using%20to%20create%20stickies%20packs%20%23miro%20%23stickiespacks%0Ahttps%3A%2F%2Fmiro.com%2Fmarketplace%2Fstickies-packs%2F";
+
 export function Contact({}: ContactProps) {
   return (
     <div className="contact">
       <Tooltip>
         <Tooltip.Trigger asChild>
           <a
-            href="https://twitter.com/intent/tweet?text=Check%20out%20this%20amazing%20Miro%20app%20I've%20been%20using%20to%20create%20stickies%20packes%0Ahttps%3A//miro.com/marketplace/stickies-packs/"
+            href={`https://twitter.com/intent/tweet?text=${shareText}`}
             target="_blank"
           >
             <IconSocialX />
@@ -49,7 +52,7 @@ export function Contact({}: ContactProps) {
       <Tooltip>
         <Tooltip.Trigger asChild>
           <a
-            href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A//miro.com/marketplace/stickies-packs/"
+            href={`https://www.linkedin.com/shareArticle?mini=true&title=${shareText}&url=https%3A//miro.com/marketplace/stickies-packs/`}
             target="_blank"
           >
             <IconSocialLinkedin />
