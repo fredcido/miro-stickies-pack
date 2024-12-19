@@ -1,5 +1,5 @@
 import React from "react";
-import { StickyNoteColor } from "@mirohq/websdk-types";
+import type { StickyNoteColor } from "@mirohq/websdk-types";
 import classnames from "classnames";
 
 import "./Colors.css";
@@ -11,22 +11,23 @@ type ColorProps = {
   selectedColors?: StickyNoteColor[];
 };
 
-const colorMapping = {
-  [StickyNoteColor.Gray.toString()]: "rgb(245, 246, 248)",
-  [StickyNoteColor.LightYellow]: "rgb(255, 249, 177)",
-  [StickyNoteColor.Yellow]: "rgb(245, 209, 40)",
-  [StickyNoteColor.Orange]: "rgb(255, 157, 72)",
-  [StickyNoteColor.LightGreen]: "rgb(213, 246, 146)",
-  [StickyNoteColor.Green]: "rgb(201, 223, 86)",
-  [StickyNoteColor.DarkGreen]: "rgb(147, 210, 117)",
-  [StickyNoteColor.Cyan]: "rgb(103, 198, 192)",
-  [StickyNoteColor.LightPink]: "rgb(255, 206, 224)",
-  [StickyNoteColor.Pink]: "rgb(234, 148, 187)",
-  [StickyNoteColor.Violet]: "rgb(198, 162, 210)",
-  [StickyNoteColor.Red]: "rgb(240, 147, 157)",
-  [StickyNoteColor.Blue]: "rgb(108, 216, 250)",
-  [StickyNoteColor.DarkBlue]: "rgb(158, 169, 255)",
-  [StickyNoteColor.Black]: "rgb(0, 0, 0)",
+const colorMapping: Record<StickyNoteColor, string> = {
+  gray: "rgb(245, 246, 248)",
+  light_yellow: "rgb(255, 249, 177)",
+  yellow: "rgb(245, 209, 40)",
+  orange: "rgb(255, 157, 72)",
+  light_green: "rgb(213, 246, 146)",
+  green: "rgb(201, 223, 86)",
+  dark_green: "rgb(147, 210, 117)",
+  cyan: "rgb(103, 198, 192)",
+  light_pink: "rgb(255, 206, 224)",
+  pink: "rgb(234, 148, 187)",
+  violet: "rgb(198, 162, 210)",
+  red: "rgb(240, 147, 157)",
+  blue: "rgb(108, 216, 250)",
+  dark_blue: "rgb(158, 169, 255)",
+  light_blue: "rgb(108, 216, 250)",
+  black: "rgb(0, 0, 0)",
 } as const;
 
 export function Colors({

@@ -6,7 +6,7 @@ import type {
   OnlineUserInfo,
   Tag,
 } from "@mirohq/websdk-types";
-import { StickyNoteColor } from "@mirohq/websdk-types";
+import type { StickyNoteColor } from "@mirohq/websdk-types";
 import { track, Event } from "./analytics";
 
 export enum ContentStrategy {
@@ -41,6 +41,25 @@ export type PackConfig = {
   debug: boolean;
 };
 
+const stickyColors = [
+  "gray",
+  "light_yellow",
+  "yellow",
+  "orange",
+  "light_green",
+  "green",
+  "dark_green",
+  "cyan",
+  "light_pink",
+  "pink",
+  "violet",
+  "red",
+  "light_blue",
+  "blue",
+  "dark_blue",
+  "black",
+] as StickyNoteColor[];
+
 export const defaultConfig: PackConfig = {
   columns: 3,
   packs: 6,
@@ -49,7 +68,7 @@ export const defaultConfig: PackConfig = {
   stickyGap: 20,
   zoomTo: true,
   selectItems: true,
-  colors: Object.values(StickyNoteColor),
+  colors: stickyColors,
   shape: "square",
   contentStrategy: ContentStrategy.EMPTY,
   tagStrategy: TagStrategy.EMPTY,

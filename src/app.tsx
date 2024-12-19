@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
-import { StickyNoteColor } from "@mirohq/websdk-types";
+import type { StickyNoteColor } from "@mirohq/websdk-types";
 import classnames from "classnames";
 import { Tooltip } from "@mirohq/design-system";
 
@@ -125,7 +125,7 @@ const App: React.FC = () => {
     (flag: boolean) => {
       const colors = flag
         ? defaultConfig.colors
-        : [StickyNoteColor.LightYellow];
+        : (["light_yellow"] as StickyNoteColor[]);
       track(Event.PROPERTY_CHANGED, { property: "colors", value: colors });
       setConfig((config) => ({
         ...config,

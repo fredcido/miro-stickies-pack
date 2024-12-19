@@ -15,6 +15,27 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
+"@ariakit/core@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@ariakit/core/-/core-0.4.5.tgz#ba42573474c1f54109cf96650e8614d7312a432d"
+  integrity sha512-e294+bEcyzt/H/kO4fS5/czLAlkF7PY+Kul3q2z54VY+GGay8NlVs9UezAB7L4jUBlYRAXwp7/1Sq3R7b+MZ7w==
+
+"@ariakit/react-core@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@ariakit/react-core/-/react-core-0.4.5.tgz#dd0bda1d54d708ec803e658f9d298ea507c96b8a"
+  integrity sha512-ciTYPwpj/+mdA+EstveEnoygbx5e4PXQJxfkLKy4lkTkDJJUS9GcbYhdnIFJVUta6P1YFvzkIKo+/y9mcbMKJg==
+  dependencies:
+    "@ariakit/core" "0.4.5"
+    "@floating-ui/dom" "^1.0.0"
+    use-sync-external-store "^1.2.0"
+
+"@ariakit/react@0.4.5":
+  version "0.4.5"
+  resolved "https://registry.yarnpkg.com/@ariakit/react/-/react-0.4.5.tgz#f6e356665cc45fa317c10fa041009acbb290d92f"
+  integrity sha512-GUHxaOY1JZrJUHkuV20IY4NWcgknhqTQM0qCQcVZDCi+pJiWchUjTG+UyIr/Of02hU569qnQ7yovskCf+V3tNg==
+  dependencies:
+    "@ariakit/react-core" "0.4.5"
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.22.5":
   version "7.22.5"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.22.5.tgz#234d98e1551960604f1246e6475891a570ad5658"
@@ -571,12 +592,27 @@
   dependencies:
     "@floating-ui/utils" "^0.1.1"
 
+"@floating-ui/core@^1.6.0":
+  version "1.6.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/core/-/core-1.6.8.tgz#aa43561be075815879305965020f492cdb43da12"
+  integrity sha512-7XJ9cPU+yI2QeLS+FCSlqNFZJq8arvswefkZrYI1yQBbftw6FyrZOxYSh+9S7z7TpeWlRt9zJ5IhM1WIL334jA==
+  dependencies:
+    "@floating-ui/utils" "^0.2.8"
+
 "@floating-ui/dom@^0.5.3":
   version "0.5.4"
   resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-0.5.4.tgz#4eae73f78bcd4bd553ae2ade30e6f1f9c73fe3f1"
   integrity sha512-419BMceRLq0RrmTSDxn8hf9R3VCJv2K9PUfugh5JyEFmdjzDo+e8U5EdR8nzKq8Yj1htzLm3b6eQEEam3/rrtg==
   dependencies:
     "@floating-ui/core" "^0.7.3"
+
+"@floating-ui/dom@^1.0.0":
+  version "1.6.12"
+  resolved "https://registry.yarnpkg.com/@floating-ui/dom/-/dom-1.6.12.tgz#6333dcb5a8ead3b2bf82f33d6bc410e95f54e556"
+  integrity sha512-NP83c0HjokcGVEMeoStg317VD9W7eDlGK7457dMBANbKA6GJZdc7rjujdgqzTaz93jkGgc5P/jeWbaCHnMNc+w==
+  dependencies:
+    "@floating-ui/core" "^1.6.0"
+    "@floating-ui/utils" "^0.2.8"
 
 "@floating-ui/dom@^1.3.0":
   version "1.5.1"
@@ -605,6 +641,11 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.1.1.tgz#1a5b1959a528e374e8037c4396c3e825d6cf4a83"
   integrity sha512-m0G6wlnhm/AX0H12IOWtK8gASEMffnX08RtKkCgTdHb9JpHKGloI7icFfLg9ZmQeavcvR0PKmzxClyuFPSjKWw==
+
+"@floating-ui/utils@^0.2.8":
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.2.8.tgz#21a907684723bbbaa5f0974cf7730bd797eb8e62"
+  integrity sha512-kym7SodPp8/wloecOpcmSnWJsK7M0E5Wg8UcFA+uO4B9s5d0ywXOEro/8HM9x0rW+TljRzul/14UYz3TleT3ig==
 
 "@formatjs/ecma402-abstract@1.17.0":
   version "1.17.0"
@@ -948,469 +989,732 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
-"@mirohq/design-system-badge@^0.3.12":
-  version "0.3.12"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-badge/-/design-system-badge-0.3.12.tgz#412052fb704aa42107a727e401d159f1703e514b"
-  integrity sha512-yb05Srl1R6G3BhOaU0RSyGcj14HpJ+zZ8bqjoWLMxKP6B6B2cWuxq4yI7G6FghcjAIecHNwonCrc4sA6eiQUAg==
+"@mirohq/design-system-badge@^0.4.7":
+  version "0.4.7"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-badge/-/design-system-badge-0.4.7.tgz#2ad3ee03dc879fc708b143e202c8618fe98ac42b"
+  integrity sha512-3NaiDCrESOyS5pYUH7GH3O+9jHGZqqgNzY7ac/nOn2U8itOSvVwGw5xyGOZ8fmd8T5GufOal+x2GVMN3NDwLMg==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-types" "^0.6.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-types" "^0.10.0"
 
-"@mirohq/design-system-base-button@^0.4.11":
-  version "0.4.11"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-button/-/design-system-base-button-0.4.11.tgz#609a48e6553c940102d91966827ccd4ba0f0e494"
-  integrity sha512-adKlgq33tHE5Vi9imu0NcHPa/2Jxu5zrBQChYeMQ91ie4VN8RkWdX72ABJH4HKQA4bk3SYDJkG6dh2PhAXWUww==
+"@mirohq/design-system-base-button@^0.4.67":
+  version "0.4.67"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-button/-/design-system-base-button-0.4.67.tgz#2a2171ee7839bb34ed08886ec72e23bd6230fc9a"
+  integrity sha512-KedhNoMl/9MMPpdtOLDx/Ei+79fjV+9NhPn4bpXhsDIWWhPCskI8GrEDby1d4o9/P2tnUvc48Ehufe8MY7O7qw==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-use-press" "^0.4.2"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@react-aria/interactions" "^3.13.0"
     "@react-aria/utils" "^3.13.0"
     "@react-types/shared" "^3.16.0"
 
-"@mirohq/design-system-base-icon@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-icon/-/design-system-base-icon-0.1.3.tgz#ae7a8a590aa2bb5ad952b7da6f7754457c871366"
-  integrity sha512-RwJRiiuYbI0RAPNwazlIK4Fhrb4oJs6etyubbs4ynp9BMJtnxT83wWlwwINZYkknz+z3HAzaaYwbqtMYFbgV6A==
+"@mirohq/design-system-base-form@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-form/-/design-system-base-form-0.3.3.tgz#ebce7ebf574f8531e8cc754fba1a68cf1078c3d2"
+  integrity sha512-5Nt8a9JV3/fcNOk5Xgcod1BjCQeNwbdw2pg+JOTYbgCu42vEpgvje08pLrJbvDCo3Q+Gyfx4l+aY4LnK7dNAoA==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
+    "@mirohq/design-system-base-text-field" "^0.2.2"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-use-id" "^0.1.2"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-base-switch@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-switch/-/design-system-base-switch-0.1.2.tgz#c60f011b2924086d4e2f1593a04318d6959b8110"
-  integrity sha512-RbfmpokIXLFlHkW/+zzcVDtaTOTHt0jsG97Muod+jgKJQZtSZ7CHDBZpk/aNz2pUk1MGcRp6f9K9NOPuTJ1rEg==
+"@mirohq/design-system-base-hotkey@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-hotkey/-/design-system-base-hotkey-0.2.6.tgz#f63cec7c90936a155a9557641c22d82ca76ef435"
+  integrity sha512-8XY/9mokKtzSSVT8ETnMuWabjJPkz49gsnH2+UmwSJ2Wdu/NUreL6Z88ish7KlrG9znVf+n5tlb80W4yxgcr3A==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
 
-"@mirohq/design-system-box@^2.1.13":
-  version "2.1.13"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-box/-/design-system-box-2.1.13.tgz#8608dba6c85c8680deeb32aad12ed67b8da94e86"
-  integrity sha512-uK2ISH09dSxDcVss3haCO82r47sDmDCJfktGcTVfyvD4qyfKjVbU6mS2Tfppq5qi1h3mbAbICGtW3/RSD4ZEBA==
-  dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
+"@mirohq/design-system-base-icon@^0.1.33":
+  version "0.1.33"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-icon/-/design-system-base-icon-0.1.33.tgz#6ef344b2f502c01e22dd10c0d80b8a43c3ed6010"
+  integrity sha512-CwCykYvc1xjXBqWfrI98umUyvApup6p0r83291Bn5tWdQbj2mu8zi9jm2nuUM7num3xvgX8vsQ5KX6s5f70fmQ==
 
-"@mirohq/design-system-button@^3.1.6":
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-button/-/design-system-button-3.1.6.tgz#df4e5efdbb8790aa794cbfd00a85020662bac1a9"
-  integrity sha512-LtpIsi0IFPAYy2oIiROtYdyhrUp3k7AxhbJ868dbGzKh2/hXYUNzHjF/bgR3fJs/gGKVk5DXhVYEPamgS1Tlbg==
+"@mirohq/design-system-base-input@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-input/-/design-system-base-input-0.5.6.tgz#da70af36a7cf72faecb4fc0319d57ff2ce6bc2aa"
+  integrity sha512-hUuL25IcmKJYc1wKNb9XGHjiamTBA5t2vZ8hZc+Q/eO4Jn4p8VrJATP6x6AXOfQIXPu20OgiltKnmMySK99bhg==
   dependencies:
-    "@mirohq/design-system-base-button" "^0.4.11"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-spinner" "^1.1.14"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-base-button" "^0.4.67"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-base-text-field" "^0.2.2"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-tooltip" "^3.5.8"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
+    "@mirohq/design-system-use-press" "^0.4.2"
+    "@mirohq/design-system-utils" "^0.15.5"
+    "@react-aria/interactions" "^3.13.0"
     "@react-aria/utils" "^3.13.0"
 
-"@mirohq/design-system-calendar@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-calendar/-/design-system-calendar-0.1.14.tgz#a99babf66631a5dd5a6143ac6095e162c855e10d"
-  integrity sha512-y0fdFSB2jaHuJsL2dPQybRoA7uTFeC3YbJ+ANK0MUxxVa04ROFT64XBmvQdutt5HbKPXWP+xMAYfjJXBjV8j6Q==
+"@mirohq/design-system-base-select@^0.1.20":
+  version "0.1.20"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-select/-/design-system-base-select-0.1.20.tgz#21b44f68677b94af936880d5560512c76b910ad0"
+  integrity sha512-2UblUIa6Bf/+tNsGzEWUP9t4yln8VLgK6wGOI5hsGhiDNwUut6w7spTrioFNzIuEJM71n5DBNSGT4XAisiCzLg==
+  dependencies:
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+
+"@mirohq/design-system-base-switch@^0.1.50":
+  version "0.1.50"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-switch/-/design-system-base-switch-0.1.50.tgz#ad2da362fb17fdc33afc3ebd32cfb0d4f2d080f2"
+  integrity sha512-cQJQeksOh1aF8HbRhXUKmZIMrjnPzJsofaWo3XhfDGV/aFQ5Rfv8XHAK55yxdFnVxsU0uxAcH2440PXAoOEu4A==
+  dependencies:
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+
+"@mirohq/design-system-base-text-field@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-text-field/-/design-system-base-text-field-0.2.2.tgz#ca0ce3802213f1d9308642011d6e1df8da16f616"
+  integrity sha512-U0qJu1CjzUYIHVgGwwqWXdryNoORA8SF37pjTqYF1KazDazKs84C4kYvCy6EcM9FtyQ8q/+1CC1KNPH3c+IZzg==
+  dependencies:
+    "@mirohq/design-system-styles" "^1.2.29"
+
+"@mirohq/design-system-base-tooltip@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-base-tooltip/-/design-system-base-tooltip-0.1.0.tgz#e3d2207f5df235c312576e849524b2b9e9d04bb2"
+  integrity sha512-99ZCAnToWHLFi5JB3TMuCRpnX7/0kRiFmGfwbRXFSEEbofrwE6cKkpRAjoe0sggQpkrPa+jpsMwOl29B2dlGqw==
+
+"@mirohq/design-system-box@^2.1.60":
+  version "2.1.60"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-box/-/design-system-box-2.1.60.tgz#5d7beaeea9e33a4f659c184ea05671c2ac796f95"
+  integrity sha512-v89m6xRjvzlWl2N8hHtbijWhQ9wX5HCQEbA6jsPgMk0DKqclqx66K+ZAf6cN1c+l1+hq0XyzLy2Y7hR88xdJuA==
+  dependencies:
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+
+"@mirohq/design-system-button@^4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-button/-/design-system-button-4.2.5.tgz#29b682427c9767c168ec676cc33e1d4ee0d93c00"
+  integrity sha512-jzQDYfEMwT8a97T2yudXPJqgrYxJKD62s4+4iTtbtUfKPyInSmUPKcEStxUnMpjtJ2plMKDhoX8xh9mhmenE9A==
+  dependencies:
+    "@mirohq/design-system-base-button" "^0.4.67"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-spinner" "^1.1.63"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-utils" "^0.15.5"
+
+"@mirohq/design-system-calendar@^0.4.6":
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-calendar/-/design-system-calendar-0.4.6.tgz#8dd48c9e2efd56210ea40f6b0a5c01ae5d07e1f5"
+  integrity sha512-SGqV8FN3iyItdsAQ3z7LEaq1zJazamp35g78rZ5ryy3jPc09nPN2G941ggitDt3JAQDToCP/YBHr2tgwkLHqJw==
   dependencies:
     "@internationalized/date" "^3.3.0"
-    "@mirohq/design-system-button" "^3.1.6"
-    "@mirohq/design-system-flex" "^2.1.17"
-    "@mirohq/design-system-icons" "^0.27.0"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
+    "@mirohq/design-system-base-button" "^0.4.67"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-base-text-field" "^0.2.2"
+    "@mirohq/design-system-button" "^4.2.5"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-flex" "^2.1.65"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-tooltip" "^3.5.8"
     "@react-types/datepicker" "^3.4.0"
     react-aria "^3.25.0"
     react-stately "^3.23.0"
 
-"@mirohq/design-system-checkbox@^1.1.36":
-  version "1.1.36"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-checkbox/-/design-system-checkbox-1.1.36.tgz#51421a99dab5d37e56d9ea3c50d1b9e11269ebe9"
-  integrity sha512-odoNMyFFh45dwqAMnGBTYHkEEzkIbl5CVFc2HHS/EXpbEOXE+36znVmt+zOo1M9mjZBGmgqHhSqJWRvp8hQWUA==
+"@mirohq/design-system-callout@^0.3.5":
+  version "0.3.5"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-callout/-/design-system-callout-0.3.5.tgz#6e8b31667c8b49e1b9139fa7dbc4e8c013f58735"
+  integrity sha512-zriGalsYO2ufqCISvppQKTFx7lwK6EgbfC0H6Se60hMuCKyrZ6pSRGY4INu5hmu2LuHfNVhob+HILRwsndzITg==
   dependencies:
-    "@mirohq/design-system-icons" "^0.27.0"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-types" "^0.6.0"
+    "@mirohq/design-system-icon-button" "^3.2.6"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-typography" "^0.6.7"
+
+"@mirohq/design-system-checkbox@^1.2.42":
+  version "1.2.42"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-checkbox/-/design-system-checkbox-1.2.42.tgz#fa0d43a322abc8e4139bf5919680d6236999b8e5"
+  integrity sha512-1bbZRZsQtQYk05nKUdoLibn3uJRmF650DaUdtatACCxn2myHV/la9Vu2yO/8ycOMcAOrfjUopgijMROVQHYsCA==
+  dependencies:
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@radix-ui/react-checkbox" "^1.0.0"
 
-"@mirohq/design-system-dropdown-menu@^3.5.3":
-  version "3.5.3"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-dropdown-menu/-/design-system-dropdown-menu-3.5.3.tgz#15695d2a194c8df701fa003c469595c31a9cc20e"
-  integrity sha512-0nmWEpt/Dvz9k+tg1W0eCNFjKNjMDbUT6O6ZjDJGrKg9L7VAnkkaZCTgExPgpjDPHIGqhFOBvXw01DKRuXq37A==
+"@mirohq/design-system-chip@^0.2.17":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-chip/-/design-system-chip-0.2.17.tgz#88fe8b834e785068c27511de9cd413c491ad2487"
+  integrity sha512-Ex7Wb2shYaV8e9PV7jlzy3JK1BpVX7LPVhlInR1jGcdiC9EtyiA8H9v4jaQWHVZ7u371KDQxhaJvSucdwyT7ug==
   dependencies:
-    "@mirohq/design-system-base-icon" "^0.1.3"
-    "@mirohq/design-system-base-switch" "^0.1.2"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-scroll-area" "^0.1.3"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-use-layout-effect" "^0.2.0"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-base-button" "^0.4.67"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+
+"@mirohq/design-system-combobox@^0.5.41":
+  version "0.5.41"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-combobox/-/design-system-combobox-0.5.41.tgz#bbeba515ade09fb6a17fd6b7dbb40f4ededf9db2"
+  integrity sha512-EdW3g5kKy0C/8JhIuTR8htk40Jldw84T7O2Bzo7zTZKaOTGHNCQiK272Do0FSqXDTEgu0iijoIP4xC3vAW53Nw==
+  dependencies:
+    "@ariakit/react" "0.4.5"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-base-input" "^0.5.6"
+    "@mirohq/design-system-base-select" "^0.1.20"
+    "@mirohq/design-system-base-tooltip" "^0.1.0"
+    "@mirohq/design-system-chip" "^0.2.17"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-scroll-area" "^0.4.17"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-use-id" "^0.1.2"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
+    "@mirohq/design-system-use-previous" "^0.1.0"
+    "@mirohq/design-system-utils" "^0.15.5"
+    "@radix-ui/react-popover" "^1.0.7"
+    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@react-aria/utils" "^3.13.0"
+
+"@mirohq/design-system-dropdown-menu@^4.4.18":
+  version "4.4.18"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-dropdown-menu/-/design-system-dropdown-menu-4.4.18.tgz#ffc68d0e8798c7356d4cf72883da6ddc94dc0eb3"
+  integrity sha512-2S9jiDNhV7Ex2eOhP/DeaNnNwsHmtneA7LCyyy61ek2zxWMtjGFLDWJs3fB+7Yf688ylvmiULD9NjRIhg4IAag==
+  dependencies:
+    "@mirohq/design-system-base-hotkey" "^0.2.6"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-base-switch" "^0.1.50"
+    "@mirohq/design-system-base-tooltip" "^0.1.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-scroll-area" "^0.4.17"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
+    "@mirohq/design-system-use-previous" "^0.1.0"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@radix-ui/react-dropdown-menu" "^2.0.5"
     "@react-aria/utils" "^3.13.0"
 
-"@mirohq/design-system-flex@^2.1.17":
-  version "2.1.17"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-flex/-/design-system-flex-2.1.17.tgz#fc86bd1c573760b03968def71cbb8b0540018368"
-  integrity sha512-CiizmUgzwG55CLhllhdgra3fk0sOnU7bAYQCnPRtjCvNUIlcrtDcc4tIckEQ08TomaTWbm8xK0nsTQEN4a7z4Q==
+"@mirohq/design-system-experiments@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-experiments/-/design-system-experiments-0.2.0.tgz#6e55c4eb7b449765abcd5c9ec457e7f2261ffdea"
+  integrity sha512-JV6Drgsr7upKKgo2b3L1jsGFkRSu/dGu3bh0wjn2h7YbBHzy2F+vCasY7KB7PoWX8sgN24uI5mu4wglYi/iL8g==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-use-local-storage" "^0.3.11"
 
-"@mirohq/design-system-grid@^2.1.15":
-  version "2.1.15"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-grid/-/design-system-grid-2.1.15.tgz#fa8ea5a879c6e3c06de4a1ad4042e3ab85aac226"
-  integrity sha512-AfC412ER/mCdqRLxJO3vyQZsdKlSdhJUrbeYsieJaRjAkeKlwc1q2QQiRXt+Qj8GWbRvfhR34oqIITBmujqVKA==
+"@mirohq/design-system-flex@^2.1.65":
+  version "2.1.65"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-flex/-/design-system-flex-2.1.65.tgz#a9206de4ea60ec3ee812916b3998a6cc8cf0ed6d"
+  integrity sha512-oS9zsG5wTQ1AEKNE2oEQiLbO9Tm2xolL5nmPQhmQxIKqWJm7fze7U5StOowgaD4DqfDQX72BYp2YboQhZJLMfg==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-icon-button@^1.3.2":
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-icon-button/-/design-system-icon-button-1.3.2.tgz#96b7e2b0798272ec99529099731e10084fa6d14a"
-  integrity sha512-fAxo9TYhYqOYNaoIm8XgfKO3GQXytSxWa89GTDUSpwtc6G15tq6OYu1Fd2MIGk6aCCxiqMeqHP4i1gPu1ZvdiQ==
+"@mirohq/design-system-form@^0.2.6":
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-form/-/design-system-form-0.2.6.tgz#de5b59a547e91ac3d55c0caabf219506e9d17dd9"
+  integrity sha512-3Zd2O1S66xTt3YaIMu1UhrmysujdWS9bWURdNn+X7fJgtJnn5HmyyIzXF7L7HX92MJwc9xDCS1AEeal3MJZh5A==
   dependencies:
-    "@mirohq/design-system-badge" "^0.3.12"
-    "@mirohq/design-system-base-button" "^0.4.11"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-tooltip" "^3.2.17"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-icons@^0.10.1":
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-icons/-/design-system-icons-0.10.1.tgz#fa5d185ce930fca13b47f4c049975ec5c4a67305"
-  integrity sha512-utQuIff773DF2NLUjy5ipcf53NTkb6jTVWLG7IKV9lsAk0+fLKBZ7vMrcC8SX1HFhoDun/7s97YmVXqlTwbDqw==
+"@mirohq/design-system-grid@^2.1.64":
+  version "2.1.64"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-grid/-/design-system-grid-2.1.64.tgz#0e90b32e6b3877131cea139488cc24c99ca18508"
+  integrity sha512-YDvVkxZlVMxgToNWSnOjh09lFIZTNTaR72S1VNvtS6JB9WkKAvHH/IANLbisqj6J7HStK/OgttD3+TPbx73iwg==
   dependencies:
-    "@mirohq/design-system-link" "^1.2.1"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.1.1"
-    "@mirohq/design-system-utils" "^0.12.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-icons@^0.27.0":
-  version "0.27.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-icons/-/design-system-icons-0.27.0.tgz#2548c53874f0ba18c9579ffad919247afb25f685"
-  integrity sha512-EI+OEmkQPUf3NqCqbWNrbAPcfMfv7DSPUjdG/VL3NWqj+y8WFHoZyH8NJQo+fn4toQMphv2LSbNjbV0LZpxv2Q==
+"@mirohq/design-system-icon-button@^3.2.6":
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-icon-button/-/design-system-icon-button-3.2.6.tgz#33505dafa80aac2d351403c8ddc1b4987477cfdf"
+  integrity sha512-7TyzYiJnuB5lkycill+VuJuN0v6aJ1G+bO3oEvJXVWdZDE1qGDV4FlcRy/Ugh+2gKiJpbySl71ZaIvP/c4F7yw==
   dependencies:
-    "@mirohq/design-system-base-icon" "^0.1.3"
-    "@mirohq/design-system-link" "^1.2.16"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-badge" "^0.4.7"
+    "@mirohq/design-system-base-button" "^0.4.67"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-use-id" "^0.1.2"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-link@^1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-link/-/design-system-link-1.2.1.tgz#6af469560f8a649d7aeddef94015448e8ea9aa77"
-  integrity sha512-cVFVCQNRP3LI3yovZOIS0/IgT2CIhYxwBVZi2J6yTjyZhhpC1Vbps4Q9r8OlPPu2WRsOgTEBSdLq2HajbDuG3g==
+"@mirohq/design-system-icons@^0.61.1":
+  version "0.61.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-icons/-/design-system-icons-0.61.1.tgz#1085526f798ad55c6f2b6cdfcefb69edca2b546a"
+  integrity sha512-ph2gljEvGo/wEmJHqdlWVpgZ1OHpJ8x2Zqh5mcWIZArHeZNx2KKfOKl4yAKC6fZQ7cwgTkrRx9o+P3P8a9LHbQ==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.1.1"
-    "@mirohq/design-system-styles" "^1.0.14"
-    "@mirohq/design-system-utils" "^0.12.0"
-    "@react-aria/button" "^3.5.0"
-    "@react-aria/link" "^3.3.0"
-    "@react-aria/utils" "^3.13.0"
-    "@react-types/link" "^3.3.0"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-use-local-storage" "^0.3.11"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-link@^1.2.16":
-  version "1.2.16"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-link/-/design-system-link-1.2.16.tgz#9c978f13d6281fa411cab47c851a2f7c0ff12302"
-  integrity sha512-QFbQe7/hDQS7RrYNA35gEWX3cw0xroT/n2jKGEGUivEgPpuBa8Ks8B/sPqhES0nf2G1GtvVdL8jxx7plUqCc1A==
+"@mirohq/design-system-input@^0.5.6":
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-input/-/design-system-input-0.5.6.tgz#9cb93111d76ebd80318dbc70a4d403266974afb2"
+  integrity sha512-Op1HbP4u+NPpCSAKtNe7iZzSKMhMZLeQpmYbXDwXJIwRF129UVZc1/RVVCs3mSFI6lecQ0KZPT+BnloJiYJAvw==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-base-input" "^0.5.6"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-use-press" "^0.4.2"
+    "@mirohq/design-system-utils" "^0.15.5"
+
+"@mirohq/design-system-link@^1.3.49":
+  version "1.3.49"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-link/-/design-system-link-1.3.49.tgz#bee105ba4fe2ede11265e3015af484df81fef7a9"
+  integrity sha512-xMZ+JzSrNCHZTZWYFXEIoNUBmWkAFpMZ0i5y+VCzzQWmv30WhjcJy6Nuqf4VT//ACYhTM3LYBP20OcXK5fd0EA==
+  dependencies:
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-use-press" "^0.4.2"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@react-aria/interactions" "^3.13.0"
     "@react-aria/utils" "^3.13.0"
     "@react-types/shared" "^3.16.0"
 
-"@mirohq/design-system-popover@^5.0.18":
-  version "5.0.18"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-popover/-/design-system-popover-5.0.18.tgz#f561f7a44841ed1e4d5a5d162924efe768908fec"
-  integrity sha512-xbgOgoAx9EYdQyiqVGcL0/0BkQJkx6z+P0JQJ8x82XsoPpnwPEVZLPNZSPVE98+yAjGy7yDJMi9iAHqsdac0xA==
+"@mirohq/design-system-patterns@^0.2.3":
+  version "0.2.3"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-patterns/-/design-system-patterns-0.2.3.tgz#fdcd2233c1d47563b0737dd6dcf8f6ab6f6e9c6b"
+  integrity sha512-5rjmCWo7MKd+uIw1URaPhFIkdEX+rX/6sOmBeTfD5Vid7wJowm6078ed5V37fHXR5Pd/N1u8XGXqgR/4zHGSsw==
   dependencies:
-    "@mirohq/design-system-icons" "^0.27.0"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@radix-ui/react-popover" "^1.0.0"
-    "@radix-ui/react-use-size" "^1.0.1"
+    "@mirohq/design-system-box" "^2.1.60"
+    "@mirohq/design-system-button" "^4.2.5"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-typography" "^0.6.7"
 
-"@mirohq/design-system-primitive@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-primitive/-/design-system-primitive-1.1.0.tgz#fe45ba48918ad4f85934cdcf4f66890e718e4af5"
-  integrity sha512-S6kM207ijZ1ck+o+NDGOp4hnePGy/lBJeRUsEPSKaabg1SLyEfdpKJ68vQ5Ensr9jmp4wHnaEWof2LQZoonFBw==
+"@mirohq/design-system-popover@^5.1.82":
+  version "5.1.82"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-popover/-/design-system-popover-5.1.82.tgz#52ec587f698d6d8bf88879155e8b79ea046b220e"
+  integrity sha512-+uleqHtanUtAmHjCLbu5jHOTmCTCO7JM1T+Ss1DbgL2YpjKnQ8u10ScwpgF6gSIGmzNbUGV5OuULJexUCuTOyQ==
+  dependencies:
+    "@mirohq/design-system-base-tooltip" "^0.1.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-use-previous" "^0.1.0"
+    "@radix-ui/react-popover" "^1.0.7"
+
+"@mirohq/design-system-primitive@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-primitive/-/design-system-primitive-1.1.2.tgz#0f6506bf959c0b76dbcbc9afdc44d0bb00043613"
+  integrity sha512-SzwJscnzK9bVklxysBFbmytgcKybxfAgBSOcQtn7vVfQrWR0Zc1PJlNh08WzB3LJK7tRQT8YquFTT9BDKkkBJw==
   dependencies:
     "@radix-ui/react-slot" "^1.0.0"
 
-"@mirohq/design-system-scroll-area@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-scroll-area/-/design-system-scroll-area-0.1.3.tgz#d8ec7c67a99e878fdc605f74c7f5bddf36fde6e9"
-  integrity sha512-oXw0aOhbwZipJDZErGstJDy3KH58I4WnsMEg6cVwLQc0cevlm8kZaRs3kBUgo33Y1VMpx7Y3DiNTdMdKGNOAzg==
+"@mirohq/design-system-scroll-area@^0.4.17":
+  version "0.4.17"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-scroll-area/-/design-system-scroll-area-0.4.17.tgz#b1d52e8654f8579ab7fccd91d803954510e2d1d8"
+  integrity sha512-zn9OPkQupSgs33kr++JXCLzAS82NaFdpjz1nNyW3dG6cn/KeXwlrlJD5mf1NRG5PvPuT5HqdzJWFj722brAS3w==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.3.4"
+    "@mirohq/design-system-stitches" "^2.6.29"
     "@radix-ui/react-scroll-area" "^1.0.4"
 
-"@mirohq/design-system-spinner@^1.1.14":
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-spinner/-/design-system-spinner-1.1.14.tgz#6f71dd5c93a693bf592ea6ce978acdf5678609a5"
-  integrity sha512-RaAQJcbYustQMyRD8Tckx0iHVCb4NghNsD0hcik7qFt6bOd2tNqbdXGP0UO4NDmGnWlx4YrATnjTwq0bwz5o9Q==
+"@mirohq/design-system-select@^0.7.6":
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-select/-/design-system-select-0.7.6.tgz#f95e935012d7375ae2577531091fa64d46450c90"
+  integrity sha512-3rDeGjSesyNhgnOsHTQAeMZlswRNPR2EG4LadQFMh500Q3qyokQ18ppnVaRpDZJ77hqEZijvil/HM88Fn0zb1w==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-tokens" "^2.7.1"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-base-select" "^0.1.20"
+    "@mirohq/design-system-base-text-field" "^0.2.2"
+    "@mirohq/design-system-base-tooltip" "^0.1.0"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-scroll-area" "^0.4.17"
+    "@mirohq/design-system-spinner" "^1.1.63"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-use-force-update" "^0.1.0"
+    "@mirohq/design-system-use-previous" "^0.1.0"
+    "@mirohq/design-system-utils" "^0.15.5"
+    "@radix-ui/react-select" "^2.0.0"
+    "@react-aria/interactions" "^3.13.0"
+    "@react-aria/utils" "^3.13.0"
+    "@react-types/shared" "^3.16.0"
 
-"@mirohq/design-system-stitches@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-stitches/-/design-system-stitches-2.1.1.tgz#3875fa80dd676bcdc6fad23d873697dc49fc50f0"
-  integrity sha512-NBwR4P0kObuzQjKpnai2RhWfaewmOsmatOwZaXs2GtU0VQm6vOrES+JE7yUD3eODcwh32blynyzQocrdF2AoCw==
+"@mirohq/design-system-slider@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-slider/-/design-system-slider-0.2.1.tgz#e99ae035955d7697a9d6a810530c7d2170fc5de8"
+  integrity sha512-NrByvfRxaP1Cf/r+BsVANskuyzqL3we/7gqsUYx/9kueFo4TuBGwrDI9X+zeDqv8kxqNc2ha4gkR6RgCetlOug==
   dependencies:
-    "@mirohq/design-system-types" "^0.3.0"
-    "@mirohq/design-tokens" "^2.1.0"
+    "@mirohq/design-system-base-text-field" "^0.2.2"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-utils" "^0.15.5"
+    "@radix-ui/react-slider" "^1.2.0"
 
-"@mirohq/design-system-stitches@^2.3.4":
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-stitches/-/design-system-stitches-2.3.4.tgz#6f2e954cf96ff916b027feb5b918912f37b20d08"
-  integrity sha512-cTpGJ8r2yWD6aTxCxk3rM1T2ESh5yUIxlZ6nYe4gJ+dnWqPwbjW08nwVlXbvGB1aZ27/ZucC+Q4cEE7ewCyL2Q==
+"@mirohq/design-system-spinner@^1.1.63":
+  version "1.1.63"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-spinner/-/design-system-spinner-1.1.63.tgz#8d589efe6b8eaa803928aa967e3ab4b7c7f1bf36"
+  integrity sha512-bJ5y4+Z+k5E3iq7o7esRDulkj+wZH0NVawHr/fJKCFP/UwgbGV3MsrYMyrUILYXEl4B3VQTEP0z2CW2sTsYxwQ==
   dependencies:
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-tokens" "^2.7.1"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
 
-"@mirohq/design-system-styles@^1.0.14":
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-styles/-/design-system-styles-1.0.14.tgz#cb4d0caa0414211e48cda6b03dda3365e872635b"
-  integrity sha512-fw0v2lUt+/TTIY7yJF23B5Qnohvn4QMIJc6KZJDxE+HSNQhUbNFInW7nv2+J7KRXAq2H5xM6qV9PRQKg/tBV2g==
+"@mirohq/design-system-stitches@^2.6.29":
+  version "2.6.29"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-stitches/-/design-system-stitches-2.6.29.tgz#10fe60db38150ae0a7e55ad8de0016a90f96d128"
+  integrity sha512-MMpyrMv1HFexPCSfgb2etzWwr6f3hZaJ/o/k8rIhzpz3XLDodN1SFvs70wonqxmmSVMYkb1VjNaTcZQvgBRdyg==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.1.1"
-    "@mirohq/design-tokens" "^2.1.0"
+    "@mirohq/design-system-themes" "^0.13.0"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-tokens" "^6.5.0"
+    lodash.merge "^4.6.2"
+
+"@mirohq/design-system-styles@^1.2.29":
+  version "1.2.29"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-styles/-/design-system-styles-1.2.29.tgz#3a0981f11bc0cc3cfedb7601b633f67d35143054"
+  integrity sha512-sqEoFEs0wruAdHigr0faYfk7nD+IjC5WAMm8I0/goYGnGnO9KuonF3avTSDZlJxgpxGFIf6xzE1JLoumjPjPBw==
+  dependencies:
+    "@mirohq/design-system-stitches" "^2.6.29"
     what-input "^5.2.11"
 
-"@mirohq/design-system-styles@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-styles/-/design-system-styles-1.1.0.tgz#ebdbd49b974cc04751c8c26c17c6738f92e3c593"
-  integrity sha512-M8oPmQa4jp5DqV7+0i0Eqg6jQECiVTRJN9IDID+JZk7T8Nl+31G9qjrCWTnqCVKfRME5cFlPUE5C8NxDw/2ivQ==
+"@mirohq/design-system-switch@^3.1.21":
+  version "3.1.21"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-switch/-/design-system-switch-3.1.21.tgz#8525ac4730f93717ddbb8b9306e85edaf5aece56"
+  integrity sha512-7G5fOrh3rGcvyrefr+W5nRBNXBhYzY80fp5OiXrHnVjAUYDBqSYUEvi/UAdR3tZwpzB0EV7zErZNPaGKiZAYXQ==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-tokens" "^2.7.1"
-    what-input "^5.2.11"
-
-"@mirohq/design-system-switch@^3.0.8":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-switch/-/design-system-switch-3.0.8.tgz#5847c5fa97eb293b50242130f8b73aea1a7d409d"
-  integrity sha512-j1twhlds1aTnGaRPtihvVoB0ApMeGujg5Tm71JJZ2I9x/osFWyEmMgK7fvoJ/en9ARj4VbRXDASCJGBAXAqj0A==
-  dependencies:
-    "@mirohq/design-system-base-switch" "^0.1.2"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-base-switch" "^0.1.50"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@radix-ui/react-switch" "^1.0.0"
 
-"@mirohq/design-system-theme-provider@^0.2.15":
-  version "0.2.15"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-theme-provider/-/design-system-theme-provider-0.2.15.tgz#3b637c6d91fd9a11a8417b21405162216cf5cfa0"
-  integrity sha512-OkwtIKsFqVk2MtGP+2P/F7v3dSi4EdeXROQYKq35WCNjp/aZ4v0lyx/cSdqFyC4vexAZkrClZAyzs8drM6klow==
+"@mirohq/design-system-tabs@^0.4.8":
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-tabs/-/design-system-tabs-0.4.8.tgz#ff4751b502236752a4578ef57868cdff6962c6cb"
+  integrity sha512-dEA3YGn/DAk/LowBOb5BSe7IwDBN2FDFf0D3zcAKioxHt19725g3F8wNsBUecZm6Yg0zrFYKRSnOADjeyVEOAA==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-themes" "^0.1.17"
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-use-theme" "^0.2.7"
+    "@mirohq/design-system-base-button" "^0.4.67"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-utils" "^0.15.5"
+    "@radix-ui/react-tabs" "^1.0.0"
 
-"@mirohq/design-system-themes@^0.1.17":
-  version "0.1.17"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-themes/-/design-system-themes-0.1.17.tgz#466cfe9551da697b9694f36b9e233b0abb97c93c"
-  integrity sha512-a0VkzSK52UatGLZgoiVXNhaxyIxxrWHn5UaI/PPXKlrNFFVWcXb3c86KqVLiBVH239osrvFNwvmF3WE2nSOepw==
+"@mirohq/design-system-tag@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-tag/-/design-system-tag-0.4.1.tgz#20a5bb2f1340848d0042667dbaada2a86953aa92"
+  integrity sha512-BP/wYtOxuiG+ZsLRGc5r/PCkktaV3XwyqBJlnHxkxocw8rq5tHQ2QCZsI54USCbMbTSWRiNZ82nUcS/UC8mfEQ==
   dependencies:
-    "@mirohq/design-tokens" "^2.7.1"
+    "@mirohq/design-system-base-icon" "^0.1.33"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-toolbar@^2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-toolbar/-/design-system-toolbar-2.2.3.tgz#7a22715a289570dc220f23adabfe2de91940f2f7"
-  integrity sha512-3j/ijdDlr8KQhYRjpaG5nZAAogjISxqIh65S2RbFVvtfmAnCihJJetR83G4XvlsIDQEcrXXJY6NVWdQygY0LCQ==
+"@mirohq/design-system-textarea@^0.4.3":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-textarea/-/design-system-textarea-0.4.3.tgz#086bcd3f32ab5562e8b5fbc0cea647e81a1c1b30"
+  integrity sha512-xAG/s06cMFDMfR9caEwwfNSiziYdBwbvPmM2HJJU5TX5MJfkX0i02FJZ+uwCX1B/XHvw893p6AhvhPNBrUEEpw==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
+    "@mirohq/design-system-base-form" "^0.3.3"
+    "@mirohq/design-system-base-text-field" "^0.2.2"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-utils" "^0.15.5"
+    "@react-aria/interactions" "^3.13.0"
+    "@react-aria/utils" "^3.13.0"
+
+"@mirohq/design-system-theme-provider@^0.3.42":
+  version "0.3.42"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-theme-provider/-/design-system-theme-provider-0.3.42.tgz#78df1a53d8afdeaece066d862e2e84404a20c490"
+  integrity sha512-BCwofMmh5hORxb5CnOX0X+fI5fsDxZGTy0sQTKS7FbFVVzAw63L6VmU+NHluD9UvfawaRy1fNWw1Be+TN255wQ==
+  dependencies:
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-themes" "^0.13.0"
+    "@mirohq/design-system-use-theme" "^0.2.16"
+
+"@mirohq/design-system-themes@^0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-themes/-/design-system-themes-0.13.0.tgz#8f8df4940f76d0b9f43859a48447b1a3b11c7590"
+  integrity sha512-dNJcSNeOUeYd+6KhYl/T6cLODsr6j0uD2glE0L6cd1EVC2mv8R4T+vZGQCNhavIIufiAkLId4a18GWWeLa2urg==
+  dependencies:
+    "@mirohq/design-tokens" "^6.5.0"
+
+"@mirohq/design-system-toolbar@^2.6.6":
+  version "2.6.6"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-toolbar/-/design-system-toolbar-2.6.6.tgz#6f78c992c403192d3df72673e2cdc4484b2e4850"
+  integrity sha512-sQC0OkKwA3s6S1NICv0njUKzF3l4Ppisbfu6zyaEYkM96fd05QXR8aNrHd0xDgaCeLFvJ4Fratu3yZa8vE25Qg==
+  dependencies:
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-use-press" "^0.4.2"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@radix-ui/react-toolbar" "^1.0.0"
+    "@react-aria/interactions" "^3.13.0"
+    "@react-aria/utils" "^3.13.0"
+    "@react-types/shared" "^3.16.0"
 
-"@mirohq/design-system-tooltip@^3.2.1":
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-tooltip/-/design-system-tooltip-3.2.1.tgz#0b7ac5db81d5fb59f47100b227a8439a6711ffb0"
-  integrity sha512-EMtmChLR8bcMOhMWsx9WMMJ5VsGlZymkjKDRJAGCEIGXb2mAQ8JN5s6KgAGoXvaCNy5pDoJ4M0DdcK/E+ONKAg==
+"@mirohq/design-system-tooltip@^3.5.8":
+  version "3.5.8"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-tooltip/-/design-system-tooltip-3.5.8.tgz#9a764f5a07282cca013bc279941b31448d547538"
+  integrity sha512-bjdKd57DmdUk3E8Ask3r95zI9q26ONJElYnAjB4JsLkWIW8zSFIdzshNgnO4tukOg7dzcSCOJc5fuJIrniNbdQ==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.1.1"
-    "@mirohq/design-system-styles" "^1.0.14"
-    "@mirohq/design-system-utils" "^0.12.0"
-    "@mirohq/design-tokens" "^2.1.0"
+    "@mirohq/design-system-base-hotkey" "^0.2.6"
+    "@mirohq/design-system-base-tooltip" "^0.1.0"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-use-id" "^0.1.2"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@radix-ui/react-tooltip" "^1.0.3"
 
-"@mirohq/design-system-tooltip@^3.2.17":
-  version "3.2.17"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-tooltip/-/design-system-tooltip-3.2.17.tgz#8a7d0cdfc644db10eb3bac5e7f1d5cbad1007e68"
-  integrity sha512-aB6XmX6bPzMLLKVkVf8eADk92Iu403wdqZ8lW+1zRBiR4aGzyM5zKB7i959gsGmr71a280eXxm6zfG1JO3g6Pw==
+"@mirohq/design-system-types@^0.10.0":
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-types/-/design-system-types-0.10.0.tgz#3a07863051257881f42ecba6c0b41432e3e760cb"
+  integrity sha512-BoSb2meVSJo9hj4EJ5dcHRmNzO/lajQX4d6yS0BMbeDwVa5x8P8dyGLBfpvSByC2PggXI7siWqN2nbumBBqxtw==
+
+"@mirohq/design-system-typography@^0.6.7":
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-typography/-/design-system-typography-0.6.7.tgz#7f14210810c2e97f3e27d4a9364491d6d19cdd93"
+  integrity sha512-t+7apvD3mMLKUXJxDz1jBU5therlUzsmFfcwcRWXgLgCxRloDyubN8shPs60NZ24dnCJzcETD87OE3QueVOArw==
   dependencies:
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@mirohq/design-system-utils" "^0.14.1"
-    "@mirohq/design-tokens" "^2.7.1"
-    "@radix-ui/react-tooltip" "^1.0.3"
+    "@mirohq/design-system-experiments" "^0.2.0"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-use-local-storage" "^0.3.11"
 
-"@mirohq/design-system-types@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-types/-/design-system-types-0.3.0.tgz#942e036c80cc689cd64ceea8970fa94bbaaf8831"
-  integrity sha512-HvhHrQQrHK98xNQDW9oL7kfvKcxVVBxb1ul+Gf0KsykX42crBJW8gxn9xlFOudNTd+IND5/4CvcAes6nWfNk5A==
-
-"@mirohq/design-system-types@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-types/-/design-system-types-0.6.0.tgz#fa42998200787f2640754816c328910d5e9f459a"
-  integrity sha512-vjqYGL4+caMKVUYFC2J30vIgPBl4Mo4SrmM7/PWMGJBj7cgnDCX1/MW7cns2UQ5aluV1ysclixkma9WZIGGtXA==
-
-"@mirohq/design-system-typography@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-typography/-/design-system-typography-0.3.0.tgz#c1a2a75c252d8b37351cec3cf9ca139df357a931"
-  integrity sha512-KNbOmtumMIJiGbO6VoPze/Qp8OYSV67+5IHqa6aStu5Jx/5yPSPf7K9QV1dGWpdx4tJJpgHc5HfAXAOnRyMJyw==
+"@mirohq/design-system-use-aria-disabled@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-aria-disabled/-/design-system-use-aria-disabled-0.2.1.tgz#60420fda083fb7a9d870ca0e8bccd3322e8be5a4"
+  integrity sha512-Z/uBT10uMT3XRU+IYO8sKHvmu6vHWLD/cK9z4l+WYP+/ELLUNAheaEEgRFuy3c1OP22z3Evw/990aPRgkJhd+Q==
   dependencies:
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-stitches" "^2.3.4"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-system-use-clipboard@^0.1.0":
+"@mirohq/design-system-use-clipboard@^0.1.2":
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-clipboard/-/design-system-use-clipboard-0.1.2.tgz#3faaef41cdb5afd9eb57ba9446dcc4171ed79ac4"
+  integrity sha512-3V1ti6U77Jv+owgnOoakafeOfiBOnLjeImo5VbARtCjV3yDSlSNmC0R9kRxvHdUNOZduXDxytAYuDqqV82sCFQ==
+
+"@mirohq/design-system-use-debounce@^0.1.0":
   version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-clipboard/-/design-system-use-clipboard-0.1.0.tgz#359c7b26de7eb404ac563d920792dddd20000c07"
-  integrity sha512-9QrVBodKWS8RSbkHZ6NNV1OEA4plHZUfTJIRa4MkKuL7KFNtnVU76nnzS/urUdnt2F9cBxtFpWNJ9ETaYRoIIg==
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-debounce/-/design-system-use-debounce-0.1.0.tgz#2a56833a527e35d63bf94b8a7dc6c9862fb2b631"
+  integrity sha512-JkwDS5/d3rI+jbpSX/agxTiLysNRspgWaWrPBWJ45S7fA1qO1Jh7zC2D/XvtDuJQyrgoznqq6BaLYmYgJh0R3w==
   dependencies:
-    "@mirohq/design-system-use-event" "^0.2.0"
+    "@types/lodash.debounce" "4.0.9"
+    lodash.debounce "4.0.8"
 
-"@mirohq/design-system-use-event-listener@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-event-listener/-/design-system-use-event-listener-0.3.0.tgz#9b6537e1887e030ed333742ec39caa723a65ac18"
-  integrity sha512-naPpO6MuzNcBzTzYnMCx1BRJVA5thEej+ik3DbEQxWgrwzONagXZPdRW2tiU8ov/K2ovMLvUfFx3eQtgaCi4jQ==
-  dependencies:
-    "@mirohq/design-system-use-layout-effect" "^0.2.0"
-
-"@mirohq/design-system-use-event@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-event/-/design-system-use-event-0.2.0.tgz#a4b5c736be39ecdef7008ae88b11085a509f72e3"
-  integrity sha512-pWPHK9PakEPAQ6d8bB9hrQn1MLhUcoTu/pSOfmkjMRDnajrwvnkeWZxyJA5CSPh8cFRsYNXKkdNXcoYsMZ1+tA==
-  dependencies:
-    "@mirohq/design-system-use-layout-effect" "^0.2.0"
-
-"@mirohq/design-system-use-layout-effect@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-layout-effect/-/design-system-use-layout-effect-0.2.0.tgz#1a8b199e21c19f606651b155671bc486f0b0d09b"
-  integrity sha512-+2J2CH6APKb5GHEM3iCCWWK8XL4RCtpLghIc5kCYKhhbvOllCykfhjVQJEWy481DeWy6BK66n3YQfd1qDBbhkA==
-
-"@mirohq/design-system-use-listeners@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-listeners/-/design-system-use-listeners-0.1.0.tgz#bb9ec825e56bf2632cfc9487c1dbaaf3dddd558f"
-  integrity sha512-bKhoEqY4UN++WoP3oppC+yUrK30Bf/GlA3e58M30jUWGxWbgICMGfMl2FFALn7qC/byBcW+S1VOCvx9Qg0d8Tg==
-
-"@mirohq/design-system-use-local-storage@^0.3.2":
+"@mirohq/design-system-use-event-listener@^0.3.2":
   version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-local-storage/-/design-system-use-local-storage-0.3.2.tgz#2fbdd4b83d8979caf932440a3c046dbfe5859492"
-  integrity sha512-H1GzXFPyhd8XXNP3zUBxcse7QzrLxeUW1zznQxHGY/a/xwy6CpWvh6RkqmxP3JaNgIyc8v+4fWinaQEN37b6cw==
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-event-listener/-/design-system-use-event-listener-0.3.2.tgz#aa6dd4132e8091de02001f494fea35a2a349154f"
+  integrity sha512-wLTEZaXGu2Xa5IPcc2N9307ic5kLfktlBVrMZUAKNGt22Lp13FWeQH95tmzDIb1m+zf7N4S1/mmmQj6V2NjIOw==
   dependencies:
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-use-event" "^0.2.0"
-    "@mirohq/design-system-use-event-listener" "^0.3.0"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
+    "@mirohq/design-system-use-listeners" "^0.1.1"
 
-"@mirohq/design-system-use-logger@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-logger/-/design-system-use-logger-0.1.2.tgz#e3e3369844b5fefbbcabe95befa91868164746f0"
-  integrity sha512-qj7PK72th9Jzm0Rzge0Q6kJeykfluNoScf/JqdGl/QgFmm0/mzOKT7XR29fggrSLMNLu+/xMoYjfpM+UHZR+Ig==
+"@mirohq/design-system-use-event@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-event/-/design-system-use-event-0.2.1.tgz#1c97fb1a54f8b6855b33ecceee7c85b26531995b"
+  integrity sha512-+VC5TiqMmD2THA13a097ZT2jsF0Mqo+4L4bSFFzsmsVNLtad5oo4ltQMCxoE0wWc4QAzdhZLR9833qP4yOtbmw==
   dependencies:
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-use-local-storage" "^0.3.2"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
 
-"@mirohq/design-system-use-press@^0.1.2":
+"@mirohq/design-system-use-force-update@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-force-update/-/design-system-use-force-update-0.1.0.tgz#25c75c13d5cc2c69e3642e2353f90b5236404ef1"
+  integrity sha512-gB6zn1LAMkBzhaEb/ES4UQkTgLixbF+PISmMmuLcNYPGShSSrKwQvOeOsFwp5iOLxJOyt4Dug+1GLFC7lsoxTg==
+
+"@mirohq/design-system-use-id@^0.1.2":
   version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-press/-/design-system-use-press-0.1.2.tgz#fe2824450ba175ee9c99b64652a0409444608e8d"
-  integrity sha512-K2oCcBzDqKRpG/GqFSwaS+mWtXn3wvR8iaC1zBmRfi47CTEmOyAqDSr83x/8xxptbztcSn2kKATksJ0eP+9wbg==
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-id/-/design-system-use-id-0.1.2.tgz#5aa994959154e5a7a4ffd24b9dffb264fe737ebb"
+  integrity sha512-RFLvtrHtAFz9l4Y5r7c10pA/QMBZXSuxwr+EnGYfPFePVBhdy9ryX6tKedOruMYpRQhainEQrC5gsSdBB/oL1w==
   dependencies:
-    "@mirohq/design-system-use-listeners" "^0.1.0"
-    "@mirohq/design-system-use-logger" "^0.1.2"
-    "@mirohq/design-system-utils" "^0.14.1"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
+
+"@mirohq/design-system-use-layout-effect@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-layout-effect/-/design-system-use-layout-effect-0.2.1.tgz#a377388162021cd5f292ff77f76e9327ef0d11f7"
+  integrity sha512-hKoyGc7drQAoHWdJOW39VqOTGxVT9ilDV3NrtFXN1fCEDgnhg5+Ytx18jAqH9I7TVXptiKkPo03LupdIAQOlLA==
+
+"@mirohq/design-system-use-listeners@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-listeners/-/design-system-use-listeners-0.1.1.tgz#f2ccd9c04610630f23846568a081658f2da7d598"
+  integrity sha512-aP4GlBs6lOj5/3oMh9h38/gH6BNHHEZqwKXPkS1xTNbr/VC4sVcxdl/tjybzOjEuE5qvy4zW4Ve/8pf4S1xs2g==
+
+"@mirohq/design-system-use-local-storage@^0.3.11":
+  version "0.3.11"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-local-storage/-/design-system-use-local-storage-0.3.11.tgz#68dd0a152dd12708e9347417217b4927eb433d2a"
+  integrity sha512-pdh0+QVjBxGAbrcgGfx9t7Z1Dxbdht9biDkrwnA9RuYKwPcACv4H+TebbDbzYk4eJldETL6eoSZrCTNzjfUyxw==
+  dependencies:
+    "@mirohq/design-system-use-event" "^0.2.1"
+    "@mirohq/design-system-use-event-listener" "^0.3.2"
+
+"@mirohq/design-system-use-logger@^0.1.13":
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-logger/-/design-system-use-logger-0.1.13.tgz#f7f6a8e661369287d4d6cc78cf58b5aaeae69d32"
+  integrity sha512-tQ193Y/PRGzoe8AJKiHJi0bCNPM9w9YPu0nuPUFkP1ZOmRGksCkEGXAiw659BrHY109LgH75XL5rIDrOV6lRPQ==
+  dependencies:
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-use-local-storage" "^0.3.11"
+    "@mirohq/design-system-utils" "^0.15.5"
+
+"@mirohq/design-system-use-media-query@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-media-query/-/design-system-use-media-query-0.2.0.tgz#4e201276b852feb29719465dac287236de2ddb69"
+  integrity sha512-jaYNnJaMorCRU/xq0UQHeoOYTAnLMvUIzi/aROZZi53eWcBCkHT2gesZ3RZH7FI0U6m/3dFCdMhL+ggfDKDWPw==
+  dependencies:
+    "@mirohq/design-system-use-listeners" "^0.1.1"
+
+"@mirohq/design-system-use-press@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-press/-/design-system-use-press-0.4.2.tgz#f7ad25328c8e3f4ac557392b4c0a5c6e799532a3"
+  integrity sha512-78eV2ERU5clx+yukVFH6z8CATDBfAeee5JGeM+jMslU9WNeVIo7ZZsyWuHWUV4kzgrDmkSKN8P6vWM2VNf8ToQ==
+  dependencies:
+    "@mirohq/design-system-use-listeners" "^0.1.1"
+    "@mirohq/design-system-use-logger" "^0.1.13"
+    "@mirohq/design-system-utils" "^0.15.5"
     "@react-aria/utils" "^3.14.2"
 
-"@mirohq/design-system-use-theme@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-theme/-/design-system-use-theme-0.2.7.tgz#7f10eb00f209fdd7a6c042adbcecbca8d068faf7"
-  integrity sha512-224f1iQPKNaC02CB77j2tbBInBjzvguseh38id4+aA7+EOAyewr7wUJCJe3a0dNy6vnFfG7fxSBSLnjqLHbdPw==
+"@mirohq/design-system-use-previous@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-previous/-/design-system-use-previous-0.1.0.tgz#448f1c04e753acff5e9e9df7deb481e88708d74f"
+  integrity sha512-TsFxF84BCltqLUVOTW/aVMUxSq2VnQ5rtYFa21b/rz15LaozWMquWKA67VRVrpEv+YLXaFwWc89s0zTqUh26/w==
+
+"@mirohq/design-system-use-spy-scroll@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-spy-scroll/-/design-system-use-spy-scroll-0.2.0.tgz#a2ee9c36e5ef3f9f9e4224d8edc225177e7d981e"
+  integrity sha512-eE5m/mNq+m2FKfbeKH0XCEDQxwvBqgDAKP3cqHhrWXjgFmbPgerxNnqjTblIgRe3IJeQzIYwuq963G4S6bU3Wg==
+
+"@mirohq/design-system-use-theme@^0.2.16":
+  version "0.2.16"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-theme/-/design-system-use-theme-0.2.16.tgz#8589bed7142747406113ceb18b6e91ece8ab46d1"
+  integrity sha512-WW4rJA0lKsmqipNzvYwvx0KO5wGyZxbSZnharVep81Z3A/NMklkjG3rrcfWvlvL70Cgf2ALGkJYLKU6bCdJv+g==
   dependencies:
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-use-local-storage" "^0.3.2"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-use-local-storage" "^0.3.11"
 
-"@mirohq/design-system-utils@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-utils/-/design-system-utils-0.12.0.tgz#808943f095b439c84c72d119ec5f995a266a836b"
-  integrity sha512-i7aORhdhboN6cy5MOk/AvCZ3yKh7yrvr8PebTDys2b3Fw7nh5+Lzv5/DLbCnQ2tFJoEMppNwQuMW1bLp1F+Xcg==
-
-"@mirohq/design-system-utils@^0.14.1":
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system-utils/-/design-system-utils-0.14.1.tgz#0143b733c1759d1aba85bd1dd883533081692ef4"
-  integrity sha512-MgOBGUXdomna7Jiv9w2B9LNGu+PpdG/Gv/P4gm84lFE8WwthuXrLVVIZYZboy+u0/lbSm7XygsNa91dJOGuwWw==
+"@mirohq/design-system-use-throttle@^0.1.0":
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-throttle/-/design-system-use-throttle-0.1.0.tgz#bf256beef71b331e11c744fa0db7babbba72ec0b"
+  integrity sha512-Lno++GLfH91FnlW0LRh7hyM89e8SAfkUwsVQmaRjyJlbyvbA7/oufA7LGH5v782z6jIR3vXk80thWGJCh2r0OQ==
   dependencies:
-    "@mirohq/design-system-types" "^0.6.0"
+    "@types/lodash.throttle" "4.1.9"
+    lodash.throttle "4.1.1"
 
-"@mirohq/design-system@^0.15.11":
-  version "0.15.11"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-system/-/design-system-0.15.11.tgz#0edead59b3a3271da6ebc30d0a0cba887b030f18"
-  integrity sha512-0FDJEdOUubYPLV7y1n785Uj+q/5NvRNgN0y0y3TFO/VHDU8nQsVivSbzffpFQilZfy1Nsoirsyqte9eJdGWUbQ==
+"@mirohq/design-system-use-window-size@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-use-window-size/-/design-system-use-window-size-0.2.1.tgz#28b97277bbdcdefda5f1014accbcad9bd504c3fa"
+  integrity sha512-wo6pKwlNu/NfabE1vXxBxTwjIQAXvFJKRs4cjZznVr4nGvexvBN9cdw07FupwfbWJHFrg1AoYV5gpKBVChW84w==
+
+"@mirohq/design-system-utils@^0.15.5":
+  version "0.15.5"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system-utils/-/design-system-utils-0.15.5.tgz#fe3bc811b04eefeb54c0b3ca54426f0b4f72467f"
+  integrity sha512-H5+58IoJKnmx2b64eHzJD+ys4n/SycidDIc40iWDgYVhVSG4Tivh/OdUJJjbUP2NfS1l+rhdY8qvLDv7nETozg==
   dependencies:
-    "@mirohq/design-system-badge" "^0.3.12"
-    "@mirohq/design-system-box" "^2.1.13"
-    "@mirohq/design-system-button" "^3.1.6"
-    "@mirohq/design-system-calendar" "^0.1.14"
-    "@mirohq/design-system-checkbox" "^1.1.36"
-    "@mirohq/design-system-dropdown-menu" "^3.5.3"
-    "@mirohq/design-system-flex" "^2.1.17"
-    "@mirohq/design-system-grid" "^2.1.15"
-    "@mirohq/design-system-icon-button" "^1.3.2"
-    "@mirohq/design-system-icons" "^0.27.0"
-    "@mirohq/design-system-link" "^1.2.16"
-    "@mirohq/design-system-popover" "^5.0.18"
-    "@mirohq/design-system-primitive" "^1.1.0"
-    "@mirohq/design-system-scroll-area" "^0.1.3"
-    "@mirohq/design-system-spinner" "^1.1.14"
-    "@mirohq/design-system-stitches" "^2.3.4"
-    "@mirohq/design-system-styles" "^1.1.0"
-    "@mirohq/design-system-switch" "^3.0.8"
-    "@mirohq/design-system-theme-provider" "^0.2.15"
-    "@mirohq/design-system-themes" "^0.1.17"
-    "@mirohq/design-system-toolbar" "^2.2.3"
-    "@mirohq/design-system-tooltip" "^3.2.17"
-    "@mirohq/design-system-types" "^0.6.0"
-    "@mirohq/design-system-typography" "^0.3.0"
-    "@mirohq/design-system-use-clipboard" "^0.1.0"
-    "@mirohq/design-system-use-event" "^0.2.0"
-    "@mirohq/design-system-use-event-listener" "^0.3.0"
-    "@mirohq/design-system-use-layout-effect" "^0.2.0"
-    "@mirohq/design-system-use-listeners" "^0.1.0"
-    "@mirohq/design-system-use-local-storage" "^0.3.2"
-    "@mirohq/design-system-use-logger" "^0.1.2"
-    "@mirohq/design-system-use-press" "^0.1.2"
-    "@mirohq/design-system-use-theme" "^0.2.7"
-    "@mirohq/design-system-utils" "^0.14.1"
-    "@mirohq/design-tokens" "^2.7.1"
+    "@mirohq/design-system-types" "^0.10.0"
 
-"@mirohq/design-tokens@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-tokens/-/design-tokens-2.1.0.tgz#0e73189529c5f1523a519159ab9105293477ca13"
-  integrity sha512-c3zx2ICDqQVEJjQbMy7x2SqjQ+t1cemwXyYsYxMqFB7T6Y8QfxHWtRJq2JgLpaVp1xkHR3qlW406kMkXsgoNrg==
+"@mirohq/design-system@^0.33.7":
+  version "0.33.7"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-system/-/design-system-0.33.7.tgz#d277d00baf57ea39df3937dfc12858677d3fa187"
+  integrity sha512-Xpa/RkN4gh4Mv9gKadtj8Z5BC5WGlzmLThr3mY5m+6RuVVkBEe4YW5fvIRsQDyYNx8p2h39ftnSzIm3v/eaREw==
   dependencies:
-    lodash.merge "^4.6.2"
+    "@mirohq/design-system-badge" "^0.4.7"
+    "@mirohq/design-system-box" "^2.1.60"
+    "@mirohq/design-system-button" "^4.2.5"
+    "@mirohq/design-system-calendar" "^0.4.6"
+    "@mirohq/design-system-callout" "^0.3.5"
+    "@mirohq/design-system-checkbox" "^1.2.42"
+    "@mirohq/design-system-chip" "^0.2.17"
+    "@mirohq/design-system-combobox" "^0.5.41"
+    "@mirohq/design-system-dropdown-menu" "^4.4.18"
+    "@mirohq/design-system-flex" "^2.1.65"
+    "@mirohq/design-system-form" "^0.2.6"
+    "@mirohq/design-system-grid" "^2.1.64"
+    "@mirohq/design-system-icon-button" "^3.2.6"
+    "@mirohq/design-system-icons" "^0.61.1"
+    "@mirohq/design-system-input" "^0.5.6"
+    "@mirohq/design-system-link" "^1.3.49"
+    "@mirohq/design-system-patterns" "^0.2.3"
+    "@mirohq/design-system-popover" "^5.1.82"
+    "@mirohq/design-system-primitive" "^1.1.2"
+    "@mirohq/design-system-scroll-area" "^0.4.17"
+    "@mirohq/design-system-select" "^0.7.6"
+    "@mirohq/design-system-slider" "^0.2.1"
+    "@mirohq/design-system-spinner" "^1.1.63"
+    "@mirohq/design-system-stitches" "^2.6.29"
+    "@mirohq/design-system-styles" "^1.2.29"
+    "@mirohq/design-system-switch" "^3.1.21"
+    "@mirohq/design-system-tabs" "^0.4.8"
+    "@mirohq/design-system-tag" "^0.4.1"
+    "@mirohq/design-system-textarea" "^0.4.3"
+    "@mirohq/design-system-theme-provider" "^0.3.42"
+    "@mirohq/design-system-themes" "^0.13.0"
+    "@mirohq/design-system-toolbar" "^2.6.6"
+    "@mirohq/design-system-tooltip" "^3.5.8"
+    "@mirohq/design-system-types" "^0.10.0"
+    "@mirohq/design-system-typography" "^0.6.7"
+    "@mirohq/design-system-use-aria-disabled" "^0.2.1"
+    "@mirohq/design-system-use-clipboard" "^0.1.2"
+    "@mirohq/design-system-use-debounce" "^0.1.0"
+    "@mirohq/design-system-use-event" "^0.2.1"
+    "@mirohq/design-system-use-event-listener" "^0.3.2"
+    "@mirohq/design-system-use-force-update" "^0.1.0"
+    "@mirohq/design-system-use-id" "^0.1.2"
+    "@mirohq/design-system-use-layout-effect" "^0.2.1"
+    "@mirohq/design-system-use-listeners" "^0.1.1"
+    "@mirohq/design-system-use-local-storage" "^0.3.11"
+    "@mirohq/design-system-use-logger" "^0.1.13"
+    "@mirohq/design-system-use-media-query" "^0.2.0"
+    "@mirohq/design-system-use-press" "^0.4.2"
+    "@mirohq/design-system-use-previous" "^0.1.0"
+    "@mirohq/design-system-use-spy-scroll" "^0.2.0"
+    "@mirohq/design-system-use-theme" "^0.2.16"
+    "@mirohq/design-system-use-throttle" "^0.1.0"
+    "@mirohq/design-system-use-window-size" "^0.2.1"
+    "@mirohq/design-system-utils" "^0.15.5"
 
-"@mirohq/design-tokens@^2.7.1":
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/@mirohq/design-tokens/-/design-tokens-2.7.1.tgz#fe8109a551b5f6ac1559d3fc0df965cc10cf4b6c"
-  integrity sha512-khRmGeZjCuItrn9oU6EkCpTkdC1LYRYqLHlaGqZ5Ovg9MOUvcQLJxRC10USGGOtBDtB/UvZ7Fln11DITIk8ahQ==
-  dependencies:
-    lodash.merge "^4.6.2"
+"@mirohq/design-tokens@^6.5.0":
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/@mirohq/design-tokens/-/design-tokens-6.5.0.tgz#f9bfa29934e942e4891f96cafaeb2a7dc9ecaf68"
+  integrity sha512-aqwEXofnV5xySfK79USfz4qxFnnsTxuyjjPmWp1DafkRhjE5tqYXBA+2jUruLGILWCFbj0pzEa+9ByDTU2YWQQ==
 
-"@mirohq/websdk-types@^2.9.3":
-  version "2.9.3"
-  resolved "https://registry.yarnpkg.com/@mirohq/websdk-types/-/websdk-types-2.9.3.tgz#36fe2402357d3fbdcd1ab5eea5841dc5e776beb1"
-  integrity sha512-hl1b6DvGt3jStP2j3ZSJIuaEPIp4qTmFSHxBwkrvOpsdpjvr7PjYQmJL3rEwIw1LxbOAKxPo3wig9RRQMg7CRA==
+"@mirohq/websdk-types@^2.16.1":
+  version "2.16.1"
+  resolved "https://registry.yarnpkg.com/@mirohq/websdk-types/-/websdk-types-2.16.1.tgz#9aefe885fd431c36dcd83681c62565ea1400712b"
+  integrity sha512-dv3RX+aP7QvmXXpishm72BeWR/iDxwXdnLufLO5glgOTKIBGiRHuju2WL7tSOOmuttw2LjVc03zSBDYK692o0Q==
   dependencies:
     typescript ">=4.6.3 || ~5"
 
@@ -1420,6 +1724,11 @@
   integrity sha512-T5gIdVO2mmPW3NNhjNgEP3cqMXjXL9UbO0BzWcXfvdBs+BohbQxvd/K5hSVKmn9/lbTdsQVKbUcP5WLCwvUbBg==
   dependencies:
     "@babel/runtime" "^7.13.10"
+
+"@radix-ui/number@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/number/-/number-1.1.0.tgz#1e95610461a09cdf8bb05c152e76ca1278d5da46"
+  integrity sha512-V3gRzhVNU1ldS5XhAPTom1fOIo4ccrjjJgmE+LI2h/WaFpHmx0MQApT+KZHnx8abG6Avtfcz4WoEciMnpFT3HQ==
 
 "@radix-ui/primitive@1.0.0":
   version "1.0.0"
@@ -1434,6 +1743,11 @@
   integrity sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==
   dependencies:
     "@babel/runtime" "^7.13.10"
+
+"@radix-ui/primitive@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/primitive/-/primitive-1.1.1.tgz#fc169732d755c7fbad33ba8d0cd7fd10c90dc8e3"
+  integrity sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==
 
 "@radix-ui/react-arrow@1.0.2":
   version "1.0.2"
@@ -1450,6 +1764,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.3"
+
+"@radix-ui/react-arrow@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-arrow/-/react-arrow-1.1.1.tgz#2103721933a8bfc6e53bbfbdc1aaad5fc8ba0dd7"
+  integrity sha512-NaVpZfmv8SKeZbn4ijN2V3jlHA9ngBG16VnIIm22nUR0Yk8KUALyBxT3KYEUnNuch9sTE8UTsS3whzBgKOL30w==
+  dependencies:
+    "@radix-ui/react-primitive" "2.0.1"
 
 "@radix-ui/react-checkbox@^1.0.0":
   version "1.0.4"
@@ -1477,6 +1798,16 @@
     "@radix-ui/react-primitive" "1.0.3"
     "@radix-ui/react-slot" "1.0.2"
 
+"@radix-ui/react-collection@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-collection/-/react-collection-1.1.1.tgz#be2c7e01d3508e6d4b6d838f492e7d182f17d3b0"
+  integrity sha512-LwT3pSho9Dljg+wY2KN2mrrh6y3qELfftINERIzBUO9e0N+t0oMTyn3k9iv+ZqgrwGkRnLpNJrsMv9BZlt2yuA==
+  dependencies:
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
+
 "@radix-ui/react-compose-refs@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-compose-refs/-/react-compose-refs-1.0.0.tgz#37595b1f16ec7f228d698590e78eeed18ff218ae"
@@ -1490,6 +1821,11 @@
   integrity sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==
   dependencies:
     "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-compose-refs@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-compose-refs/-/react-compose-refs-1.1.1.tgz#6f766faa975f8738269ebb8a23bad4f5a8d2faec"
+  integrity sha512-Y9VzoRDSJtgFMUCoiZBDVo084VQ5hfpXxVE+NgkdNsjiDBByiImMZKKhxMwCbdHvhlENG6a833CbFkOQvTricw==
 
 "@radix-ui/react-context@1.0.0":
   version "1.0.0"
@@ -1505,12 +1841,22 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-context@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-context/-/react-context-1.1.1.tgz#82074aa83a472353bb22e86f11bcbd1c61c4c71a"
+  integrity sha512-UASk9zi+crv9WteK/NU4PLvOoL3OuE6BWVKNF6hPRBtYBDXQ2u5iu3O59zUlJiTVvkyuycnqrztsHVJwcK9K+Q==
+
 "@radix-ui/react-direction@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-direction/-/react-direction-1.0.1.tgz#9cb61bf2ccf568f3421422d182637b7f47596c9b"
   integrity sha512-RXcvnXgyvYvBEOhCBuddKecVkoMiI10Jcm5cTI7abJRAHYfFxeu+FBQs/DvdxSYucxR5mna0dNsL6QFlds5TMA==
   dependencies:
     "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-direction@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-direction/-/react-direction-1.1.0.tgz#a7d39855f4d077adc2a1922f9c353c5977a09cdc"
+  integrity sha512-BUuBvgThEiAXh2DWu93XsT+a3aWrGqolGlqqw5VU1kG7p/ZH2cuDlM1sRLNnY3QcBS69UIz2mcKhMxDsdewhjg==
 
 "@radix-ui/react-dismissable-layer@1.0.3":
   version "1.0.3"
@@ -1536,6 +1882,17 @@
     "@radix-ui/react-use-callback-ref" "1.0.1"
     "@radix-ui/react-use-escape-keydown" "1.0.3"
 
+"@radix-ui/react-dismissable-layer@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-dismissable-layer/-/react-dismissable-layer-1.1.3.tgz#4ee0f0f82d53bf5bd9db21665799bb0d1bad5ed8"
+  integrity sha512-onrWn/72lQoEucDmJnr8uczSNTujT0vJnA/X5+3AkChVPowr8n1yvIKIabhWyMQeMvvmdpsvcyDqx3X1LEXCPg==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-escape-keydown" "1.1.0"
+
 "@radix-ui/react-dropdown-menu@^2.0.5":
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-dropdown-menu/-/react-dropdown-menu-2.0.5.tgz#19bf4de8ffa348b4eb6a86842f14eff93d741170"
@@ -1557,6 +1914,11 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-focus-guards@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-guards/-/react-focus-guards-1.1.1.tgz#8635edd346304f8b42cae86b05912b61aef27afe"
+  integrity sha512-pSIwfrT1a6sIoDASCSpFwOasEwKTZWDw/iBdtnqKO7v6FeOzYJ7U53cPzYFVR3geGGXgVHaH+CdngrrAzqUGxg==
+
 "@radix-ui/react-focus-scope@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-scope/-/react-focus-scope-1.0.3.tgz#9c2e8d4ed1189a1d419ee61edd5c1828726472f9"
@@ -1566,6 +1928,15 @@
     "@radix-ui/react-compose-refs" "1.0.1"
     "@radix-ui/react-primitive" "1.0.3"
     "@radix-ui/react-use-callback-ref" "1.0.1"
+
+"@radix-ui/react-focus-scope@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-focus-scope/-/react-focus-scope-1.1.1.tgz#5c602115d1db1c4fcfa0fae4c3b09bb8919853cb"
+  integrity sha512-01omzJAYRxXdG2/he/+xy+c8a8gCydoQ1yOxnWNcRhrrBW5W+RQJ22EK1SaO8tb3WoUsuEw7mJjBozPzihDFjA==
+  dependencies:
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
 
 "@radix-ui/react-id@1.0.0":
   version "1.0.0"
@@ -1582,6 +1953,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "1.0.1"
+
+"@radix-ui/react-id@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-id/-/react-id-1.1.0.tgz#de47339656594ad722eb87f94a6b25f9cffae0ed"
+  integrity sha512-EJUrI8yYh7WOjNOqpoJaf1jlFIH2LvtgAl+YcFqNCa+4hj64ZXmPkAKOFs/ukjz3byN6bdb/AVUqHkI8/uWWMA==
+  dependencies:
+    "@radix-ui/react-use-layout-effect" "1.1.0"
 
 "@radix-ui/react-menu@2.0.5":
   version "2.0.5"
@@ -1608,27 +1986,26 @@
     aria-hidden "^1.1.1"
     react-remove-scroll "2.5.5"
 
-"@radix-ui/react-popover@^1.0.0":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.0.6.tgz#19bb81e7450482c625b8cd05bf4dcd1d2cd91a8b"
-  integrity sha512-cZ4defGpkZ0qTRtlIBzJLSzL6ht7ofhhW4i1+pkemjV1IKXm0wgCRnee154qlV6r9Ttunmh2TNZhMfV2bavUyA==
+"@radix-ui/react-popover@^1.0.7":
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popover/-/react-popover-1.1.4.tgz#d83104e5fb588870a673b55f3387da4844e5836e"
+  integrity sha512-aUACAkXx8LaFymDma+HQVji7WhvEhpFJ7+qPz17Nf4lLZqtreGOFRiNQWQmhzp7kEWg9cOyyQJpdIMUMPc/CPw==
   dependencies:
-    "@babel/runtime" "^7.13.10"
-    "@radix-ui/primitive" "1.0.1"
-    "@radix-ui/react-compose-refs" "1.0.1"
-    "@radix-ui/react-context" "1.0.1"
-    "@radix-ui/react-dismissable-layer" "1.0.4"
-    "@radix-ui/react-focus-guards" "1.0.1"
-    "@radix-ui/react-focus-scope" "1.0.3"
-    "@radix-ui/react-id" "1.0.1"
-    "@radix-ui/react-popper" "1.1.2"
-    "@radix-ui/react-portal" "1.0.3"
-    "@radix-ui/react-presence" "1.0.1"
-    "@radix-ui/react-primitive" "1.0.3"
-    "@radix-ui/react-slot" "1.0.2"
-    "@radix-ui/react-use-controllable-state" "1.0.1"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-dismissable-layer" "1.1.3"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
     aria-hidden "^1.1.1"
-    react-remove-scroll "2.5.5"
+    react-remove-scroll "^2.6.1"
 
 "@radix-ui/react-popper@1.1.1":
   version "1.1.1"
@@ -1664,6 +2041,22 @@
     "@radix-ui/react-use-size" "1.0.1"
     "@radix-ui/rect" "1.0.1"
 
+"@radix-ui/react-popper@1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-popper/-/react-popper-1.2.1.tgz#2fc66cfc34f95f00d858924e3bee54beae2dff0a"
+  integrity sha512-3kn5Me69L+jv82EKRuQCXdYyf1DqHwD2U/sxoNgBGCB7K9TRc3bQamQ+5EPM9EvyPdli0W41sROd+ZU1dTCztw==
+  dependencies:
+    "@floating-ui/react-dom" "^2.0.0"
+    "@radix-ui/react-arrow" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-use-rect" "1.1.0"
+    "@radix-ui/react-use-size" "1.1.0"
+    "@radix-ui/rect" "1.1.0"
+
 "@radix-ui/react-portal@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-portal/-/react-portal-1.0.2.tgz#102370b1027a767a371cab0243be4bc664f72330"
@@ -1679,6 +2072,14 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.3"
+
+"@radix-ui/react-portal@1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-portal/-/react-portal-1.1.3.tgz#b0ea5141103a1671b715481b13440763d2ac4440"
+  integrity sha512-NciRqhXnGojhT93RPyDaMPfLH3ZSl4jjIFbZQ1b/vxvZEdHsBZ49wP9w8L3HzUQwep01LcWtkUvm0OVB5JAHTw==
+  dependencies:
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
 
 "@radix-ui/react-presence@1.0.0":
   version "1.0.0"
@@ -1698,6 +2099,14 @@
     "@radix-ui/react-compose-refs" "1.0.1"
     "@radix-ui/react-use-layout-effect" "1.0.1"
 
+"@radix-ui/react-presence@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-presence/-/react-presence-1.1.2.tgz#bb764ed8a9118b7ec4512da5ece306ded8703cdc"
+  integrity sha512-18TFr80t5EVgL9x1SwF/YGtfG+l0BS0PRAlCWBDoBEiDQjeKgnNZRVJp/oVBl24sr3Gbfwc/Qpj4OcWTQMsAEg==
+  dependencies:
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+
 "@radix-ui/react-primitive@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-primitive/-/react-primitive-1.0.2.tgz#54e22f49ca59ba88d8143090276d50b93f8a7053"
@@ -1713,6 +2122,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-slot" "1.0.2"
+
+"@radix-ui/react-primitive@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-primitive/-/react-primitive-2.0.1.tgz#6d9efc550f7520135366f333d1e820cf225fad9e"
+  integrity sha512-sHCWTtxwNn3L3fH8qAfnF3WbUZycW93SM1j3NFDzXBiz8D6F5UTTy8G1+WFEaiCdvCVRJWj6N2R4Xq6HdiHmDg==
+  dependencies:
+    "@radix-ui/react-slot" "1.1.1"
 
 "@radix-ui/react-roving-focus@1.0.4":
   version "1.0.4"
@@ -1730,6 +2146,21 @@
     "@radix-ui/react-use-callback-ref" "1.0.1"
     "@radix-ui/react-use-controllable-state" "1.0.1"
 
+"@radix-ui/react-roving-focus@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-roving-focus/-/react-roving-focus-1.1.1.tgz#3b3abb1e03646937f28d9ab25e96343667ca6520"
+  integrity sha512-QE1RoxPGJ/Nm8Qmk0PxP8ojmoaS67i0s7hVssS7KuI2FQoc/uzVlZsqKfQvxPE6D8hICCPHJ4D88zNhT3OOmkw==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+
 "@radix-ui/react-scroll-area@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-scroll-area/-/react-scroll-area-1.0.4.tgz#13c36c453b2880aba57df67fb91a1d3f9b18998d"
@@ -1746,6 +2177,33 @@
     "@radix-ui/react-use-callback-ref" "1.0.1"
     "@radix-ui/react-use-layout-effect" "1.0.1"
 
+"@radix-ui/react-select@^2.0.0":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-select/-/react-select-2.1.4.tgz#8957050203640b668a883a225260c403514b3772"
+  integrity sha512-pOkb2u8KgO47j/h7AylCj7dJsm69BXcjkrvTqMptFqsE2i0p8lHkfgneXKjAgPzBMivnoMyt8o4KiV4wYzDdyQ==
+  dependencies:
+    "@radix-ui/number" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-dismissable-layer" "1.1.3"
+    "@radix-ui/react-focus-guards" "1.1.1"
+    "@radix-ui/react-focus-scope" "1.1.1"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-popper" "1.2.1"
+    "@radix-ui/react-portal" "1.1.3"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-slot" "1.1.1"
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-use-previous" "1.1.0"
+    "@radix-ui/react-visually-hidden" "1.1.1"
+    aria-hidden "^1.1.1"
+    react-remove-scroll "^2.6.1"
+
 "@radix-ui/react-separator@1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-separator/-/react-separator-1.0.3.tgz#be5a931a543d5726336b112f465f58585c04c8aa"
@@ -1753,6 +2211,23 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.3"
+
+"@radix-ui/react-slider@^1.2.0":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slider/-/react-slider-1.2.2.tgz#4ca883e3f0dea7b97d43c6cbc6c4305c64e75a86"
+  integrity sha512-sNlU06ii1/ZcbHf8I9En54ZPW0Vil/yPVg4vQMcFNjrIx51jsHbFl1HYHQvCIWJSr1q0ZmA+iIs/ZTv8h7HHSA==
+  dependencies:
+    "@radix-ui/number" "1.1.0"
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-collection" "1.1.1"
+    "@radix-ui/react-compose-refs" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
+    "@radix-ui/react-use-layout-effect" "1.1.0"
+    "@radix-ui/react-use-previous" "1.1.0"
+    "@radix-ui/react-use-size" "1.1.0"
 
 "@radix-ui/react-slot@1.0.1", "@radix-ui/react-slot@^1.0.0":
   version "1.0.1"
@@ -1770,6 +2245,13 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.1"
 
+"@radix-ui/react-slot@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-slot/-/react-slot-1.1.1.tgz#ab9a0ffae4027db7dc2af503c223c978706affc3"
+  integrity sha512-RApLLOcINYJA+dMVbOju7MYv1Mb2EBp2nH4HdDzXTSyaR5optlm6Otrz1euW3HbdOR8UmmFK06TD+A9frYWv+g==
+  dependencies:
+    "@radix-ui/react-compose-refs" "1.1.1"
+
 "@radix-ui/react-switch@^1.0.0":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-switch/-/react-switch-1.0.3.tgz#6119f16656a9eafb4424c600fdb36efa5ec5837e"
@@ -1783,6 +2265,20 @@
     "@radix-ui/react-use-controllable-state" "1.0.1"
     "@radix-ui/react-use-previous" "1.0.1"
     "@radix-ui/react-use-size" "1.0.1"
+
+"@radix-ui/react-tabs@^1.0.0":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-tabs/-/react-tabs-1.1.2.tgz#a72da059593cba30fccb30a226d63af686b32854"
+  integrity sha512-9u/tQJMcC2aGq7KXpGivMm1mgq7oRJKXphDwdypPd/j21j/2znamPU8WkXgnhUaTrSFNIt8XhOyCAupg8/GbwQ==
+  dependencies:
+    "@radix-ui/primitive" "1.1.1"
+    "@radix-ui/react-context" "1.1.1"
+    "@radix-ui/react-direction" "1.1.0"
+    "@radix-ui/react-id" "1.1.0"
+    "@radix-ui/react-presence" "1.1.2"
+    "@radix-ui/react-primitive" "2.0.1"
+    "@radix-ui/react-roving-focus" "1.1.1"
+    "@radix-ui/react-use-controllable-state" "1.1.0"
 
 "@radix-ui/react-toggle-group@1.0.4":
   version "1.0.4"
@@ -1855,6 +2351,11 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-use-callback-ref@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-callback-ref/-/react-use-callback-ref-1.1.0.tgz#bce938ca413675bc937944b0d01ef6f4a6dc5bf1"
+  integrity sha512-CasTfvsy+frcFkbXtSJ2Zu9JHpN8TYKxkgJGWbjiZhFivxaeW7rMeZt7QELGVLaYVfFMsKHjb7Ak0nMEe+2Vfw==
+
 "@radix-ui/react-use-controllable-state@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-controllable-state/-/react-use-controllable-state-1.0.0.tgz#a64deaafbbc52d5d407afaa22d493d687c538b7f"
@@ -1870,6 +2371,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-callback-ref" "1.0.1"
+
+"@radix-ui/react-use-controllable-state@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-controllable-state/-/react-use-controllable-state-1.1.0.tgz#1321446857bb786917df54c0d4d084877aab04b0"
+  integrity sha512-MtfMVJiSr2NjzS0Aa90NPTnvTSg6C/JLCV7ma0W6+OMV78vd8OyRpID+Ng9LxzsPbLeuBnWBA1Nq30AtBIDChw==
+  dependencies:
+    "@radix-ui/react-use-callback-ref" "1.1.0"
 
 "@radix-ui/react-use-escape-keydown@1.0.2":
   version "1.0.2"
@@ -1887,6 +2395,13 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-callback-ref" "1.0.1"
 
+"@radix-ui/react-use-escape-keydown@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-escape-keydown/-/react-use-escape-keydown-1.1.0.tgz#31a5b87c3b726504b74e05dac1edce7437b98754"
+  integrity sha512-L7vwWlR1kTTQ3oh7g1O0CBF3YCyyTj8NmhLR+phShpyA50HCfBFKVJTpshm9PzLiKmehsrQzTYTpX9HvmC9rhw==
+  dependencies:
+    "@radix-ui/react-use-callback-ref" "1.1.0"
+
 "@radix-ui/react-use-layout-effect@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-layout-effect/-/react-use-layout-effect-1.0.0.tgz#2fc19e97223a81de64cd3ba1dc42ceffd82374dc"
@@ -1901,12 +2416,22 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/react-use-layout-effect@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-layout-effect/-/react-use-layout-effect-1.1.0.tgz#3c2c8ce04827b26a39e442ff4888d9212268bd27"
+  integrity sha512-+FPE0rOdziWSrH9athwI1R0HDVbWlEhd+FR+aSDk4uWGmSJ9Z54sdZVDQPZAinJhJXwfT+qnj969mCsT2gfm5w==
+
 "@radix-ui/react-use-previous@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-previous/-/react-use-previous-1.0.1.tgz#b595c087b07317a4f143696c6a01de43b0d0ec66"
   integrity sha512-cV5La9DPwiQ7S0gf/0qiD6YgNqM5Fk97Kdrlc5yBcrF3jyEZQwm7vYFqMo4IfeHgJXsRaMvLABFtd0OVEmZhDw==
   dependencies:
     "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-use-previous@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-previous/-/react-use-previous-1.1.0.tgz#d4dd37b05520f1d996a384eb469320c2ada8377c"
+  integrity sha512-Z/e78qg2YFnnXcW88A4JmTtm4ADckLno6F7OXotmkQfeuCVaKuYzqAATPhVzl3delXE7CxIV8shofPn3jPc5Og==
 
 "@radix-ui/react-use-rect@1.0.0":
   version "1.0.0"
@@ -1924,6 +2449,13 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/rect" "1.0.1"
 
+"@radix-ui/react-use-rect@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-rect/-/react-use-rect-1.1.0.tgz#13b25b913bd3e3987cc9b073a1a164bb1cf47b88"
+  integrity sha512-0Fmkebhr6PiseyZlYAOtLS+nb7jLmpqTrJyv61Pe68MKYW6OWdRE2kI70TaYY27u7H0lajqM3hSMMLFq18Z7nQ==
+  dependencies:
+    "@radix-ui/rect" "1.1.0"
+
 "@radix-ui/react-use-size@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-size/-/react-use-size-1.0.0.tgz#a0b455ac826749419f6354dc733e2ca465054771"
@@ -1932,13 +2464,20 @@
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "1.0.0"
 
-"@radix-ui/react-use-size@1.0.1", "@radix-ui/react-use-size@^1.0.1":
+"@radix-ui/react-use-size@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-use-size/-/react-use-size-1.0.1.tgz#1c5f5fea940a7d7ade77694bb98116fb49f870b2"
   integrity sha512-ibay+VqrgcaI6veAojjofPATwledXiSmX+C0KrBk/xgpX9rBzPV3OsfwlhQdUOFbh+LKQorLYT+xTXW9V8yd0g==
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-use-layout-effect" "1.0.1"
+
+"@radix-ui/react-use-size@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-size/-/react-use-size-1.1.0.tgz#b4dba7fbd3882ee09e8d2a44a3eed3a7e555246b"
+  integrity sha512-XW3/vWuIXHa+2Uwcc2ABSfcCledmXhhQPlGbfcRXbiUQI5Icjcg19BGCZVKKInYbvUCut/ufbbLLPFC5cbb1hw==
+  dependencies:
+    "@radix-ui/react-use-layout-effect" "1.1.0"
 
 "@radix-ui/react-visually-hidden@1.0.2":
   version "1.0.2"
@@ -1947,6 +2486,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-primitive" "1.0.2"
+
+"@radix-ui/react-visually-hidden@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-visually-hidden/-/react-visually-hidden-1.1.1.tgz#f7b48c1af50dfdc366e92726aee6d591996c5752"
+  integrity sha512-vVfA2IZ9q/J+gEamvj761Oq1FpWgCDaNOOIfbPVp2MVPLEomUr5+Vf7kJGwQ24YxZSlQVar7Bes8kyTo5Dshpg==
+  dependencies:
+    "@radix-ui/react-primitive" "2.0.1"
 
 "@radix-ui/rect@1.0.0":
   version "1.0.0"
@@ -1962,6 +2508,11 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@radix-ui/rect@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/rect/-/rect-1.1.0.tgz#f817d1d3265ac5415dadc67edab30ae196696438"
+  integrity sha512-A9+lCBZoaMJlVKcRBz2YByCG+Cp2t6nAnMnNba+XiWxnj6r4JUFqfsgwocMBZU9LPtdxC6wB56ySYpc7LQIoJg==
+
 "@react-aria/breadcrumbs@^3.5.4":
   version "3.5.4"
   resolved "https://registry.yarnpkg.com/@react-aria/breadcrumbs/-/breadcrumbs-3.5.4.tgz#fbd4e213adf84bde39e126ea62c389de9dc00e20"
@@ -1974,19 +2525,6 @@
     "@react-types/breadcrumbs" "^3.6.1"
     "@react-types/shared" "^3.19.0"
     "@swc/helpers" "^0.5.0"
-
-"@react-aria/button@^3.5.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@react-aria/button/-/button-3.7.0.tgz#b00635c8be0e47e19733c96f3702b699f65242b7"
-  integrity sha512-4DSGXrAWflzT4cQe/x0KdrPzz7hv9vZgqYJuNXQkpmeIMs1EmUKuby2xC+W9GHuZ+8dMxjTWKy3XdwX2tCM42A==
-  dependencies:
-    "@react-aria/focus" "^3.11.0"
-    "@react-aria/interactions" "^3.14.0"
-    "@react-aria/utils" "^3.15.0"
-    "@react-stately/toggle" "^3.5.0"
-    "@react-types/button" "^3.7.1"
-    "@react-types/shared" "^3.17.0"
-    "@swc/helpers" "^0.4.14"
 
 "@react-aria/button@^3.8.1":
   version "3.8.1"
@@ -2105,17 +2643,6 @@
     "@react-types/shared" "^3.19.0"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/focus@^3.11.0":
-  version "3.11.0"
-  resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.11.0.tgz#8124b2341e8d43af72f3da85b08567bda45421b7"
-  integrity sha512-yPuWs9bAR9CMfIwyOPm2oXLPF19gNkUqW+ozSPhWbLMTEa8Ma09eHW1br4xbN+4ONOm/dCJsIkxTNPUkiLdQoA==
-  dependencies:
-    "@react-aria/interactions" "^3.14.0"
-    "@react-aria/utils" "^3.15.0"
-    "@react-types/shared" "^3.17.0"
-    "@swc/helpers" "^0.4.14"
-    clsx "^1.1.1"
-
 "@react-aria/focus@^3.14.0":
   version "3.14.0"
   resolved "https://registry.yarnpkg.com/@react-aria/focus/-/focus-3.14.0.tgz#56b26227102c8492bfe35510033a48fda36f6ec7"
@@ -2187,15 +2714,6 @@
     "@react-types/shared" "^3.19.0"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/interactions@^3.14.0":
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/@react-aria/interactions/-/interactions-3.14.0.tgz#d6480985048c009d58b8572428010dc61093cfcc"
-  integrity sha512-e1Tkr0UTuYFpV21PJrXy7jEY542Vl+C2Fo70oukZ1fN+wtfQkzodsTIzyepXb7kVMGmC34wDisMJUrksVkfY2w==
-  dependencies:
-    "@react-aria/utils" "^3.15.0"
-    "@react-types/shared" "^3.17.0"
-    "@swc/helpers" "^0.4.14"
-
 "@react-aria/label@^3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-aria/label/-/label-3.6.1.tgz#32362e0ba64258b53d19cc9c1d8a5f002d8f317b"
@@ -2205,18 +2723,6 @@
     "@react-types/label" "^3.7.5"
     "@react-types/shared" "^3.19.0"
     "@swc/helpers" "^0.5.0"
-
-"@react-aria/link@^3.3.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@react-aria/link/-/link-3.4.0.tgz#f3f7c5277ab9fc0b8c55c76503e1fbe764e02ca6"
-  integrity sha512-d/h4y7SFO+KweMX5IRU99L1jz9AAwp6mNStkBjYGxCD29QYTVWClpZHjRlO1s6a9e2QTpk/LzsvjiytowzfHyA==
-  dependencies:
-    "@react-aria/focus" "^3.11.0"
-    "@react-aria/interactions" "^3.14.0"
-    "@react-aria/utils" "^3.15.0"
-    "@react-types/link" "^3.4.0"
-    "@react-types/shared" "^3.17.0"
-    "@swc/helpers" "^0.4.14"
 
 "@react-aria/link@^3.5.3":
   version "3.5.3"
@@ -2548,7 +3054,7 @@
     "@react-types/tooltip" "^3.4.3"
     "@swc/helpers" "^0.5.0"
 
-"@react-aria/utils@^3.13.0", "@react-aria/utils@^3.15.0":
+"@react-aria/utils@^3.13.0":
   version "3.15.0"
   resolved "https://registry.yarnpkg.com/@react-aria/utils/-/utils-3.15.0.tgz#a836674dd40ec7f15e9f7a69b1a14f19b1ee42e6"
   integrity sha512-aJZBG++iz1UwTW5gXFaHicKju4p0MPhAyBTcf2awHYWeTUUslDjJcEnNg7kjBYZBOrOSlA2rAt7/7C5CCURQPg==
@@ -2811,16 +3317,6 @@
     "@react-types/tabs" "^3.3.1"
     "@swc/helpers" "^0.5.0"
 
-"@react-stately/toggle@^3.5.0":
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.5.0.tgz#fee5a29d7699e43867c52981834af5393f47c1c4"
-  integrity sha512-vKwLLkFsiIve4pXIQC/dqLAz7Z+qtzJ8+D00EXXO1Nf8YHcyIMDkTmi3NTM8Qtvmt4xX2hbJFiPDF6WvF6mBIg==
-  dependencies:
-    "@react-stately/utils" "^3.6.0"
-    "@react-types/checkbox" "^3.4.2"
-    "@react-types/shared" "^3.17.0"
-    "@swc/helpers" "^0.4.14"
-
 "@react-stately/toggle@^3.6.1":
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.6.1.tgz#3c14b0015aa7e306920bc14fd1a44932fbb4efb2"
@@ -2883,13 +3379,6 @@
     "@react-types/link" "^3.4.4"
     "@react-types/shared" "^3.19.0"
 
-"@react-types/button@^3.7.1":
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.7.1.tgz#a51d2617a593d9862c72306b3bf0c4b5bff4793d"
-  integrity sha512-c+8xjmqWSjI5/mEHVLbVSp0eh/z2UU8Ga+wqjbEUZUjm8uopYj1PaCAwZ7YgcAebyQrL/21GyjK6tFHKzuUdJQ==
-  dependencies:
-    "@react-types/shared" "^3.17.0"
-
 "@react-types/button@^3.7.4":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.7.4.tgz#97aae5f1e8ffdb7c252643f82b0bf471c605191e"
@@ -2904,13 +3393,6 @@
   dependencies:
     "@internationalized/date" "^3.4.0"
     "@react-types/shared" "^3.19.0"
-
-"@react-types/checkbox@^3.4.2":
-  version "3.4.2"
-  resolved "https://registry.yarnpkg.com/@react-types/checkbox/-/checkbox-3.4.2.tgz#6089e9ef2d023415a5f871e312f30bae54143ba5"
-  integrity sha512-/NWFCEQLvVgo25afPt2jv4syxYvZeY/D/n2Y92IGtoNV4akdz4AuQ65+1X+JOhQc/ZbAblWw5fFWUZoQs3CLZg==
-  dependencies:
-    "@react-types/shared" "^3.17.0"
 
 "@react-types/checkbox@^3.5.0":
   version "3.5.0"
@@ -2957,14 +3439,6 @@
   integrity sha512-iNO5T1UYK7FPF23cwRLQJ4zth2rqoJWbz27Wikwt8Cw8VbVVzfLBPUBZoUyeBVZ0/zzTvEgZUW75OrmKb4gqhw==
   dependencies:
     "@react-types/shared" "^3.19.0"
-
-"@react-types/link@^3.3.0", "@react-types/link@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@react-types/link/-/link-3.4.0.tgz#1c549ffbc594e49726a4c4e912bea36718feb4cf"
-  integrity sha512-eImWLzxwzSmjOLa0Ow3HJaguyDCz98191v2pb7nT/zPzGDnhHhDjxB023hrXVUoCbsWrCb5QLp91Ts+VjiCyTA==
-  dependencies:
-    "@react-aria/interactions" "^3.14.0"
-    "@react-types/shared" "^3.17.0"
 
 "@react-types/link@^3.4.4":
   version "3.4.4"
@@ -3094,6 +3568,11 @@
   dependencies:
     "@react-types/overlays" "^3.8.1"
     "@react-types/shared" "^3.19.0"
+
+"@rrweb/types@^2.0.0-alpha.13":
+  version "2.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@rrweb/types/-/types-2.0.0-alpha.18.tgz#e1d9af844cebbf30a2be8808f6cf64f5df3e7f50"
+  integrity sha512-iMH3amHthJZ9x3gGmBPmdfim7wLGygC2GciIkw2A6SO8giSn8PHYtRT8OKNH4V+k3SZ6RSnYHcTQxBA7pSWZ3Q==
 
 "@sinclair/typebox@^0.27.8":
   version "0.27.8"
@@ -3239,6 +3718,11 @@
   dependencies:
     "@babel/types" "^7.20.7"
 
+"@types/css-font-loading-module@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@types/css-font-loading-module/-/css-font-loading-module-0.0.7.tgz#2f98ede46acc0975de85c0b7b0ebe06041d24601"
+  integrity sha512-nl09VhutdjINdWyXxHWN/w9zlNCfr60JUqJbd24YXUuCwgeL0TpFSdElCwb6cxfB6ybE19Gjj4g0jsgkXxKv1Q==
+
 "@types/graceful-fs@^4.1.3":
   version "4.1.6"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.6.tgz#e14b2576a1c25026b7f02ede1de3b84c3a1efeae"
@@ -3282,10 +3766,29 @@
     "@types/tough-cookie" "*"
     parse5 "^7.0.0"
 
-"@types/mixpanel-browser@^2.38.1":
-  version "2.38.1"
-  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.38.1.tgz#914cc726194cc0358129b6d84657f078e47f7697"
-  integrity sha512-XzQbwgiOPsFXUQnjz3vSwcwrvJDbQ35bCiwa/1VXGrHvU1ti9+eqO1GY91DShzkEzKkkEEkxfNshS5dbBZqd7w==
+"@types/lodash.debounce@4.0.9":
+  version "4.0.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.debounce/-/lodash.debounce-4.0.9.tgz#0f5f21c507bce7521b5e30e7a24440975ac860a5"
+  integrity sha512-Ma5JcgTREwpLRwMM+XwBR7DaWe96nC38uCBDFKZWbNKD+osjVzdpnUSwBcqCptrp16sSOLBAUb50Car5I0TCsQ==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash.throttle@4.1.9":
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.throttle/-/lodash.throttle-4.1.9.tgz#f17a6ae084f7c0117bd7df145b379537bc9615c5"
+  integrity sha512-PCPVfpfueguWZQB7pJQK890F2scYKoDUL3iM522AptHWn7d5NQmeS/LTEHIcLr5PaTzl3dK2Z0xSUHHTHwaL5g==
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.17.13"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.17.13.tgz#786e2d67cfd95e32862143abe7463a7f90c300eb"
+  integrity sha512-lfx+dftrEZcdBPczf9d0Qv0x+j/rfNCMuC6OcfXmO8gkfeNAY88PgKUbvG56whcN23gc27yenwF6oJZXGFpYxg==
+
+"@types/mixpanel-browser@^2.50.2":
+  version "2.50.2"
+  resolved "https://registry.yarnpkg.com/@types/mixpanel-browser/-/mixpanel-browser-2.50.2.tgz#148eea1ef0970d2d915a570be674a4e48345a35d"
+  integrity sha512-Iw8cBzplUPfHoeYuasqeYwdbGTNXhN+5kFT9kU+C7zm0NtaiPpKoiuzITr2ZH9KgBsWi2MbG0FOzIg9sQepauQ==
 
 "@types/node@*":
   version "20.4.3"
@@ -3381,6 +3884,11 @@
     "@babel/plugin-transform-react-jsx-source" "^7.19.6"
     magic-string "^0.26.7"
     react-refresh "^0.14.0"
+
+"@xstate/fsm@^1.4.0":
+  version "1.6.5"
+  resolved "https://registry.yarnpkg.com/@xstate/fsm/-/fsm-1.6.5.tgz#f599e301997ad7e3c572a0b1ff0696898081bea5"
+  integrity sha512-b5o1I6aLNeYlU/3CPlj/Z91ybk1gUsKT+5NAJI+2W4UjvS5KLG28K9v5UvNoFVjHV8PajVZ00RH3vnjyQO7ZAw==
 
 abab@^2.0.6:
   version "2.0.6"
@@ -3567,6 +4075,11 @@ balanced-match@^1.0.0:
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
   integrity sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==
 
+base64-arraybuffer@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/base64-arraybuffer/-/base64-arraybuffer-1.0.2.tgz#1c37589a7c4b0746e34bd1feb951da2df01c1bdc"
+  integrity sha512-I3yl4r9QB5ZRY3XuJVEPfc2XhZO6YweFPI+UovAzn+8/hb3oJ6lnysaFcjVpkCPfVWFUDvoZ8kmVDP7WyRtYtQ==
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -3694,10 +4207,10 @@ cjs-module-lexer@^1.0.0:
   resolved "https://registry.yarnpkg.com/cjs-module-lexer/-/cjs-module-lexer-1.2.3.tgz#6c370ab19f8a3394e318fe682686ec0ac684d107"
   integrity sha512-0TNiGstbQmCFwt4akjjBg5pLRTSyj/PkWQ1ZoO2zntmg9yLqSRxwEa4iCfQLGjqhiqBfOJa7W/E8wfGrTDmlZQ==
 
-classnames@^2.3.2:
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.2.tgz#351d813bf0137fcc6a76a16b88208d2560a0d924"
-  integrity sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==
+classnames@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.5.1.tgz#ba774c614be0f016da105c858e7159eae8e7687b"
+  integrity sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==
 
 cliui@^8.0.1:
   version "8.0.1"
@@ -4173,6 +4686,11 @@ fb-watchman@^2.0.0:
   integrity sha512-p5161BqbuCaSnB8jIbzQHOlpgsPmK5rJVDfDKO91Axs5NC1uu3HRQm6wt9cd9/+GtQQIO53JdGXXoyDpTAsgYA==
   dependencies:
     bser "2.1.1"
+
+fflate@^0.4.4:
+  version "0.4.8"
+  resolved "https://registry.yarnpkg.com/fflate/-/fflate-0.4.8.tgz#f90b82aefbd8ac174213abb338bd7ef848f0f5ae"
+  integrity sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==
 
 fill-range@^7.0.1:
   version "7.0.1"
@@ -5094,6 +5612,11 @@ locate-path@^5.0.0:
   dependencies:
     p-locate "^4.1.0"
 
+lodash.debounce@4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+  integrity sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==
+
 lodash.memoize@4.x:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -5103,6 +5626,11 @@ lodash.merge@^4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
   integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
+
+lodash.throttle@4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
 
 lodash@^4.17.15:
   version "4.17.21"
@@ -5208,10 +5736,17 @@ mirotone@4:
   resolved "https://registry.yarnpkg.com/mirotone/-/mirotone-4.3.0.tgz#603c4934fcd1cbe71e262440b59c55897bb7dfb5"
   integrity sha512-3jekema1CUXgnPQfQ9EjggNtzbaw7A977KZdIoHNLuuf3O3CKN5jdvFTf2Cagv5Sivg2BGQi0sjZWZOk0/cyoQ==
 
-mixpanel-browser@^2.46.0:
-  version "2.46.0"
-  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.46.0.tgz#45cc829a432aa99bab24c0f36879001832424efd"
-  integrity sha512-qPFhAFMf5YzzGPd/sgoEl7G0N/ypJ6IaZmjkMYEPiW60i1Muo+v2Zl/dqRcCXwYfF5GvC5175muS1ZuaaYGXAQ==
+mitt@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
+  integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
+
+mixpanel-browser@^2.58.0:
+  version "2.58.0"
+  resolved "https://registry.yarnpkg.com/mixpanel-browser/-/mixpanel-browser-2.58.0.tgz#bf2e7575152f6e43b78194bb4a2d38558dc726c0"
+  integrity sha512-ZayNE4augjSJh5RxYKRPhFe1jzS9HZnoowvZaN4DaUeCezbLGVck46L+N9X8VLtK74UgLUYfehPgCr41rtgpRA==
+  dependencies:
+    rrweb "2.0.0-alpha.13"
 
 ms@2.1.2:
   version "2.1.2"
@@ -5222,6 +5757,11 @@ nanoid@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
   integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
+
+nanoid@^3.3.7:
+  version "3.3.8"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.8.tgz#b1be3030bee36aaff18bacb375e5cce521684baf"
+  integrity sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==
 
 natural-compare@^1.4.0:
   version "1.4.0"
@@ -5370,6 +5910,11 @@ picocolors@^1.0.0:
   resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.0.0.tgz#cb5bdc74ff3f51892236eaf79d68bc44564ab81c"
   integrity sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==
 
+picocolors@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/picocolors/-/picocolors-1.1.1.tgz#3d321af3eab939b083c8f929a1d12cda81c26b6b"
+  integrity sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==
+
 picomatch@^2.0.4, picomatch@^2.2.3, picomatch@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
@@ -5395,6 +5940,15 @@ postcss@^8.4.14:
     nanoid "^3.3.4"
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
+
+postcss@^8.4.38:
+  version "8.4.49"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.49.tgz#4ea479048ab059ab3ae61d082190fabfd994fe19"
+  integrity sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==
+  dependencies:
+    nanoid "^3.3.7"
+    picocolors "^1.1.1"
+    source-map-js "^1.2.1"
 
 pretty-format@^27.0.2:
   version "27.5.1"
@@ -5515,6 +6069,14 @@ react-remove-scroll-bar@^2.3.3:
     react-style-singleton "^2.2.1"
     tslib "^2.0.0"
 
+react-remove-scroll-bar@^2.3.7:
+  version "2.3.8"
+  resolved "https://registry.yarnpkg.com/react-remove-scroll-bar/-/react-remove-scroll-bar-2.3.8.tgz#99c20f908ee467b385b68a3469b4a3e750012223"
+  integrity sha512-9r+yi9+mgU33AKcj6IbT9oRCO78WriSj6t/cF8DWBZJ9aOGPOTEDvdUDz1FwKim7QXWwmHqtdHnRJfhAxEG46Q==
+  dependencies:
+    react-style-singleton "^2.2.2"
+    tslib "^2.0.0"
+
 react-remove-scroll@2.5.5:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/react-remove-scroll/-/react-remove-scroll-2.5.5.tgz#1e31a1260df08887a8a0e46d09271b52b3a37e77"
@@ -5524,6 +6086,17 @@ react-remove-scroll@2.5.5:
     react-style-singleton "^2.2.1"
     tslib "^2.1.0"
     use-callback-ref "^1.3.0"
+    use-sidecar "^1.1.2"
+
+react-remove-scroll@^2.6.1:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-remove-scroll/-/react-remove-scroll-2.6.2.tgz#2518d2c5112e71ea8928f1082a58459b5c7a2a97"
+  integrity sha512-KmONPx5fnlXYJQqC62Q+lwIeAk64ws/cUw6omIumRzMRPqgnYqhSSti99nbj0Ry13bv7dF+BKn7NB+OqkdZGTw==
+  dependencies:
+    react-remove-scroll-bar "^2.3.7"
+    react-style-singleton "^2.2.1"
+    tslib "^2.1.0"
+    use-callback-ref "^1.3.3"
     use-sidecar "^1.1.2"
 
 react-stately@^3.23.0:
@@ -5561,6 +6134,14 @@ react-style-singleton@^2.2.1:
   dependencies:
     get-nonce "^1.0.0"
     invariant "^2.2.4"
+    tslib "^2.0.0"
+
+react-style-singleton@^2.2.2:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-style-singleton/-/react-style-singleton-2.2.3.tgz#4265608be69a4d70cfe3047f2c6c88b2c3ace388"
+  integrity sha512-b6jSvxvVnyptAiLjbkWLE/lOnR4lfTtDAl+eUC7RZy+QQWc6wRzIV2CE6xBuMmDxc2qIihtDCZD5NPOFl7fRBQ==
+  dependencies:
+    get-nonce "^1.0.0"
     tslib "^2.0.0"
 
 react@^18.2.0:
@@ -5644,6 +6225,34 @@ rollup@^2.75.6:
   optionalDependencies:
     fsevents "~2.3.2"
 
+rrdom@^2.0.0-alpha.13:
+  version "2.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/rrdom/-/rrdom-2.0.0-alpha.18.tgz#54726a87053c420ef67b7597a31fef515e372e85"
+  integrity sha512-fSFzFFxbqAViITyYVA4Z0o5G6p1nEqEr/N8vdgSKie9Rn0FJxDSNJgjV0yiCIzcDs0QR+hpvgFhpbdZ6JIr5Nw==
+  dependencies:
+    rrweb-snapshot "^2.0.0-alpha.18"
+
+rrweb-snapshot@^2.0.0-alpha.13, rrweb-snapshot@^2.0.0-alpha.18:
+  version "2.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/rrweb-snapshot/-/rrweb-snapshot-2.0.0-alpha.18.tgz#b242d079cb07acadd389a56674465a466b111e20"
+  integrity sha512-hBHZL/NfgQX6wO1D9mpwqFu1NJPpim+moIcKhFEjVTZVRUfCln+LOugRc4teVTCISYHN8Cw5e2iNTWCSm+SkoA==
+  dependencies:
+    postcss "^8.4.38"
+
+rrweb@2.0.0-alpha.13:
+  version "2.0.0-alpha.13"
+  resolved "https://registry.yarnpkg.com/rrweb/-/rrweb-2.0.0-alpha.13.tgz#37798404acd985212f72544c8823af275fdad514"
+  integrity sha512-a8GXOCnzWHNaVZPa7hsrLZtNZ3CGjiL+YrkpLo0TfmxGLhjNZbWY2r7pE06p+FcjFNlgUVTmFrSJbK3kO7yxvw==
+  dependencies:
+    "@rrweb/types" "^2.0.0-alpha.13"
+    "@types/css-font-loading-module" "0.0.7"
+    "@xstate/fsm" "^1.4.0"
+    base64-arraybuffer "^1.0.1"
+    fflate "^0.4.4"
+    mitt "^3.0.0"
+    rrdom "^2.0.0-alpha.13"
+    rrweb-snapshot "^2.0.0-alpha.13"
+
 "safer-buffer@>= 2.1.2 < 3.0.0":
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
@@ -5720,6 +6329,11 @@ source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==
+
+source-map-js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
+  integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
 
 source-map-support@0.5.13:
   version "0.5.13"
@@ -5977,6 +6591,13 @@ use-callback-ref@^1.3.0:
   dependencies:
     tslib "^2.0.0"
 
+use-callback-ref@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/use-callback-ref/-/use-callback-ref-1.3.3.tgz#98d9fab067075841c5b2c6852090d5d0feabe2bf"
+  integrity sha512-jQL3lRnocaFtu3V00JToYz/4QkNWswxijDaCVNZRiRTO3HQDLsdu1ZtmIUvV4yPp+rvWm5j0y0TG/S61cuijTg==
+  dependencies:
+    tslib "^2.0.0"
+
 use-isomorphic-layout-effect@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/use-isomorphic-layout-effect/-/use-isomorphic-layout-effect-1.1.2.tgz#497cefb13d863d687b08477d9e5a164ad8c1a6fb"
@@ -5989,6 +6610,11 @@ use-sidecar@^1.1.2:
   dependencies:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
+
+use-sync-external-store@^1.2.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.4.0.tgz#adbc795d8eeb47029963016cefdf89dc799fcebc"
+  integrity sha512-9WXSPC5fMv61vaupRkCKCxsPxBocVnwakBEkMIHHpkTTg6icbJtg6jzgtLDm4bl3cSHAca52rYWih0k4K3PfHw==
 
 uuid@^9.0.0:
   version "9.0.0"
